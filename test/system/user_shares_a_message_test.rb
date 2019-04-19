@@ -1,9 +1,14 @@
 require "application_system_test_case"
 
 class UserSharesAMessageTest < ApplicationSystemTestCase
-  # test "visiting the index" do
-  #   visit user_shares_a_messages_url
-  #
-  #   assert_selector "h1", text: "UserSharesAMessage"
-  # end
+  test "visiting the index" do
+    content = "Hello, World!"
+
+    visit "/"
+    click_on "Share a Note"
+    fill_in "Message", with: content
+    click_on "Share"
+
+    assert_text content
+  end
 end
