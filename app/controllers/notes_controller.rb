@@ -1,2 +1,2 @@
-class NotesController
+class NotesController < ApplicationController
 end
