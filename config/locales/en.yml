@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  notes:
+    index:
+      new: "Share a Note"
