@@ -5,9 +5,9 @@ class UserSharesAMessageTest < ApplicationSystemTestCase
     content = "Hello, World!"
 
     visit root_url
-    click_on I18n.translate("notes.index.new")
-    fill_in I18n.translate("helpers.label.note.content"), with: content
-    click_on I18n.translate("helpers.submit.note.create")
+    click_on translate("notes.index.new")
+    fill_in translate("helpers.label.note.content"), with: content
+    click_on translate("helpers.submit.note.create")
 
     assert_text content
   end
