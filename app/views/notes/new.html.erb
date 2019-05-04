@@ -1,5 +1,5 @@
 <%= form_with(url: "/notes", method: :post, local: true) do |form| %>
-  <label for="content">Message</label>
+  <%= form.label(:content, "Message") %>
   <%= form.text_area(:content) %>
 
   <button>Share</button>
