@@ -1,4 +1,4 @@
-<%= form_tag "/notes", method: :post do %>
+<%= form_with(url: "/notes", method: :post, local: true) do %>
   <label for="content">Message</label>
   <textarea id="content" name="content"></textarea>
 
