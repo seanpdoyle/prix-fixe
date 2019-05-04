@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/notes/new", controller: "notes", action: "new", as: "new_note"
-  post "/notes", controller: "notes", action: "create"
+  post "/notes", controller: "notes", action: "create", as: "notes"
 
   get "/", controller: "notes", action: "index"
 end
