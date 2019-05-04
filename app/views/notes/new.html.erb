@@ -1,6 +1,6 @@
-<form action="/notes" method="post">
+<%= form_tag "/notes", method: :post do %>
   <label for="content">Message</label>
   <textarea id="content" name="content"></textarea>
 
   <button>Share</button>
-</form>
+<% end %>
