@@ -4,7 +4,7 @@ class UserSharesAMessageTest < ApplicationSystemTestCase
   test "visiting the index" do
     content = "Hello, World!"
 
-    visit "/"
+    visit root_path
     click_on "Share a Note"
     fill_in "Message", with: content
     click_on "Share"
