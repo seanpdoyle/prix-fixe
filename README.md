@@ -116,6 +116,9 @@ Once we're finished iterating through a single [Red-Green-Refactor
 cycle][red-green-refactor], the granularity of our commits will increase in
 both size and scope.
 
+For the reader's sake, imagine commits added after the end of the first cycle as
+the output of adhering to the same process as those created during that cycle.
+
 [gh-pages]: https://seanpdoyle.github.io/prix-fixe
 [git-read]: https://github.com/seanpdoyle/git-read
 [git]: https://git-scm.com/
