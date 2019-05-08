@@ -2,6 +2,10 @@
   Share a Note
 </a>
 
-<% Note.all.each do |note| %>
-  <%= note.content %>
+<ul>
+<% notes.each do |note| %>
+  <li>
+    <%= note.content %>
+  </li>
 <% end %>
+</ul>
