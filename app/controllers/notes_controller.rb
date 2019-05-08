@@ -8,8 +8,18 @@ class NotesController < ApplicationController
   end
 
   def create
-    note = Note.create!(params.to_unsafe_h.slice(:content))
+    note = Note.new(note_params)
 
-    redirect_to notes_url
+    if note.save
+      redirect_to notes_url
+    else
+      render(:new, status: :unprocessable_entity)
+    end
+  end
+
+  private
+
+  def note_params
+    params.to_unsafe_h.slice(:content)
   end
 end
