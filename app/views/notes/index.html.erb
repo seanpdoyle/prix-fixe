@@ -1,3 +1,7 @@
 <a href="<%= new_note_path %>">
   Share a Note
 </a>
+
+<% Note.all.each do |note| %>
+  <%= note.content %>
+<% end %>
