@@ -1,11 +1,12 @@
 require 'test_helper'
 
 class NoteTest < ActiveSupport::TestCase
-  test "NOT NULL database constraint on notes.content" do
+  test "validates content is present" do
     note = Note.new
 
-    exercise = -> { note.save! }
+    valid = note.validate
 
-    assert_raises(ActiveRecord::NotNullViolation, /content/, &exercise)
+    assert_equal valid, false
+    assert_equal note.errors[:content], [I18n.translate("errors.messages.blank")]
   end
 end
