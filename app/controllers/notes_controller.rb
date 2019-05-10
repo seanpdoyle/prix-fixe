@@ -10,8 +10,6 @@ class NotesController < ApplicationController
   def create
     note = Note.create!(params.to_unsafe_h.slice(:content))
 
-    render(locals: {
-      note: note
-    })
+    redirect_to notes_url
   end
 end
