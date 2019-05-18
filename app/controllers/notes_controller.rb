@@ -13,13 +13,21 @@ class NotesController < ApplicationController
     if note.save
       redirect_to notes_url
     else
-      render(:new, status: :unprocessable_entity)
+      render(:new, status: :unprocessable_entity, locals: { note: note })
     end
+  end
+
+  def new
+    note = Note.new
+
+    render(locals: {
+      note: note,
+    })
   end
 
   private
 
   def note_params
-    params.to_unsafe_h.slice(:content)
+    params.require(:note).permit(:content)
   end
 end
