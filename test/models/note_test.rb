@@ -7,6 +7,6 @@ class NoteTest < ActiveSupport::TestCase
     valid = note.validate
 
     assert_equal valid, false
-    assert_equal note.errors[:content], [I18n.translate("errors.messages.blank")]
+    assert_equal note.errors[:content], [translate("errors.messages.blank")]
   end
 end
