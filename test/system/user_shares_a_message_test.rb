@@ -5,7 +5,7 @@ class UserSharesAMessageTest < ApplicationSystemTestCase
     content = "Hello, World!"
 
     visit root_path
-    click_on "Share a Note"
+    click_on translate("notes.index.new")
     fill_in "Message", with: content
     click_on "Share"
 
