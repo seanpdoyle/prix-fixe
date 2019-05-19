@@ -1,6 +1,6 @@
 <%= form_with(model: note, method: :post, local: true) do |form| %>
-  <%= form.label(:content, "Message") %>
+  <%= form.label(:content) %>
   <%= form.text_area(:content) %>
 
-  <%= form.submit("Share") %>
+  <%= form.submit %>
 <% end %>
