@@ -6,8 +6,8 @@ class UserSharesAMessageTest < ApplicationSystemTestCase
 
     visit root_path
     click_on translate("notes.index.new")
-    fill_in "Message", with: content
-    click_on "Share"
+    fill_in translate("helpers.label.note.content"), with: content
+    click_on translate("helpers.submit.note.create")
 
     assert_text content
   end
