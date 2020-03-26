@@ -111,7 +111,7 @@ GEM
     nokogiri (1.10.2)
       mini_portile2 (~> 2.4.0)
     public_suffix (3.0.3)
-    puma (3.12.1)
+    puma (3.12.4)
     rack (2.0.7)
     rack-proxy (0.6.5)
       rack
@@ -211,7 +211,7 @@ DEPENDENCIES
   chromedriver-helper
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 6.0.0.beta3)
   sass-rails (~> 5.0)
   selenium-webdriver
