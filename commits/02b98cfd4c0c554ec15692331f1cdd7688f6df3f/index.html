@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Render `<form>` with `form_tag` with `form_with`
+</title>
+    <link href="../../stylesheets/site.css" rel="stylesheet" />
+    <link href="../../stylesheets/syntax.css" rel="stylesheet" />
+    <script src="../../javascripts/site.js"></script>
+  </head>
+  <body class="page">
+    <details id="table-of-contents" class="page__history" open>
+      <summary class="page__history-summary">
+        Table of Contents
+      </summary>
+      <nav class="history">
+        <a href="../../">prix-fixe</a>
+
+          <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/">[GENERATED] Initial Commit
+</a>
+          <a href="../65bf913763168f594a3873bcd9d0f6577602c986/">Elaborate on the project&#x27;s goals in the README
+</a>
+          <a href="../6d1482de076a391b14b055aba66413577d326997/">Un-comment remaining `Gemfile` dependencies
+</a>
+          <a href="../63ad27b47bf372894689ee4a57193581d016bea6/">Create `git-read` GitHub Action
+</a>
+          <a href="../286c87daff9c9edf5511dd9ed89d93cd4e0c300f/">Execute the Rails-generated `bin&#x2F;setup` script
+</a>
+          <a href="../2e3dde3c9b976dfddaae6337c54d8a51fe2a3330/">Add `UserSharesAMessageTest`
+</a>
+          <a href="../c95a48404a071a14bc8fdeef8f51cd77754ae572/">Add a failing system test
+</a>
+          <a href="../838b705249321b89cf4927c3fc35fd6181cea17b/">Declare `GET &quot;&#x2F;&quot;` route
+</a>
+          <a href="../d3e4903047dbba9e787aa06c7bbe1a357f4bb5ae/">Declare `NotesController`
+</a>
+          <a href="../d8f2fe09296fac464175c9e06f23ff8816211187/">Extend from `ApplicationController`
+</a>
+          <a href="../a437fd15990afc70f4afff57532ac3c89628014f/">Declare `app&#x2F;views&#x2F;notes&#x2F;index.html.erb`
+</a>
+          <a href="../bcfa4308c498ef9f47a671cf8fbae1b02dc9419a/">Render `&lt;a&gt;` containing `&quot;Share a Note&quot;`
+</a>
+          <a href="../2f6d61d65f27dd2ca87ffa86581a8c22d6fc5af8/">Link to `&quot;&#x2F;&quot;`
+</a>
+          <a href="../d3f9e315cc244b767afb23ddbedabaf27cdc5239/">Declare `GET &#x2F;notes&#x2F;new` route
+</a>
+          <a href="../b64199c63d296c4900a8ac78410371a846f1e885/">Declare `app&#x2F;views&#x2F;notes&#x2F;new.html.erb` view
+</a>
+          <a href="../f0164b911d0955887a6c0033097e3a676a9c4c5c/">Render `&lt;label&gt;` and `&lt;textarea&gt;`
+</a>
+          <a href="../9e7fc11a58e9fffb2ec1d6180c9de0c0c892c107/">Render `&lt;button&gt;` in `notes#new` template
+</a>
+          <a href="../5798e2c774e69291b66afc50d463b6cbbd864c56/">Render `&lt;form&gt;` element in `notes#new` template
+</a>
+          <a href="../addf71a423212a4b11ddb43edc2b0561d3025763/">Declare a `POST &#x2F;notes` route
+</a>
+          <a href="../39a75e308d2e763b76d7ed5be5920f01629ffc71/">Declare `notes#create` view template
+</a>
+          <a href="../b8c0fecb78d00b574aee7e2c69925a839232d6c6/">Render content from `params`
+</a>
+          <a href="../1f63746b78e57188128bdd704116f09e94565551/">Add `name=&quot;content&quot;` to `&lt;textarea&gt;`
+</a>
+          <a href="../7ba2a35e86e64e8776362ffb7ec4cea1f85f1b6f/">Enable Request Forgery Protection in `test`
+</a>
+          <a href="../f5b15516c5af779de2ef17f44af4234954b6ea48/">Use `form_tag` instead of `&lt;form&gt;`
+</a>
+          <a href="./" aria-current="page">Render `&lt;form&gt;` with `form_tag` with `form_with`
+</a>
+          <a href="../8281c9086bcb597f699547d01d7cd0059f871caf/">Build `&lt;textarea&gt;` with `text_area` helper
+</a>
+          <a href="../5fdde2290a4d77da5147ecab7a754d2a5ed69852/">Replace `&lt;label&gt;` with `#label` invocation
+</a>
+          <a href="../174971072d0de3fb3994dec664ae61a5bef0b123/">Replace `&lt;button&gt;` with `#submit` invocation
+</a>
+          <a href="../252c588bd353f96fb510756cc218f3ba6fc849c4/">Use named route in `notes#index`
+</a>
+          <a href="../3ec5b4f8260c2456a169fd906d86bc9371425f65/">Replace `&quot;&#x2F;notes&quot;` with `notes_path` invocation
+</a>
+          <a href="../c4680e04ea80231440ac0ec04ffdef3686819f01/">Replace `post`, `get` declarations with `resources`
+</a>
+          <a href="../3608c1de14ecc0048809c216bc21bcfdf6f89dd4/">Rename `get &quot;&#x2F;&quot;` route to &quot;root&quot;
+</a>
+          <a href="../5a65273e39b91c524624d6aa47c54b44f9ea9379/">Replace `get &quot;&#x2F;&quot;` declaration with `root`
+</a>
+          <a href="../bf1d3997add65349a5556ef730d676474647943e/">Drive system tests with Headless Chrome Browser
+</a>
+          <a href="../eb4aca5aebbf9d6d74f912c57714a0189694ec9a/">Complete the first TDD Red-Green-Refactor Cycle
+</a>
+      </nav>
+    </details>
+
+    <main class="page__content">
+      <header>
+
+        <nav class="navigation">
+
+<a href="../f5b15516c5af779de2ef17f44af4234954b6ea48/">              &#8592; Previous
+</a>
+<a href="../8281c9086bcb597f699547d01d7cd0059f871caf/">              Next &#8594;
+</a>        </nav>
+      </header>
+
+      <section class="container">
+        <article class="container__item commit">
+          <h1>Render <code>&lt;form&gt;</code> with <code>form_tag</code> with <code>form_with</code></h1>
+
+<p>This commit refactors our application&rsquo;s View code by replacing our
+<code>notes#new</code> template&rsquo;s call to <code>form_tag</code> with a call to
+<a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/FormHelper.html#method-i-form_with"><code>form_with</code></a>.</p>
+
+<p>The <code>form_with</code> helper&rsquo;s behavior is very similar to the <code>form_tag</code>&lsquo;s.
+In addition to generating a CSRF Protection-compliant <code>&lt;form&gt;</code> element,
+the <code>form_with</code> helper will yield an instance of an
+[<code>ActionView::Helpers::FormBuilder</code>]. This commit doesn&rsquo;t yet make use
+of that instance, but its availability will enable future View layer
+refactorings.</p>
+
+<p>The <code>form_with</code> helper is invoked with the <a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/FormHelper.html#method-i-form_with-label-form_with+options"><code>local: true</code></a> option
+to opt-out of submitting form asynchronously through <a href="https://guides.rubyonrails.org/v5.2/working_with_javascript_in_rails.html#unobtrusive-javascript">Rails&rsquo; Unobtrusive
+JavaScript</a> (there will be more on that topic in future
+commits).</p>
+
+<p>When we run the test again after making this change, it still passes.</p>
+
+        </article>
+          <aside class="container__item diff">
+              <details
+  id="app/views/notes/new.html.erb"
+  open
+>
+  <summary>
+    app/views/notes/new.html.erb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/notes/new.html.erb b/app/views/notes/new.html.erb
+index 8c45414..d7d7f0e 100644
+</span><span class="gd">--- a/app/views/notes/new.html.erb
+</span><span class="gi">+++ b/app/views/notes/new.html.erb
+</span><span class="p">@@ -1,4 +1,4 @@</span>
+<span class="gd">-&lt;%= form_tag "/notes", method: :post do %&gt;
+</span><span class="gi">+&lt;%= form_with(url: "/notes", method: :post, local: true) do %&gt;
+</span>   &lt;label for="content"&gt;Message&lt;/label&gt;
+   &lt;textarea id="content" name="content"&gt;&lt;/textarea&gt;
+ 
+</code></pre></div></details>
+
+          </aside>
+      </section>
+    </main>
+  </body>
+</html>

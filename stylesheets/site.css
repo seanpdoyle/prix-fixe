@@ -1,0 +1,115 @@
+:root {
+  --spacing: 1.5rem;
+  --spacing--small: 0.75rem; }
+
+.banner {
+  padding: var(--small-spacing); }
+
+.commit ol,
+.commit ul {
+  padding-left: var(--spacing); }
+
+.commit ol {
+  list-style-type: decimal; }
+
+.commit ul {
+  list-style-type: disc; }
+
+.commit img {
+  max-width: 100%; }
+
+.container {
+  display: flex;
+  flex-direction: column; }
+  @media (min-width: 36rem) {
+    .container {
+      flex-direction: row; } }
+
+@media (min-width: 36rem) {
+  .container__item {
+    width: 50%; }
+    .container__item:only-child {
+      width: 100%; } }
+
+.highlight {
+  overflow-x: scroll; }
+
+.history {
+  display: flex;
+  flex-direction: column; }
+
+.history > * {
+  --circle-size: 1rem;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: var(--spacing--small);
+  position: relative; }
+  .history > *::before {
+    background-color: black;
+    border-radius: 100%;
+    content: "";
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: var(--circle-size);
+    margin-right: var(--circle-size);
+    width: var(--circle-size);
+    z-index: 1; }
+  .history > *::after {
+    background-color: black;
+    content: "";
+    display: block;
+    height: 100%;
+    left: calc(var(--circle-size) * 0.5);
+    position: absolute;
+    top: var(--circle-size);
+    width: 1px; }
+  .history > *:last-of-type::after {
+    display: none; }
+  .history > *[aria-current]:not([aria-current="false"]) {
+    text-decoration: none; }
+  .history > *[aria-current]:not([aria-current="false"])::before {
+    background-color: green; }
+
+.history > *:last-child {
+  padding-bottom: 0; }
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
+.page {
+  --history-width: 360px;
+  display: flex;
+  flex-direction: column; }
+  @media (min-width: 36rem) {
+    .page {
+      flex-direction: row; } }
+
+.page__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; }
+  @media (min-width: 36rem) {
+    .page__content {
+      width: calc(100vw - var(--history-width) - var(--spacing)); } }
+
+.page__history {
+  margin-bottom: var(--spacing--small);
+  margin-right: 0; }
+  @media (min-width: 36rem) {
+    .page__history {
+      margin-bottom: 0;
+      margin-right: var(--spacing); } }
+
+.page__history-summary {
+  display: inherit; }
+  @media (min-width: 36rem) {
+    .page__history-summary {
+      display: none; } }
+
+@media (min-width: 36rem) {
+  .page__history > * {
+    width: 360px; } }
