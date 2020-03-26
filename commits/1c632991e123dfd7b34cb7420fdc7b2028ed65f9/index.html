@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Validate presence of `notes.content`
+</title>
+    <link href="../../stylesheets/site.css" rel="stylesheet" />
+    <link href="../../stylesheets/syntax.css" rel="stylesheet" />
+    <script src="../../javascripts/site.js"></script>
+  </head>
+  <body class="page">
+    <details id="table-of-contents" class="page__history" open>
+      <summary class="page__history-summary">
+        Table of Contents
+      </summary>
+      <nav class="history">
+        <a href="../../">prix-fixe</a>
+
+          <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/">[GENERATED] Initial Commit
+</a>
+          <a href="../65bf913763168f594a3873bcd9d0f6577602c986/">Elaborate on the project&#x27;s goals in the README
+</a>
+          <a href="../6d1482de076a391b14b055aba66413577d326997/">Un-comment remaining `Gemfile` dependencies
+</a>
+          <a href="../63ad27b47bf372894689ee4a57193581d016bea6/">Create `git-read` GitHub Action
+</a>
+          <a href="../286c87daff9c9edf5511dd9ed89d93cd4e0c300f/">Execute the Rails-generated `bin&#x2F;setup` script
+</a>
+          <a href="../2e3dde3c9b976dfddaae6337c54d8a51fe2a3330/">Add `UserSharesAMessageTest`
+</a>
+          <a href="../c95a48404a071a14bc8fdeef8f51cd77754ae572/">Add a failing system test
+</a>
+          <a href="../838b705249321b89cf4927c3fc35fd6181cea17b/">Declare `GET &quot;&#x2F;&quot;` route
+</a>
+          <a href="../d3e4903047dbba9e787aa06c7bbe1a357f4bb5ae/">Declare `NotesController`
+</a>
+          <a href="../d8f2fe09296fac464175c9e06f23ff8816211187/">Extend from `ApplicationController`
+</a>
+          <a href="../a437fd15990afc70f4afff57532ac3c89628014f/">Declare `app&#x2F;views&#x2F;notes&#x2F;index.html.erb`
+</a>
+          <a href="../bcfa4308c498ef9f47a671cf8fbae1b02dc9419a/">Render `&lt;a&gt;` containing `&quot;Share a Note&quot;`
+</a>
+          <a href="../2f6d61d65f27dd2ca87ffa86581a8c22d6fc5af8/">Link to `&quot;&#x2F;&quot;`
+</a>
+          <a href="../d3f9e315cc244b767afb23ddbedabaf27cdc5239/">Declare `GET &#x2F;notes&#x2F;new` route
+</a>
+          <a href="../b64199c63d296c4900a8ac78410371a846f1e885/">Declare `app&#x2F;views&#x2F;notes&#x2F;new.html.erb` view
+</a>
+          <a href="../f0164b911d0955887a6c0033097e3a676a9c4c5c/">Render `&lt;label&gt;` and `&lt;textarea&gt;`
+</a>
+          <a href="../9e7fc11a58e9fffb2ec1d6180c9de0c0c892c107/">Render `&lt;button&gt;` in `notes#new` template
+</a>
+          <a href="../5798e2c774e69291b66afc50d463b6cbbd864c56/">Render `&lt;form&gt;` element in `notes#new` template
+</a>
+          <a href="../addf71a423212a4b11ddb43edc2b0561d3025763/">Declare a `POST &#x2F;notes` route
+</a>
+          <a href="../39a75e308d2e763b76d7ed5be5920f01629ffc71/">Declare `notes#create` view template
+</a>
+          <a href="../b8c0fecb78d00b574aee7e2c69925a839232d6c6/">Render content from `params`
+</a>
+          <a href="../1f63746b78e57188128bdd704116f09e94565551/">Add `name=&quot;content&quot;` to `&lt;textarea&gt;`
+</a>
+          <a href="../7ba2a35e86e64e8776362ffb7ec4cea1f85f1b6f/">Enable Request Forgery Protection in `test`
+</a>
+          <a href="../f5b15516c5af779de2ef17f44af4234954b6ea48/">Use `form_tag` instead of `&lt;form&gt;`
+</a>
+          <a href="../02b98cfd4c0c554ec15692331f1cdd7688f6df3f/">Render `&lt;form&gt;` with `form_tag` with `form_with`
+</a>
+          <a href="../8281c9086bcb597f699547d01d7cd0059f871caf/">Build `&lt;textarea&gt;` with `text_area` helper
+</a>
+          <a href="../5fdde2290a4d77da5147ecab7a754d2a5ed69852/">Replace `&lt;label&gt;` with `#label` invocation
+</a>
+          <a href="../174971072d0de3fb3994dec664ae61a5bef0b123/">Replace `&lt;button&gt;` with `#submit` invocation
+</a>
+          <a href="../252c588bd353f96fb510756cc218f3ba6fc849c4/">Use named route in `notes#index`
+</a>
+          <a href="../3ec5b4f8260c2456a169fd906d86bc9371425f65/">Replace `&quot;&#x2F;notes&quot;` with `notes_path` invocation
+</a>
+          <a href="../c4680e04ea80231440ac0ec04ffdef3686819f01/">Replace `post`, `get` declarations with `resources`
+</a>
+          <a href="../3608c1de14ecc0048809c216bc21bcfdf6f89dd4/">Rename `get &quot;&#x2F;&quot;` route to &quot;root&quot;
+</a>
+          <a href="../5a65273e39b91c524624d6aa47c54b44f9ea9379/">Replace `get &quot;&#x2F;&quot;` declaration with `root`
+</a>
+          <a href="../bf1d3997add65349a5556ef730d676474647943e/">Drive system tests with Headless Chrome Browser
+</a>
+          <a href="../eb4aca5aebbf9d6d74f912c57714a0189694ec9a/">Complete the first TDD Red-Green-Refactor Cycle
+</a>
+          <a href="../181f78795b0ab95679e959880a7a43e8bcc6aa24/">Replace root with Redirect to `&#x2F;notes`
+</a>
+          <a href="../fdbbb4b2531aeb98cfbba24638ea5c4947995e2b/">Add failing system test
+</a>
+          <a href="../1788d9353a1e312612b5ee0f40c51be707e68dce/">Generate `Note` model
+</a>
+          <a href="../8528f6373cb17ddfc923d08a372b8c8494af0dc8/">Run the `create_notes` migration
+</a>
+          <a href="../178653d3ae51add50e836dcd83593a85f29f0f11/">Render a list of all `Note` records `notes#index`
+</a>
+          <a href="../20df2d1ba944f6561532bdc4a37c603cb262d993/">Render `notes#index` from controller action
+</a>
+          <a href="../4d49d6070bae25a19405f721f105eb266f608e80/">Introduce `NotesController` tests
+</a>
+          <a href="../0623c8864333f8d41040be774a046b35ab2f5d5b/">Disable CSRF-protection when in `test` environment
+</a>
+          <a href="../c260e2e9ef87e97d3c8ea78a5d19df8ea557ed1d/">Persist data in `POST &#x2F;notes` requests to `notes`
+</a>
+          <a href="../8d0c3dcde9e4ccd0e4e454142937cc31d171b685/">Redirect to `&#x2F;notes` after `POST &#x2F;notes` requests
+</a>
+          <a href="./" aria-current="page">Validate presence of `notes.content`
+</a>
+          <a href="../ad215bb6f0daedf41bab8577fefbdb419686406a/">Pass `model:` instead of `url:` in `notes#new`
+</a>
+          <a href="../6b41593624357e713b6f78bd98b8b494ad4ed6d4/">Internationalize application&#x27;s text
+</a>
+          <a href="../899077a25b745c7699c187456d833e04383bad40/">Use `FormBuilder` to internationalize labels
+</a>
+      </nav>
+    </details>
+
+    <main class="page__content">
+      <header>
+
+        <nav class="navigation">
+
+<a href="../8d0c3dcde9e4ccd0e4e454142937cc31d171b685/">              &#8592; Previous
+</a>
+<a href="../ad215bb6f0daedf41bab8577fefbdb419686406a/">              Next &#8594;
+</a>        </nav>
+      </header>
+
+      <section class="container">
+        <article class="container__item commit">
+          <h1>Validate presence of <code>notes.content</code></h1>
+
+<p>This commit adds both model and controller coverage for validating that
+<code>Note</code> model is created with its required fields.</p>
+
+<p>Extends the <code>Note</code> model to use the
+<a href="https://api.rubyonrails.org/v5.2/classes/ActiveRecord/Validations/ClassMethods.html#method-i-validates_presence_of"><code>validates_presence_of</code></a> validator by <a href="https://api.rubyonrails.org/v5.2/classes/ActiveModel/Validations/ClassMethods.html#method-i-validates">passing
+<code>presence: true</code> to the <code>validates</code> macro</a>.</p>
+
+<p>When validating a record without a <code>content</code> field, the <code>presence: true</code>
+validation&rsquo;s failure supersedes the previous behavior of violating the
+column&rsquo;s <code>NOT NULL</code> constraint and raising a
+<code>ActiveRecord::NotNullViolation</code> error. Since the two are not
+compatible, this commit removes the previous test coverage from
+<code>notes_test.rb</code>.</p>
+
+<p>When responding to a <code>POST /notes</code> request that would result in an
+invalid <code>Note</code> record, our controller will re-render the <code>notes#new</code> to
+present the client with another opportunity to submit a Note. In
+addition, the controller will respond with a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422">422 HTTP Status</a> to
+indicate to the client that the previous request was unprocessable
+entity.</p>
+
+        </article>
+          <aside class="container__item diff">
+              <details
+  id="app/controllers/notes_controller.rb"
+  open
+>
+  <summary>
+    app/controllers/notes_controller.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/controllers/notes_controller.rb b/app/controllers/notes_controller.rb
+index 7534670..8375672 100644
+</span><span class="gd">--- a/app/controllers/notes_controller.rb
+</span><span class="gi">+++ b/app/controllers/notes_controller.rb
+</span><span class="p">@@ -8,8 +8,18 @@</span> class NotesController &lt; ApplicationController
+   end
+ 
+   def create
+<span class="gd">-    note = Note.create!(params.to_unsafe_h.slice(:content))
+</span><span class="gi">+    note = Note.new(note_params)
+</span> 
+<span class="gd">-    redirect_to notes_url
+</span><span class="gi">+    if note.save
++      redirect_to notes_url
++    else
++      render(:new, status: :unprocessable_entity)
++    end
++  end
++
++  private
++
++  def note_params
++    params.to_unsafe_h.slice(:content)
+</span>   end
+ end
+</code></pre></div></details>
+
+              <details
+  id="app/models/note.rb"
+  open
+>
+  <summary>
+    app/models/note.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/models/note.rb b/app/models/note.rb
+index b6b1e5a..67129f0 100644
+</span><span class="gd">--- a/app/models/note.rb
+</span><span class="gi">+++ b/app/models/note.rb
+</span><span class="p">@@ -1,2 +1,3 @@</span>
+ class Note &lt; ApplicationRecord
+<span class="gi">+  validates :content, presence: true
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="test/controllers/notes_controller_test.rb"
+  open
+>
+  <summary>
+    test/controllers/notes_controller_test.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/controllers/notes_controller_test.rb b/test/controllers/notes_controller_test.rb
+index eebcb0a..2d64375 100644
+</span><span class="gd">--- a/test/controllers/notes_controller_test.rb
+</span><span class="gi">+++ b/test/controllers/notes_controller_test.rb
+</span><span class="p">@@ -10,10 +10,18 @@</span> class NotesControllerTest &lt; ActionDispatch::IntegrationTest
+   end
+ 
+   test "#create redirects to /notes" do
+<span class="gd">-    notes_attributes = { content: "Hello, World" }
+</span><span class="gi">+    note_attributes = { content: "Hello, World" }
+</span> 
+<span class="gd">-    post notes_path, params: notes_attributes
+</span><span class="gi">+    post notes_path, params: note_attributes
+</span> 
+     assert_redirected_to notes_url
+   end
+<span class="gi">+
++  test "#create with invalid data responds with unprocessable entity" do
++    note_attributes = {}
++
++    post notes_path, params: note_attributes
++
++    assert_response :unprocessable_entity
++  end
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="test/models/note_test.rb"
+  open
+>
+  <summary>
+    test/models/note_test.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/models/note_test.rb b/test/models/note_test.rb
+index 42a53e2..679348d 100644
+</span><span class="gd">--- a/test/models/note_test.rb
+</span><span class="gi">+++ b/test/models/note_test.rb
+</span><span class="p">@@ -1,11 +1,12 @@</span>
+ require 'test_helper'
+ 
+ class NoteTest &lt; ActiveSupport::TestCase
+<span class="gd">-  test "NOT NULL database constraint on notes.content" do
+</span><span class="gi">+  test "validates content is present" do
+</span>     note = Note.new
+ 
+<span class="gd">-    exercise = -&gt; { note.save! }
+</span><span class="gi">+    valid = note.validate
+</span> 
+<span class="gd">-    assert_raises(ActiveRecord::NotNullViolation, /content/, &amp;exercise)
+</span><span class="gi">+    assert_equal valid, false
++    assert_equal note.errors[:content], [I18n.translate("errors.messages.blank")]
+</span>   end
+ end
+</code></pre></div></details>
+
+          </aside>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,390 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Generate `Note` model
+</title>
+    <link href="../../stylesheets/site.css" rel="stylesheet" />
+    <link href="../../stylesheets/syntax.css" rel="stylesheet" />
+    <script src="../../javascripts/site.js"></script>
+  </head>
+  <body class="page">
+    <details id="table-of-contents" class="page__history" open>
+      <summary class="page__history-summary">
+        Table of Contents
+      </summary>
+      <nav class="history">
+        <a href="../../">prix-fixe</a>
+
+          <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/">[GENERATED] Initial Commit
+</a>
+          <a href="../65bf913763168f594a3873bcd9d0f6577602c986/">Elaborate on the project&#x27;s goals in the README
+</a>
+          <a href="../6d1482de076a391b14b055aba66413577d326997/">Un-comment remaining `Gemfile` dependencies
+</a>
+          <a href="../63ad27b47bf372894689ee4a57193581d016bea6/">Create `git-read` GitHub Action
+</a>
+          <a href="../286c87daff9c9edf5511dd9ed89d93cd4e0c300f/">Execute the Rails-generated `bin&#x2F;setup` script
+</a>
+          <a href="../2e3dde3c9b976dfddaae6337c54d8a51fe2a3330/">Add `UserSharesAMessageTest`
+</a>
+          <a href="../c95a48404a071a14bc8fdeef8f51cd77754ae572/">Add a failing system test
+</a>
+          <a href="../838b705249321b89cf4927c3fc35fd6181cea17b/">Declare `GET &quot;&#x2F;&quot;` route
+</a>
+          <a href="../d3e4903047dbba9e787aa06c7bbe1a357f4bb5ae/">Declare `NotesController`
+</a>
+          <a href="../d8f2fe09296fac464175c9e06f23ff8816211187/">Extend from `ApplicationController`
+</a>
+          <a href="../a437fd15990afc70f4afff57532ac3c89628014f/">Declare `app&#x2F;views&#x2F;notes&#x2F;index.html.erb`
+</a>
+          <a href="../bcfa4308c498ef9f47a671cf8fbae1b02dc9419a/">Render `&lt;a&gt;` containing `&quot;Share a Note&quot;`
+</a>
+          <a href="../2f6d61d65f27dd2ca87ffa86581a8c22d6fc5af8/">Link to `&quot;&#x2F;&quot;`
+</a>
+          <a href="../d3f9e315cc244b767afb23ddbedabaf27cdc5239/">Declare `GET &#x2F;notes&#x2F;new` route
+</a>
+          <a href="../b64199c63d296c4900a8ac78410371a846f1e885/">Declare `app&#x2F;views&#x2F;notes&#x2F;new.html.erb` view
+</a>
+          <a href="../f0164b911d0955887a6c0033097e3a676a9c4c5c/">Render `&lt;label&gt;` and `&lt;textarea&gt;`
+</a>
+          <a href="../9e7fc11a58e9fffb2ec1d6180c9de0c0c892c107/">Render `&lt;button&gt;` in `notes#new` template
+</a>
+          <a href="../5798e2c774e69291b66afc50d463b6cbbd864c56/">Render `&lt;form&gt;` element in `notes#new` template
+</a>
+          <a href="../addf71a423212a4b11ddb43edc2b0561d3025763/">Declare a `POST &#x2F;notes` route
+</a>
+          <a href="../39a75e308d2e763b76d7ed5be5920f01629ffc71/">Declare `notes#create` view template
+</a>
+          <a href="../b8c0fecb78d00b574aee7e2c69925a839232d6c6/">Render content from `params`
+</a>
+          <a href="../1f63746b78e57188128bdd704116f09e94565551/">Add `name=&quot;content&quot;` to `&lt;textarea&gt;`
+</a>
+          <a href="../7ba2a35e86e64e8776362ffb7ec4cea1f85f1b6f/">Enable Request Forgery Protection in `test`
+</a>
+          <a href="../f5b15516c5af779de2ef17f44af4234954b6ea48/">Use `form_tag` instead of `&lt;form&gt;`
+</a>
+          <a href="../02b98cfd4c0c554ec15692331f1cdd7688f6df3f/">Render `&lt;form&gt;` with `form_tag` with `form_with`
+</a>
+          <a href="../8281c9086bcb597f699547d01d7cd0059f871caf/">Build `&lt;textarea&gt;` with `text_area` helper
+</a>
+          <a href="../5fdde2290a4d77da5147ecab7a754d2a5ed69852/">Replace `&lt;label&gt;` with `#label` invocation
+</a>
+          <a href="../174971072d0de3fb3994dec664ae61a5bef0b123/">Replace `&lt;button&gt;` with `#submit` invocation
+</a>
+          <a href="../252c588bd353f96fb510756cc218f3ba6fc849c4/">Use named route in `notes#index`
+</a>
+          <a href="../3ec5b4f8260c2456a169fd906d86bc9371425f65/">Replace `&quot;&#x2F;notes&quot;` with `notes_path` invocation
+</a>
+          <a href="../c4680e04ea80231440ac0ec04ffdef3686819f01/">Replace `post`, `get` declarations with `resources`
+</a>
+          <a href="../3608c1de14ecc0048809c216bc21bcfdf6f89dd4/">Rename `get &quot;&#x2F;&quot;` route to &quot;root&quot;
+</a>
+          <a href="../5a65273e39b91c524624d6aa47c54b44f9ea9379/">Replace `get &quot;&#x2F;&quot;` declaration with `root`
+</a>
+          <a href="../bf1d3997add65349a5556ef730d676474647943e/">Drive system tests with Headless Chrome Browser
+</a>
+          <a href="../eb4aca5aebbf9d6d74f912c57714a0189694ec9a/">Complete the first TDD Red-Green-Refactor Cycle
+</a>
+          <a href="../181f78795b0ab95679e959880a7a43e8bcc6aa24/">Replace root with Redirect to `&#x2F;notes`
+</a>
+          <a href="../fdbbb4b2531aeb98cfbba24638ea5c4947995e2b/">Add failing system test
+</a>
+          <a href="./" aria-current="page">Generate `Note` model
+</a>
+          <a href="../8528f6373cb17ddfc923d08a372b8c8494af0dc8/">Run the `create_notes` migration
+</a>
+          <a href="../178653d3ae51add50e836dcd83593a85f29f0f11/">Render a list of all `Note` records `notes#index`
+</a>
+          <a href="../20df2d1ba944f6561532bdc4a37c603cb262d993/">Render `notes#index` from controller action
+</a>
+          <a href="../4d49d6070bae25a19405f721f105eb266f608e80/">Introduce `NotesController` tests
+</a>
+          <a href="../0623c8864333f8d41040be774a046b35ab2f5d5b/">Disable CSRF-protection when in `test` environment
+</a>
+          <a href="../c260e2e9ef87e97d3c8ea78a5d19df8ea557ed1d/">Persist data in `POST &#x2F;notes` requests to `notes`
+</a>
+          <a href="../8d0c3dcde9e4ccd0e4e454142937cc31d171b685/">Redirect to `&#x2F;notes` after `POST &#x2F;notes` requests
+</a>
+          <a href="../1c632991e123dfd7b34cb7420fdc7b2028ed65f9/">Validate presence of `notes.content`
+</a>
+          <a href="../ad215bb6f0daedf41bab8577fefbdb419686406a/">Pass `model:` instead of `url:` in `notes#new`
+</a>
+          <a href="../6b41593624357e713b6f78bd98b8b494ad4ed6d4/">Internationalize application&#x27;s text
+</a>
+          <a href="../899077a25b745c7699c187456d833e04383bad40/">Use `FormBuilder` to internationalize labels
+</a>
+      </nav>
+    </details>
+
+    <main class="page__content">
+      <header>
+
+        <nav class="navigation">
+
+<a href="../fdbbb4b2531aeb98cfbba24638ea5c4947995e2b/">              &#8592; Previous
+</a>
+<a href="../8528f6373cb17ddfc923d08a372b8c8494af0dc8/">              Next &#8594;
+</a>        </nav>
+      </header>
+
+      <section class="container">
+        <article class="container__item commit">
+          <h1>Generate <code>Note</code> model</h1>
+
+<p>This commit resolves the previous error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserDiscoversANoteTest#test_from_the_root:
+NameError: uninitialized constant UserDiscoversANoteTest::Note
+    test/system/user_discovers_a_note_test.rb:5:in `block in &lt;class:UserDiscoversANoteTest&gt;'
+</code></pre></div>
+<p>The contents of this diff were generated by running Rails&rsquo; model
+generator:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>rails generate model note content:text
+</code></pre></div>
+<p>Rails&rsquo; model generator supports numerous different options and flags.
+Running the following command provides helpful documentation about the
+command line interface:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>rails generate model --help
+
+Usage:
+
+  rails generate model NAME [field[:type][:index] field[:type][:index]] [options]
+
+Options:
+      [--skip-namespace], [--no-skip-namespace]  # Skip namespace (affects only isolated applications)
+      [--force-plural], [--no-force-plural]      # Forces the use of the given model name
+  -o, --orm=NAME                                 # ORM to be invoked
+                                                 # Default: active_record
+
+ActiveRecord options:
+      [--migration], [--no-migration]        # Indicates when to generate migration
+                                             # Default: true
+      [--timestamps], [--no-timestamps]      # Indicates when to generate timestamps
+                                             # Default: true
+      [--parent=PARENT]                      # The parent class for the generated model
+      [--indexes], [--no-indexes]            # Add indexes for references and belongs_to columns
+                                             # Default: true
+      [--primary-key-type=PRIMARY_KEY_TYPE]  # The type for primary key
+  db, [--database=DATABASE]                  # The database for your model's migration. By default, the current environment's primary database is used.
+  -t, [--test-framework=NAME]                # Test framework to be invoked
+                                             # Default: test_unit
+
+TestUnit options:
+
+      [--fixture], [--no-fixture]   # Indicates when to generate fixture
+                                    # Default: true
+  -r, [--fixture-replacement=NAME]  # Fixture replacement to be invoked
+
+Runtime options:
+
+  -f, [--force]                    # Overwrite files that already exist
+  -p, [--pretend], [--no-pretend]  # Run but do not make any changes
+  -q, [--quiet], [--no-quiet]      # Suppress status output
+  -s, [--skip], [--no-skip]        # Skip files that already exist
+
+Description:
+
+    Stubs out a new model. Pass the model name, either CamelCased or
+    under_scored, and an optional list of attribute pairs as arguments.
+
+    Attribute pairs are field:type arguments specifying the
+    model's attributes. Timestamps are added by default, so you don't have to
+    specify them by hand as 'created_at:datetime updated_at:datetime'.
+
+    As a special case, specifying 'password:digest' will generate a
+    password_digest field of string type, and configure your generated model and
+    tests for use with Active Model has_secure_password (assuming the default ORM
+    and test framework are being used).
+
+    You don't have to think up every attribute up front, but it helps to
+    sketch out a few so you can start working with the model immediately.
+
+    This generator invokes your configured ORM and test framework, which
+    defaults to Active Record and TestUnit.
+
+    Finally, if --parent option is given, it's used as superclass of the
+    created model. This allows you create Single Table Inheritance models.
+
+    If you pass a namespaced model name (e.g. admin/account or Admin::Account)
+    then the generator will create a module with a table_name_prefix method
+    to prefix the model's table name with the module name (e.g. admin_accounts)
+
+Available field types:
+
+    Just after the field name you can specify a type like text or boolean.
+    It will generate the column with the associated SQL type. For instance:
+
+        `rails generate model post title:string body:text`
+
+    will generate a title column with a varchar type and a body column with a text
+    type. If no type is specified the string type will be used by default.
+    You can use the following types:
+
+        integer
+        primary_key
+        decimal
+        float
+        boolean
+        binary
+        string
+        text
+        date
+        time
+        datetime
+
+    You can also consider `references` as a kind of type. For instance, if you run:
+
+        `rails generate model photo title:string album:references`
+
+    It will generate an `album_id` column. You should generate these kinds of fields when
+    you will use a `belongs_to` association, for instance. `references` also supports
+    polymorphism, you can enable polymorphism like this:
+
+        `rails generate model product supplier:references{polymorphic}`
+
+    For integer, string, text and binary fields, an integer in curly braces will
+    be set as the limit:
+
+        `rails generate model user pseudo:string{30}`
+
+    For decimal, two integers separated by a comma in curly braces will be used
+    for precision and scale:
+
+        `rails generate model product 'price:decimal{10,2}'`
+
+    You can add a `:uniq` or `:index` suffix for unique or standard indexes
+    respectively:
+
+        `rails generate model user pseudo:string:uniq`
+        `rails generate model user pseudo:string:index`
+
+    You can combine any single curly brace option with the index options:
+
+        `rails generate model user username:string{30}:uniq`
+        `rails generate model product supplier:references{polymorphic}:index`
+
+    If you require a `password_digest` string column for use with
+    has_secure_password, you can specify `password:digest`:
+
+        `rails generate model user password:digest`
+
+    If you require a `token` string column for use with
+    has_secure_token, you can specify `auth_token:token`:
+
+        `rails generate model user auth_token:token`
+
+Examples:
+
+    `rails generate model account`
+
+        For Active Record and TestUnit it creates:
+
+            Model:      app/models/account.rb
+            Test:       test/models/account_test.rb
+            Fixtures:   test/fixtures/accounts.yml
+            Migration:  db/migrate/XXX_create_accounts.rb
+
+    `rails generate model post title:string body:text published:boolean`
+
+        Creates a Post model with a string title, text body, and published flag.
+
+    `rails generate model admin/account`
+
+        For Active Record and TestUnit it creates:
+
+            Module:     app/models/admin.rb
+            Model:      app/models/admin/account.rb
+            Test:       test/models/admin/account_test.rb
+            Fixtures:   test/fixtures/admin/accounts.yml
+            Migration:  db/migrate/XXX_create_admin_accounts.rb
+
+</code></pre></div>
+<p>Unfortunately, after running this command, our test suite no longer
+runs. We&rsquo;re prompted with the following error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Migrations are pending. To resolve this issue, run:
+
+        rails db:migrate RAILS_ENV=test
+
+</code></pre></div>
+<p>We&rsquo;ve declared our model class. We&rsquo;ve declared a new <a href="https://guides.rubyonrails.org/v6.0/active_record_migrations.html">ActiveRecord
+database migration</a>. We haven&rsquo;t yet modified our local test
+database to make the schema changes proposed in our migration.</p>
+
+        </article>
+          <aside class="container__item diff">
+              <details
+  id="app/models/note.rb"
+  open
+>
+  <summary>
+    app/models/note.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/models/note.rb b/app/models/note.rb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..b6b1e5a
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/app/models/note.rb
+</span><span class="p">@@ -0,0 +1,2 @@</span>
+<span class="gi">+class Note &lt; ApplicationRecord
++end
+</span></code></pre></div></details>
+
+              <details
+  id="db/migrate/20190506032859_create_notes.rb"
+  open
+>
+  <summary>
+    db/migrate/20190506032859_create_notes.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/db/migrate/20190506032859_create_notes.rb b/db/migrate/20190506032859_create_notes.rb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..f639221
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/db/migrate/20190506032859_create_notes.rb
+</span><span class="p">@@ -0,0 +1,9 @@</span>
+<span class="gi">+class CreateNotes &lt; ActiveRecord::Migration[6.0]
++  def change
++    create_table :notes do |t|
++      t.text :content
++
++      t.timestamps
++    end
++  end
++end
+</span></code></pre></div></details>
+
+              <details
+  id="test/models/note_test.rb"
+  open
+>
+  <summary>
+    test/models/note_test.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/models/note_test.rb b/test/models/note_test.rb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..7bbab53
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/test/models/note_test.rb
+</span><span class="p">@@ -0,0 +1,7 @@</span>
+<span class="gi">+require 'test_helper'
++
++class NoteTest &lt; ActiveSupport::TestCase
++  # test "the truth" do
++  #   assert true
++  # end
++end
+</span></code></pre></div></details>
+
+          </aside>
+      </section>
+    </main>
+  </body>
+</html>
