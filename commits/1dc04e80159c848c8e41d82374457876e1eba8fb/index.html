@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Declare `app/views/notes/index.html.erb`
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../73e3b8a35eb49f1717d5d5380c54875184b7b3af/">              &#8592; Previous
+</a>
+<a href="../0698c75ce9685b6f79e9da2aa23db5aa5e2ab3fe/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -56,8 +57,8 @@
 "></a>
                 <a href="../73e3b8a35eb49f1717d5d5380c54875184b7b3af/" class="commit-node commit-node--collapsed" title="Extend from `ApplicationController`
 "></a>
-                <a href="../1dc04e80159c848c8e41d82374457876e1eba8fb/" class="commit-node commit-node--collapsed" title="Declare `app/views/notes/index.html.erb`
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Declare `app/views/notes/index.html.erb`
+" aria-current="page"></a>
                 <a href="../0698c75ce9685b6f79e9da2aa23db5aa5e2ab3fe/" class="commit-node commit-node--collapsed" title="Render `&lt;a&gt;` containing `&quot;Share a Note&quot;`
 "></a>
                 <a href="../fbc6b1bb128086fb014991926162afc49e3bff27/" class="commit-node commit-node--collapsed" title="Link to `&quot;/&quot;`
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -190,7 +191,7 @@
 
 </a><a href="../73e3b8a35eb49f1717d5d5380c54875184b7b3af/" class="commit-node commit-node--full">              <p>Extend from <code>ApplicationController</code></p>
 
-</a><a href="../1dc04e80159c848c8e41d82374457876e1eba8fb/" class="commit-node commit-node--full">              <p>Declare <code>app/views/notes/index.html.erb</code></p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Declare <code>app/views/notes/index.html.erb</code></p>
 
 </a><a href="../0698c75ce9685b6f79e9da2aa23db5aa5e2ab3fe/" class="commit-node commit-node--full">              <p>Render <code>&lt;a&gt;</code> containing <code>&quot;Share a Note&quot;</code></p>
 
@@ -279,21 +280,64 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="declare-app-views-notes-index-html-erb">Declare <code>app/views/notes/index.html.erb</code></h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
+<p>This commit introduces code in response to an error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserSharesAMessageTest#test_visiting_the_index:
+AbstractController::ActionNotFound: The action 'index' could not be found for NotesController
 </code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
+<p>To declare an &ldquo;action&rdquo;, a controller that extends from
+<code>ActionController::Base</code> can either:</p>
 
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
+<ul>
+<li>define an instance method that corresponds to the action (in this
+case, <code>index</code>)</li>
+<li>declare a view file named after the action in the directory that
+corresponds to the controller name (in this case,
+<code>notes/index.html.erb</code>)</li>
+</ul>
 
+<p>If a method that corresponds to the action does not exist, Rails will
+automatically <a href="https://guides.rubyonrails.org/v5.2/layouts_and_rendering.html#rendering-by-default-convention-over-configuration-in-action">infer which template to render</a>.</p>
+
+<p>This commit relies on that convention.</p>
+
+<p>When running the tests, a new error is raised:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserSharesAMessageTest#test_visiting_the_index:
+Capybara::ElementNotFound: Unable to find link or button "Share a Note"
+    test/system/user_shares_a_message_test.rb:8:in `block in &lt;class:UserSharesAMessageTest&gt;'
+</code></pre></div>
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="app/views/notes/index.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/notes/index.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/notes/index.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/notes/index.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/notes/index.html.erb b/app/views/notes/index.html.erb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..e69de29
+</span></code></pre></div></details>
+
           </aside>
       </article>
     </main>

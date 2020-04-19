@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Enable Request Forgery Protection in `test`
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../f2d180df8ed6c9c7a08009718d85772eefc54031/">              &#8592; Previous
+</a>
+<a href="../bcbf730dd0e6f86ad6c04decea1a611b1bc8012a/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -80,8 +81,8 @@
 "></a>
                 <a href="../f2d180df8ed6c9c7a08009718d85772eefc54031/" class="commit-node commit-node--collapsed" title="Add `name=&quot;content&quot;` to `&lt;textarea&gt;`
 "></a>
-                <a href="../d142ebb3952be63ef4e9616b1560f231043c8389/" class="commit-node commit-node--collapsed" title="Enable Request Forgery Protection in `test`
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Enable Request Forgery Protection in `test`
+" aria-current="page"></a>
                 <a href="../bcbf730dd0e6f86ad6c04decea1a611b1bc8012a/" class="commit-node commit-node--collapsed" title="Use `form_tag` instead of `&lt;form&gt;`
 "></a>
                 <a href="../b4865301174fe1a313ab987a3a3d17f09690a1d9/" class="commit-node commit-node--collapsed" title="Render `&lt;form&gt;` with `form_tag` with `form_with`
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -214,7 +215,7 @@
 
 </a><a href="../f2d180df8ed6c9c7a08009718d85772eefc54031/" class="commit-node commit-node--full">              <p>Add <code>name=&quot;content&quot;</code> to <code>&lt;textarea&gt;</code></p>
 
-</a><a href="../d142ebb3952be63ef4e9616b1560f231043c8389/" class="commit-node commit-node--full">              <p>Enable Request Forgery Protection in <code>test</code></p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Enable Request Forgery Protection in <code>test</code></p>
 
 </a><a href="../bcbf730dd0e6f86ad6c04decea1a611b1bc8012a/" class="commit-node commit-node--full">              <p>Use <code>form_tag</code> instead of <code>&lt;form&gt;</code></p>
 
@@ -279,21 +280,114 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="enable-request-forgery-protection-in-test">Enable Request Forgery Protection in <code>test</code></h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
+<p>If we&rsquo;re feeling skeptical that the application&rsquo;s behavior <em>does</em> meet
+the criteria as defined in our test suite, we can boot it locally and
+visit it in a web browser ourselves:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>rails server <span class="nt">--port</span> 3000
 </code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
+<p>Once it&rsquo;s running, we can follow the instructions described in our
+system test by opening a web browser and:</p>
 
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
+<ul>
+<li>visiting <a href="http://localhost:3000/">http://localhost:3000/</a></li>
+<li>clicking on &ldquo;Share a Note&rdquo;</li>
+<li>filling in the text box labelled &ldquo;Message&rdquo; with the value &ldquo;Hello,
+World&rdquo;</li>
+<li>clicking on &ldquo;Share&rdquo;</li>
+</ul>
+
+<p>Oh no!</p>
+
+<p>Surprisingly, our server responds to our submission with an error page.</p>
+
+<p>If we inspect our <code>rails server</code> process log, it contains the following
+output:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Started POST "/notes" for ::1 at 2019-05-04 13:37:35 -0400
+Processing by NotesController#create as HTML
+  Parameters: {"content"=&gt;"Hello, World"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms | Allocations: 461)
+
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+</code></pre></div>
+<p>By default, Rails comes with some security-minded default behavior. In
+this case, the error&rsquo;s mention of being unable to <code>verify CSRF token
+authenticity</code> stems from Rails&rsquo; <a href="https://guides.rubyonrails.org/v5.2/security.html#cross-site-request-forgery-csrf">Cross Site Request Forgery
+Protection</a>.</p>
+
+<p>The Rails Security Guidelines describe <abbr title="Cross Site Request
+Forgery">CSRF</abbr>:</p>
+
+<blockquote>
+<p>This attack method works by including malicious code or a link in a
+page that accesses a web application that the user is believed to have
+authenticated. If the session for that web application has not timed
+out, an attacker may execute unauthorized commands.</p>
+</blockquote>
+
+<p>By default, this protective measure is in place in every <a href="https://guides.rubyonrails.org/v5.2/configuring.html#creating-rails-environments">Rails
+Environment</a> <em>except for <code>test</code></em>.</p>
+
+<p>To ensure that <em>all</em> environments have this protection in place, this
+commit <a href="https://guides.rubyonrails.org/v5.2/configuring.html#configuring-action-controller">enables CSRF protection in <code>test.rb</code></a>.</p>
+
+<p>When we run the test again, it is no longer passing.</p>
+
+<p>It fails with a new error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserSharesAMessageTest#test_visiting_the_index:
+DRb::DRbRemoteError: ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken)
+</code></pre></div>
+<p>In this instance, regressing from the Green Phase to the Red Phase has a
+positive effect. Since our <code>test</code> environment&rsquo;s behavior did not have
+<a href="https://12factor.net/dev-prod-parity">parity</a> with the other environments, a test failure uncovering that
+fact is helpful and important to address.</p>
+
+<p>In cases like this that uncover important gaps in behavior, we can
+consider transitioning from the Green Phase to Red Phase as a temporary
+(but helpful!) detour toward the Refactoring Phase.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="config/environments/test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse config/environments/test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand config/environments/test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      config/environments/test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/config/environments/test.rb b/config/environments/test.rb
+index 1d62e91..18cd5f1 100644
+</span><span class="gd">--- a/config/environments/test.rb
+</span><span class="gi">+++ b/config/environments/test.rb
+</span><span class="p">@@ -28,7 +28,7 @@</span> Rails.application.configure do
+   config.action_dispatch.show_exceptions = false
+ 
+   # Disable request forgery protection in test environment.
+<span class="gd">-  config.action_controller.allow_forgery_protection = false
+</span><span class="gi">+  config.action_controller.allow_forgery_protection = true
+</span> 
+   # Store uploaded files on the local file system in a temporary directory.
+   config.active_storage.service = :test
+</code></pre></div></details>
+
           </aside>
       </article>
     </main>

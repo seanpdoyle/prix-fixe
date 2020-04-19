@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Replace `get "/"` declaration with `root`
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../e8d5427f69468a528074a8085a6f706a5c372eaa/">              &#8592; Previous
+</a>
+<a href="../f6d6deecb49b61176dff33aa960c4a95b29a1b9e/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -100,8 +101,8 @@
 "></a>
                 <a href="../e8d5427f69468a528074a8085a6f706a5c372eaa/" class="commit-node commit-node--collapsed" title="Rename `get &quot;/&quot;` route to &quot;root&quot;
 "></a>
-                <a href="../6fe298240db990f83f3aba9ba03ff0258e3e9826/" class="commit-node commit-node--collapsed" title="Replace `get &quot;/&quot;` declaration with `root`
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Replace `get &quot;/&quot;` declaration with `root`
+" aria-current="page"></a>
                 <a href="../f6d6deecb49b61176dff33aa960c4a95b29a1b9e/" class="commit-node commit-node--collapsed" title="Drive system tests with Headless Chrome Browser
 "></a>
                 <a href="../3867e653497ad7d479edfb817b9e7246c4c4f79c/" class="commit-node commit-node--collapsed" title="Complete the first TDD Red-Green-Refactor Cycle
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -234,7 +235,7 @@
 
 </a><a href="../e8d5427f69468a528074a8085a6f706a5c372eaa/" class="commit-node commit-node--full">              <p>Rename <code>get &quot;/&quot;</code> route to &quot;root&quot;</p>
 
-</a><a href="../6fe298240db990f83f3aba9ba03ff0258e3e9826/" class="commit-node commit-node--full">              <p>Replace <code>get &quot;/&quot;</code> declaration with <code>root</code></p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Replace <code>get &quot;/&quot;</code> declaration with <code>root</code></p>
 
 </a><a href="../f6d6deecb49b61176dff33aa960c4a95b29a1b9e/" class="commit-node commit-node--full">              <p>Drive system tests with Headless Chrome Browser</p>
 
@@ -279,21 +280,57 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="replace-get-declaration-with-root">Replace <code>get &quot;/&quot;</code> declaration with <code>root</code></h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
-</code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
+<p>This commit refactors the Request Routing configuration file again.</p>
 
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
+<p>It replaces the <code>get &quot;/&quot;</code> declaration with a call to <a href="https://api.rubyonrails.org/v5.2/classes/ActionDispatch/Routing/Mapper/Resources.html#method-i-root"><code>root</code></a>. The
+<code>root</code> call accepts the same arguments as the <a href="https://api.rubyonrails.org/v5.2/classes/ActionDispatch/Routing/Mapper/Base.html#method-i-match"><code>match</code></a> routing
+helper.</p>
+
+<p>In this case, declaring <code>controller: &quot;notes&quot;</code> and <code>action: &quot;index&quot;</code> is
+all that&rsquo;s necessary to route <code>GET /</code> requests to the
+<code>NotesController#index</code> action.</p>
+
+<p>When the tests are run again, they pass.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="config/routes.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse config/routes.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand config/routes.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      config/routes.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/config/routes.rb b/config/routes.rb
+index c80813a..a74f93c 100644
+</span><span class="gd">--- a/config/routes.rb
+</span><span class="gi">+++ b/config/routes.rb
+</span><span class="p">@@ -2,5 +2,5 @@</span> Rails.application.routes.draw do
+   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+   resources :notes, only: [:new, :create]
+ 
+<span class="gd">-  get "/", controller: "notes", action: "index", as: "root"
+</span><span class="gi">+  root controller: "notes", action: "index"
+</span> end
+</code></pre></div></details>
+
           </aside>
       </article>
     </main>

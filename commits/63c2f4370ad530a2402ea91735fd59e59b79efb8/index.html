@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Declare `GET /notes/new` route
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../fbc6b1bb128086fb014991926162afc49e3bff27/">              &#8592; Previous
+</a>
+<a href="../c36bcbe8c3d9d2b65c66c0cb70ceadcd6e4bdd49/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -62,8 +63,8 @@
 "></a>
                 <a href="../fbc6b1bb128086fb014991926162afc49e3bff27/" class="commit-node commit-node--collapsed" title="Link to `&quot;/&quot;`
 "></a>
-                <a href="../63c2f4370ad530a2402ea91735fd59e59b79efb8/" class="commit-node commit-node--collapsed" title="Declare `GET /notes/new` route
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Declare `GET /notes/new` route
+" aria-current="page"></a>
                 <a href="../c36bcbe8c3d9d2b65c66c0cb70ceadcd6e4bdd49/" class="commit-node commit-node--collapsed" title="Declare `app/views/notes/new.html.erb` view
 "></a>
                 <a href="../219b4f63f49dcd4406fcdef78a80d33952f25594/" class="commit-node commit-node--collapsed" title="Render `&lt;label&gt;` and `&lt;textarea&gt;`
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -196,7 +197,7 @@
 
 </a><a href="../fbc6b1bb128086fb014991926162afc49e3bff27/" class="commit-node commit-node--full">              <p>Link to <code>&quot;/&quot;</code></p>
 
-</a><a href="../63c2f4370ad530a2402ea91735fd59e59b79efb8/" class="commit-node commit-node--full">              <p>Declare <code>GET /notes/new</code> route</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Declare <code>GET /notes/new</code> route</p>
 
 </a><a href="../c36bcbe8c3d9d2b65c66c0cb70ceadcd6e4bdd49/" class="commit-node commit-node--full">              <p>Declare <code>app/views/notes/new.html.erb</code> view</p>
 
@@ -279,21 +280,61 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="declare-get-notes-new-route">Declare <code>GET /notes/new</code> route</h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
+<p>This commit resolves the previous error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserSharesAMessageTest#test_visiting_the_index:
+ActionController::RoutingError: No route matches [GET] "/notes/new"
 </code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
+<p>Declare a <a href="https://guides.rubyonrails.org/v5.2/routing.html#crud-verbs-and-actions">route to respond to <code>GET /notes/new</code> HTTP
+requests</a> by routing them to <code>notes#new</code>. The <code>resources</code>
+call is made with the <a href="https://api.rubyonrails.org/v5.2/classes/ActionDispatch/Routing/Mapper/Resources.html#method-i-resources-label-Options"><code>only: [:new]</code> option</a> to exclude all
+(actions except for <code>#new</code>) routes generated by a bare <code>resources
+:notes</code> call.</p>
 
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
-
+<p>After making this change, the suite raises a new error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserSharesAMessageTest#test_visiting_the_index:
+AbstractController::ActionNotFound: The action 'new' could not be found for NotesController
+</code></pre></div>
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="config/routes.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse config/routes.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand config/routes.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      config/routes.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/config/routes.rb b/config/routes.rb
+index 4a0c5b7..136a40a 100644
+</span><span class="gd">--- a/config/routes.rb
+</span><span class="gi">+++ b/config/routes.rb
+</span><span class="p">@@ -1,4 +1,6 @@</span>
+ Rails.application.routes.draw do
+   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+<span class="gi">+  get "/notes/new", controller: "notes", action: "new"
++
+</span>   get "/", controller: "notes", action: "index"
+ end
+</code></pre></div></details>
+
           </aside>
       </article>
     </main>

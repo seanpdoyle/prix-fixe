@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Add `UserSharesAMessageTest`
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../0d517d3ea9aabe1af610a95d9ffdee6e09ae4a28/">              &#8592; Previous
+</a>
+<a href="../70c42f43453701d26e42c1bfe3b73cd228583f75/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -46,8 +47,8 @@
 "></a>
                 <a href="../0d517d3ea9aabe1af610a95d9ffdee6e09ae4a28/" class="commit-node commit-node--collapsed" title="Execute the Rails-generated `bin/setup` script
 "></a>
-                <a href="../ac166f4116ab6abdffe63fbfbf9ecf11a1ab07f7/" class="commit-node commit-node--collapsed" title="Add `UserSharesAMessageTest`
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Add `UserSharesAMessageTest`
+" aria-current="page"></a>
                 <a href="../70c42f43453701d26e42c1bfe3b73cd228583f75/" class="commit-node commit-node--collapsed" title="Add a failing system test
 "></a>
                 <a href="../5b0159c6d9d051f6ddab00eca1a58f7d7f59a40b/" class="commit-node commit-node--collapsed" title="Declare `GET &quot;/&quot;` route
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -180,7 +181,7 @@
 
 </a><a href="../0d517d3ea9aabe1af610a95d9ffdee6e09ae4a28/" class="commit-node commit-node--full">              <p>Execute the Rails-generated <code>bin/setup</code> script</p>
 
-</a><a href="../ac166f4116ab6abdffe63fbfbf9ecf11a1ab07f7/" class="commit-node commit-node--full">              <p>Add <code>UserSharesAMessageTest</code></p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Add <code>UserSharesAMessageTest</code></p>
 
 </a><a href="../70c42f43453701d26e42c1bfe3b73cd228583f75/" class="commit-node commit-node--full">              <p>Add a failing system test</p>
 
@@ -279,21 +280,52 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="add-usersharesamessagetest">Add <code>UserSharesAMessageTest</code></h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
+<p>This commit includes the output of:</p>
+<div class="highlight"><pre class="highlight shell"><code>% rails generate system_test user_shares_a_message
 </code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
-
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
-
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="test/system/user_shares_a_message_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/system/user_shares_a_message_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/system/user_shares_a_message_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/system/user_shares_a_message_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/system/user_shares_a_message_test.rb b/test/system/user_shares_a_message_test.rb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..fb2d0ed
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/test/system/user_shares_a_message_test.rb
+</span><span class="p">@@ -0,0 +1,9 @@</span>
+<span class="gi">+require "application_system_test_case"
++
++class UserSharesAMessageTest &lt; ApplicationSystemTestCase
++  # test "visiting the index" do
++  #   visit user_shares_a_messages_url
++  #
++  #   assert_selector "h1", text: "UserSharesAMessage"
++  # end
++end
+</span></code></pre></div></details>
+
           </aside>
       </article>
     </main>

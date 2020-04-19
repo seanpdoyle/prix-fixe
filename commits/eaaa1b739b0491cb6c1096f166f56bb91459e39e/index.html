@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Create `git-read` GitHub Action
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../6d1482de076a391b14b055aba66413577d326997/">              &#8592; Previous
+</a>
+<a href="../0d517d3ea9aabe1af610a95d9ffdee6e09ae4a28/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,14 +37,14 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
 "></a>
-                <a href="../eaaa1b739b0491cb6c1096f166f56bb91459e39e/" class="commit-node commit-node--collapsed" title="Create `git-read` GitHub Action
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Create `git-read` GitHub Action
+" aria-current="page"></a>
                 <a href="../0d517d3ea9aabe1af610a95d9ffdee6e09ae4a28/" class="commit-node commit-node--collapsed" title="Execute the Rails-generated `bin/setup` script
 "></a>
                 <a href="../ac166f4116ab6abdffe63fbfbf9ecf11a1ab07f7/" class="commit-node commit-node--collapsed" title="Add `UserSharesAMessageTest`
@@ -170,13 +171,13 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
 </a><a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--full">              <p>Un-comment remaining <code>Gemfile</code> dependencies</p>
 
-</a><a href="../eaaa1b739b0491cb6c1096f166f56bb91459e39e/" class="commit-node commit-node--full">              <p>Create <code>git-read</code> GitHub Action</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Create <code>git-read</code> GitHub Action</p>
 
 </a><a href="../0d517d3ea9aabe1af610a95d9ffdee6e09ae4a28/" class="commit-node commit-node--full">              <p>Execute the Rails-generated <code>bin/setup</code> script</p>
 
@@ -279,21 +280,114 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="create-git-read-github-action">Create <code>git-read</code> GitHub Action</h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
-</code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
+<p>This is the last set of administrative code changes. If you&rsquo;re
+uninterested in how <a href="https://seanpdoyle.github.io/prix-fixe/">https://seanpdoyle.github.io/prix-fixe/</a> is
+generated, skip ahead to the next commit.</p>
 
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
+<hr>
+
+<p>Utilize the <a href="https://github.com/seanpdoyle/git-read"><code>seanpdoyle/git-read</code></a> [GitHub Action] to
+generate web pages from this project&rsquo;s Git history.</p>
+
+<p>The declarations in <code>.github/workflow/git-read.yml</code> were inspired by the
+corresponding GitHub Action workflow declared in the <a href="https://github.com/seanpdoyle/git-read/blob/master/.github/workflows/git-read.yml"><code>git-read</code>
+repository</a>.</p>
+
+<p>Specifying the <code>--git-dir</code> and <code>--output-dir</code> values in terms of the
+GitHub Actions-provided <a href="https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables"><code>$GITHUB_WORKSPACE</code> environment variable</a>
+is important to ensure that the proper output is pushed to the
+<code>gh-pages</code> branch.</p>
+
+<p>Upon each <code>git push</code> to this repository, this project&rsquo;s Git history will
+be rendered as HTML and deployed to the <a href="https://pages.github.com/"><code>gh-pages</code> branch</a>,
+available at https://seanpdoyle.github.io/select-your-own-seat.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id=".github/workflows/git-read.yml"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse .github/workflows/git-read.yml</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand .github/workflows/git-read.yml</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      .github/workflows/git-read.yml
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/.github/workflows/git-read.yml b/.github/workflows/git-read.yml
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..a5ca591
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/.github/workflows/git-read.yml
+</span><span class="p">@@ -0,0 +1,52 @@</span>
+<span class="gi">+name: git-read
++
++on:
++  push:
++    branches:
++      - master
++    tags:
++      - "*"
++
++jobs:
++  build:
++    runs-on: ubuntu-latest
++    steps:
++      - uses: actions/checkout@v2
++        with:
++          fetch-depth: 0
++
++      - uses: actions/checkout@v2
++        with:
++          repository: "seanpdoyle/git-read"
++          path: "git-read"
++
++      - uses: actions/cache@v1
++        with:
++          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
++          restore-keys: ${{ runner.os }}-gems-
++          path: vendor/bundle
++
++      - uses: actions/setup-ruby@v1
++        with:
++          ruby-version: "2.6"
++          run: bundle config path vendor/bundle
++
++      - uses: actions/setup-node@v1
++        with:
++          node-version: '10.x'
++
++      - name: Build documentation from Git History
++        run: |
++          cd $GITHUB_WORKSPACE/git-read
++          ./script/install
++          ./bin/git-read \
++            --verbose \
++            --git-dir $GITHUB_WORKSPACE \
++            --output-dir $GITHUB_WORKSPACE/build/
++
++      - name: Deploy
++        uses: peaceiris/actions-gh-pages@v3
++        with:
++          personal_token: ${{ secrets.PERSONAL_TOKEN }}
++          commit_message: ${{ github.event.head_commit.message }}
++          publish_dir: build/
+</span></code></pre></div></details>
+
           </aside>
       </article>
     </main>

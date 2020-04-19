@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Use named route in `notes#index`
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../b8d0189ad48500969385bb7152aa4bbd668b2891/">              &#8592; Previous
+</a>
+<a href="../6b1c2afd9c91978b0fc7248420eaa445a458f35a/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -92,8 +93,8 @@
 "></a>
                 <a href="../b8d0189ad48500969385bb7152aa4bbd668b2891/" class="commit-node commit-node--collapsed" title="Replace `&lt;button&gt;` with `#submit` invocation
 "></a>
-                <a href="../5c615abfadc249b756ade9e184a7b241ec07a34a/" class="commit-node commit-node--collapsed" title="Use named route in `notes#index`
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Use named route in `notes#index`
+" aria-current="page"></a>
                 <a href="../6b1c2afd9c91978b0fc7248420eaa445a458f35a/" class="commit-node commit-node--collapsed" title="Replace `&quot;/notes&quot;` with `notes_path` invocation
 "></a>
                 <a href="../6b062925a803d631ccea2ea3ac8ed12873f56a8f/" class="commit-node commit-node--collapsed" title="Replace `post`, `get` declarations with `resources`
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -226,7 +227,7 @@
 
 </a><a href="../b8d0189ad48500969385bb7152aa4bbd668b2891/" class="commit-node commit-node--full">              <p>Replace <code>&lt;button&gt;</code> with <code>#submit</code> invocation</p>
 
-</a><a href="../5c615abfadc249b756ade9e184a7b241ec07a34a/" class="commit-node commit-node--full">              <p>Use named route in <code>notes#index</code></p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Use named route in <code>notes#index</code></p>
 
 </a><a href="../6b1c2afd9c91978b0fc7248420eaa445a458f35a/" class="commit-node commit-node--full">              <p>Replace <code>&quot;/notes&quot;</code> with <code>notes_path</code> invocation</p>
 
@@ -279,21 +280,100 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="use-named-route-in-notes-index">Use named route in <code>notes#index</code></h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
-</code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
+<p>This commit refactors both our Request Routing and View layer&rsquo;s code to
+share helper method.</p>
 
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
+<p>The <code>&quot;/notes/new&quot;</code> String was duplicated in both the <code>notes#index</code>
+template and our application&rsquo;s route declaration file.</p>
+
+<p>A String value duplicated in this way across disparate files can be
+considered a <a href="https://en.wikipedia.org/wiki/Magic_string">&ldquo;magic string&rdquo;</a>, since it&rsquo;s equivalence in
+two seemingly unrelated areas of the codebase is both important <em>and</em>
+unclear.</p>
+
+<p>By declaring the <code>get &quot;/notes/new&quot;</code> route declaration with the <a href="https://api.rubyonrails.org/v5.2/classes/ActionDispatch/Routing/Mapper/Base.html#method-i-match-label-Options"><code>as:
+&quot;new_notes&quot;</code> option</a>, Rails will generate <a href="https://guides.rubyonrails.org/v5.2/routing.html#path-and-url-helpers"><code>new_notes_path</code>
+and <code>new_notes_url</code> routing helpers</a> which are made available
+within the view layer.</p>
+
+<p>Routing helpers are a discrete list of methods, so attempting to invoke
+a route helper that does not exist will raise a <code>NoMethodError</code> when
+invoked.</p>
+
+<p>When we run the test suite, it passes.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="app/views/notes/index.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/notes/index.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/notes/index.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/notes/index.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/notes/index.html.erb b/app/views/notes/index.html.erb
+index 69d5ed8..3be9028 100644
+</span><span class="gd">--- a/app/views/notes/index.html.erb
+</span><span class="gi">+++ b/app/views/notes/index.html.erb
+</span><span class="p">@@ -1,3 +1,3 @@</span>
+<span class="gd">-&lt;a href="/notes/new"&gt;
+</span><span class="gi">+&lt;a href="&lt;%= new_note_path %&gt;"&gt;
+</span>   Share a Note
+ &lt;/a&gt;
+</code></pre></div></details>
+
+              <details
+  id="config/routes.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse config/routes.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand config/routes.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      config/routes.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/config/routes.rb b/config/routes.rb
+index 1d005be..0b48db8 100644
+</span><span class="gd">--- a/config/routes.rb
+</span><span class="gi">+++ b/config/routes.rb
+</span><span class="p">@@ -1,6 +1,6 @@</span>
+ Rails.application.routes.draw do
+   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+<span class="gd">-  get "/notes/new", controller: "notes", action: "new"
+</span><span class="gi">+  get "/notes/new", controller: "notes", action: "new", as: "new_note"
+</span>   post "/notes", controller: "notes", action: "create"
+ 
+   get "/", controller: "notes", action: "index"
+</code></pre></div></details>
+
           </aside>
       </article>
     </main>

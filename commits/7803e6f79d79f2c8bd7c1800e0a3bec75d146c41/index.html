@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Render `notes#index` from controller action
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../61dd520b8e4d95966df79a3d783a8503e2cce78d/">              &#8592; Previous
+</a>
+<a href="../bc67f38f8b405792f4996b4b40ce5ffdf82d49eb/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -116,8 +117,8 @@
 "></a>
                 <a href="../61dd520b8e4d95966df79a3d783a8503e2cce78d/" class="commit-node commit-node--collapsed" title="Render a list of all `Note` records `notes#index`
 "></a>
-                <a href="../7803e6f79d79f2c8bd7c1800e0a3bec75d146c41/" class="commit-node commit-node--collapsed" title="Render `notes#index` from controller action
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Render `notes#index` from controller action
+" aria-current="page"></a>
                 <a href="../bc67f38f8b405792f4996b4b40ce5ffdf82d49eb/" class="commit-node commit-node--collapsed" title="Introduce `NotesController` tests
 "></a>
                 <a href="../6b62a121d1a6070429c633909cbbe8b43592a216/" class="commit-node commit-node--collapsed" title="Disable CSRF-protection when in `test` environment
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -250,7 +251,7 @@
 
 </a><a href="../61dd520b8e4d95966df79a3d783a8503e2cce78d/" class="commit-node commit-node--full">              <p>Render a list of all <code>Note</code> records <code>notes#index</code></p>
 
-</a><a href="../7803e6f79d79f2c8bd7c1800e0a3bec75d146c41/" class="commit-node commit-node--full">              <p>Render <code>notes#index</code> from controller action</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Render <code>notes#index</code> from controller action</p>
 
 </a><a href="../bc67f38f8b405792f4996b4b40ce5ffdf82d49eb/" class="commit-node commit-node--full">              <p>Introduce <code>NotesController</code> tests</p>
 
@@ -279,21 +280,111 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="render-notes-index-from-controller-action">Render <code>notes#index</code> from controller action</h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
-</code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
+<p>This commit refactors the <code>notes#index</code> template, extracting the
+<code>Note.all</code> record retrieval logic into the controller.</p>
 
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
+<p>The <code>NotesController#index</code> action invokes <a href="https://guides.rubyonrails.org/v5.2/layouts_and_rendering.html#passing-local-variables"><code>render</code> with the
+<code>locals</code></a> option to declare variables available as
+template-local variables.</p>
+
+<p>Most Rails template rendering documentation suggests that controllers
+pass references to templates by <a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Base.html">declaring and sharing instance
+variables</a>.</p>
+
+<p>This commit deviates from that convention by explicitly passing the
+<code>notes</code> controller-local variable to the view template through as a
+<code>notes:</code> key in the <code>locals</code> hash.</p>
+
+<p>By being explicit about which variables our templates can access, our
+templates&rsquo; data dependencies are more apparent and discoverable. Instead
+of being unsure about which controller declares which instance variable,
+we can inspect the <code>render</code> call that invoked the view and see an
+exhaustive list of the variables that are available.</p>
+
+<p>When we re-run the system tests, they&rsquo;re still passing.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="app/controllers/notes_controller.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/controllers/notes_controller.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/controllers/notes_controller.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/controllers/notes_controller.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/controllers/notes_controller.rb b/app/controllers/notes_controller.rb
+index c94d2e3..b2252b5 100644
+</span><span class="gd">--- a/app/controllers/notes_controller.rb
+</span><span class="gi">+++ b/app/controllers/notes_controller.rb
+</span><span class="p">@@ -1,2 +1,9 @@</span>
+ class NotesController &lt; ApplicationController
+<span class="gi">+  def index
++    notes = Note.all
++
++    render(locals: {
++      notes: notes,
++    })
++  end
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="app/views/notes/index.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/notes/index.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/notes/index.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/notes/index.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/notes/index.html.erb b/app/views/notes/index.html.erb
+index eeaa7fa..3720383 100644
+</span><span class="gd">--- a/app/views/notes/index.html.erb
+</span><span class="gi">+++ b/app/views/notes/index.html.erb
+</span><span class="p">@@ -2,6 +2,10 @@</span>
+   Share a Note
+ &lt;/a&gt;
+ 
+<span class="gd">-&lt;% Note.all.each do |note| %&gt;
+-  &lt;%= note.content %&gt;
+</span><span class="gi">+&lt;ul&gt;
++&lt;% notes.each do |note| %&gt;
++  &lt;li&gt;
++    &lt;%= note.content %&gt;
++  &lt;/li&gt;
+</span> &lt;% end %&gt;
+<span class="gi">+&lt;/ul&gt;
+</span></code></pre></div></details>
+
           </aside>
       </article>
     </main>

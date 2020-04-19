@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Introduce `NotesController` tests
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../7803e6f79d79f2c8bd7c1800e0a3bec75d146c41/">              &#8592; Previous
+</a>
+<a href="../6b62a121d1a6070429c633909cbbe8b43592a216/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -118,8 +119,8 @@
 "></a>
                 <a href="../7803e6f79d79f2c8bd7c1800e0a3bec75d146c41/" class="commit-node commit-node--collapsed" title="Render `notes#index` from controller action
 "></a>
-                <a href="../bc67f38f8b405792f4996b4b40ce5ffdf82d49eb/" class="commit-node commit-node--collapsed" title="Introduce `NotesController` tests
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Introduce `NotesController` tests
+" aria-current="page"></a>
                 <a href="../6b62a121d1a6070429c633909cbbe8b43592a216/" class="commit-node commit-node--collapsed" title="Disable CSRF-protection when in `test` environment
 "></a>
                 <a href="../15be3f97ba8c1b9ba10ed98ce723cf12863d7337/" class="commit-node commit-node--collapsed" title="Persist data in `POST /notes` requests to `notes`
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -252,7 +253,7 @@
 
 </a><a href="../7803e6f79d79f2c8bd7c1800e0a3bec75d146c41/" class="commit-node commit-node--full">              <p>Render <code>notes#index</code> from controller action</p>
 
-</a><a href="../bc67f38f8b405792f4996b4b40ce5ffdf82d49eb/" class="commit-node commit-node--full">              <p>Introduce <code>NotesController</code> tests</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Introduce <code>NotesController</code> tests</p>
 
 </a><a href="../6b62a121d1a6070429c633909cbbe8b43592a216/" class="commit-node commit-node--full">              <p>Disable CSRF-protection when in <code>test</code> environment</p>
 
@@ -279,21 +280,77 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="introduce-notescontroller-tests">Introduce <code>NotesController</code> tests</h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
+<p>While the test suite is passing, there is an opportunity to drive
+improve the existing features and increase our system&rsquo;s overall test
+coverage.</p>
+
+<p>While implementing the <a href="https://github.com/seanpdoyle/prix-fixe/issues/2">project&rsquo;s first feature</a>, we didn&rsquo;t
+have a <code>Note</code> model, so we couldn&rsquo;t interact with our system&rsquo;s database.</p>
+
+<p>To work within that constraint, our system accepted <code>POST /notes</code> HTTP
+requests and responded with HTML that rendered the request body&rsquo;s
+<code>content</code> value.</p>
+
+<p>Now that we&rsquo;ve introduced a <code>Note</code> model and have a <code>notes</code> table in our
+database, we can extend our existing behavior to also persist the
+<code>content</code> submitted in <code>POST /notes</code> requests.</p>
+
+<p>This commit introduces our first integration test to add test coverage
+for our <code>NotesController</code>. The file contains a test to ensure
+that the submitted data is persisted as a row in the <code>notes</code> table.</p>
+
+<p>When we execute the new test, it raises a configuration error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+  NotesControllerTest#test_#create_persists_a_Note_record:
+  DRb::DRbRemoteError: ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken)
+  test/controllers/notes_controller_test.rb|7| in `block in &lt;class:NotesControllerTest&gt;'
 </code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
-
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
-
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="test/controllers/notes_controller_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/controllers/notes_controller_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/controllers/notes_controller_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/controllers/notes_controller_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/controllers/notes_controller_test.rb b/test/controllers/notes_controller_test.rb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..0abf5c6
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/test/controllers/notes_controller_test.rb
+</span><span class="p">@@ -0,0 +1,12 @@</span>
+<span class="gi">+require "test_helper"
++
++class NotesControllerTest &lt; ActionDispatch::IntegrationTest
++  test "#create persists a Note record" do
++    content = "Hello, World"
++
++    post notes_path, params: { content: content }
++
++    assert_response :success
++    assert_equal Note.pluck(:content), [content]
++  end
++end
+</span></code></pre></div></details>
+
           </aside>
       </article>
     </main>

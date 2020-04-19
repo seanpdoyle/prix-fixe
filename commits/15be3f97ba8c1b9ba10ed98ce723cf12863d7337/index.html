@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Persist data in `POST /notes` requests to `notes`
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../6b62a121d1a6070429c633909cbbe8b43592a216/">              &#8592; Previous
+</a>
+<a href="../762121febcfb1f35d2e1d99b2c31a94c74effebf/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -122,8 +123,8 @@
 "></a>
                 <a href="../6b62a121d1a6070429c633909cbbe8b43592a216/" class="commit-node commit-node--collapsed" title="Disable CSRF-protection when in `test` environment
 "></a>
-                <a href="../15be3f97ba8c1b9ba10ed98ce723cf12863d7337/" class="commit-node commit-node--collapsed" title="Persist data in `POST /notes` requests to `notes`
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Persist data in `POST /notes` requests to `notes`
+" aria-current="page"></a>
                 <a href="../762121febcfb1f35d2e1d99b2c31a94c74effebf/" class="commit-node commit-node--collapsed" title="Redirect to `/notes` after `POST /notes` requests
 "></a>
                 <a href="../1f9d9ed47ed05a7884321dfb0b47ddbaaf20f718/" class="commit-node commit-node--collapsed" title="Validate presence of `notes.content`
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -256,7 +257,7 @@
 
 </a><a href="../6b62a121d1a6070429c633909cbbe8b43592a216/" class="commit-node commit-node--full">              <p>Disable CSRF-protection when in <code>test</code> environment</p>
 
-</a><a href="../15be3f97ba8c1b9ba10ed98ce723cf12863d7337/" class="commit-node commit-node--full">              <p>Persist data in <code>POST /notes</code> requests to <code>notes</code></p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Persist data in <code>POST /notes</code> requests to <code>notes</code></p>
 
 </a><a href="../762121febcfb1f35d2e1d99b2c31a94c74effebf/" class="commit-node commit-node--full">              <p>Redirect to <code>/notes</code> after <code>POST /notes</code> requests</p>
 
@@ -279,21 +280,92 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="persist-data-in-post-notes-requests-to-notes">Persist data in <code>POST /notes</code> requests to <code>notes</code></h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
+<p>This commit addresses the previous error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Failure:
+NotesControllerTest#test_#create_persists_a_Note_record [test/controllers/notes_controller_test.rb:10]:
+Expected: []
+  Actual: ["Hello, World"]
 </code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
+<p>This error message occurs because our assertion that the <code>notes</code> table
+will include a row with <code>&quot;Hello, World&quot;</code> as the value of the <code>content</code>
+column is failing.</p>
 
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
+<p>To resolve this error, our controller calls <a href="https://api.rubyonrails.org/v5.2/classes/ActiveRecord/Persistence/ClassMethods.html#method-i-create-21"><code>Note.create!</code></a>
+with the contents of the HTTP request body, available to the controller
+action through the <a href="https://api.rubyonrails.org/v5.2/classes/ActionController/StrongParameters.html"><code>params</code></a> helper method. Our test&rsquo;s <code>POST
+/notes</code> request&rsquo;s body specifies the content under the <code>content</code> key, so
+passing <a href="https://ruby-doc.org/core-2.6.1/Hash.html#method-i-slice"><code>params.slice(:content)</code></a> to the <code>.create!</code> call will
+pass along the value of the <code>content</code> from our request as the value of
+the <code>Note</code> model&rsquo;s <code>content</code> attribute.</p>
+
+<p>Without the intermediate call to
+<a href="https://api.rubyonrails.org/v5.2/classes/ActionController/Parameters.html#method-i-to_unsafe_h"><code>ActionController::Parameters#to_unsafe_h</code></a>, our tests
+error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+NotesControllerTest#test_#create_persists_a_Note_record:
+ActiveModel::ForbiddenAttributesError: ActiveModel::ForbiddenAttributesError
+    app/controllers/notes_controller.rb:11:in `create'
+    test/controllers/notes_controller_test.rb:7:in `block in &lt;class:NotesControllerTest&gt;'
+</code></pre></div>
+<p>It turns out that <a href="https://api.rubyonrails.org/v5.2/classes/ActionController/StrongParameters.html">Strong Parameters</a> expects the body of
+incoming <code>POST</code> requests to have a certain shape. The way that our
+application is submitting <code>&lt;form&gt;</code> submissions does not comply to that
+shape.</p>
+
+<p>For now, coercing <code>params</code> <em>from</em> an instance of
+<code>ActionController::Parameters</code> <em>to</em> an instance of
+<a href="https://api.rubyonrails.org/v5.2/classes/ActiveSupport/HashWithIndifferentAccess.html"><code>ActiveSupport::HashWithIndifferentAccess</code></a>
+is a trade-off work making so that we can return our tests to their
+originally passing state. Once we&rsquo;re back to being in the Green Phase of
+our TDD cycle, we can correct this security circumvention.</p>
+
+<p>When we re-run our controller tests, they pass.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="app/controllers/notes_controller.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/controllers/notes_controller.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/controllers/notes_controller.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/controllers/notes_controller.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/controllers/notes_controller.rb b/app/controllers/notes_controller.rb
+index b2252b5..791c5b9 100644
+</span><span class="gd">--- a/app/controllers/notes_controller.rb
+</span><span class="gi">+++ b/app/controllers/notes_controller.rb
+</span><span class="p">@@ -6,4 +6,12 @@</span> class NotesController &lt; ApplicationController
+       notes: notes,
+     })
+   end
+<span class="gi">+
++  def create
++    note = Note.create!(params.to_unsafe_h.slice(:content))
++
++    render(locals: {
++      note: note
++    })
++  end
+</span> end
+</code></pre></div></details>
+
           </aside>
       </article>
     </main>

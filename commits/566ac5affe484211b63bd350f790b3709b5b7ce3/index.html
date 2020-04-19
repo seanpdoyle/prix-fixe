@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Add failing system test
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../e4c1b81ffa5e82bbed37c8b1dffff1810f1a3eff/">              &#8592; Previous
+</a>
+<a href="../08a4db69d3b8f7f0363751f280b69b5273bf07ba/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -108,8 +109,8 @@
 "></a>
                 <a href="../e4c1b81ffa5e82bbed37c8b1dffff1810f1a3eff/" class="commit-node commit-node--collapsed" title="Replace root with Redirect to `/notes`
 "></a>
-                <a href="../566ac5affe484211b63bd350f790b3709b5b7ce3/" class="commit-node commit-node--collapsed" title="Add failing system test
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Add failing system test
+" aria-current="page"></a>
                 <a href="../08a4db69d3b8f7f0363751f280b69b5273bf07ba/" class="commit-node commit-node--collapsed" title="Generate `Note` model
 "></a>
                 <a href="../b483e34d6d11911487d86749dbd41d4406622796/" class="commit-node commit-node--collapsed" title="Run the `create_notes` migration
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -242,7 +243,7 @@
 
 </a><a href="../e4c1b81ffa5e82bbed37c8b1dffff1810f1a3eff/" class="commit-node commit-node--full">              <p>Replace root with Redirect to <code>/notes</code></p>
 
-</a><a href="../566ac5affe484211b63bd350f790b3709b5b7ce3/" class="commit-node commit-node--full">              <p>Add failing system test</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Add failing system test</p>
 
 </a><a href="../08a4db69d3b8f7f0363751f280b69b5273bf07ba/" class="commit-node commit-node--full">              <p>Generate <code>Note</code> model</p>
 
@@ -279,21 +280,86 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="add-failing-system-test">Add failing system test</h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
+<p><a href="https://github.com/seanpdoyle/prix-fixe/projects/1#card-20484812">Card</a>:</p>
+
+<p>When I have spare time,
+I want to know what others think,
+So that I can learn</p>
+
+<hr>
+
+<p>This commit declares a system test that specifies that visiting the
+application&rsquo;s root path (i.e. <code>GET /</code>) will render the content of
+already existing Note records.</p>
+
+<p>The test&rsquo;s Setup Phase invokes the <a href="https://api.rubyonrails.org/v5.2/classes/ActiveRecord/Persistence/ClassMethods.html#method-i-create-21"><code>Note.create!</code></a> with the
+intention of creating a row in the <code>notes</code> database table.</p>
+
+<p>Up until this point in the process, we&rsquo;ve referred to the concept of our
+application&rsquo;s shared messages as &ldquo;notes&rdquo;. Choosing &ldquo;note&rdquo; as our domain
+term is inspired by the <a href="https://www.w3.org/TR/activitypub/#create-activity-outbox">W3C ActivityPub Specification</a>.
+Specifically, the <a href="https://docs.joinmastodon.org/development/activitypub/#activities">Mastodon Federated Social Networking
+Platform</a> exclusively supports <a href="https://docs.joinmastodon.org/development/activitypub/#activities">Activities of type
+&ldquo;Note&rdquo;</a>.</p>
+
+<p>The <code>notes</code> database table does not yet exist, and neither does the
+class that defines the <code>ActiveRecord</code>-backed <code>Note</code> model.</p>
+
+<p>When the test is executed, it fails:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserDiscoversANoteTest#test_from_the_root:
+NameError: uninitialized constant UserDiscoversANoteTest::Note
+    test/system/user_discovers_a_note_test.rb:5:in `block in &lt;class:UserDiscoversANoteTest&gt;'
 </code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
-
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
+<p>This failure message communicates the fact that we have not yet codified
+the concept of a &ldquo;note&rdquo; in our application&rsquo;s domain models.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="test/system/user_discovers_a_note_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/system/user_discovers_a_note_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/system/user_discovers_a_note_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/system/user_discovers_a_note_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/system/user_discovers_a_note_test.rb b/test/system/user_discovers_a_note_test.rb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..d924161
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/test/system/user_discovers_a_note_test.rb
+</span><span class="p">@@ -0,0 +1,12 @@</span>
+<span class="gi">+require "application_system_test_case"
++
++class UserDiscoversANoteTest &lt; ApplicationSystemTestCase
++  test "from the root" do
++    content = "Hello, World"
++    Note.create!(content: content)
++
++    visit notes_path
++
++    assert_text content
++  end
++end
+</span></code></pre></div></details>
+
           </aside>
       </article>
     </main>

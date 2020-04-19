@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Render `<form>` with `form_tag` with `form_with`
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../bcbf730dd0e6f86ad6c04decea1a611b1bc8012a/">              &#8592; Previous
+</a>
+<a href="../49b8279f8ff4e36b30b790224201a30f1e1ab55b/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -84,8 +85,8 @@
 "></a>
                 <a href="../bcbf730dd0e6f86ad6c04decea1a611b1bc8012a/" class="commit-node commit-node--collapsed" title="Use `form_tag` instead of `&lt;form&gt;`
 "></a>
-                <a href="../b4865301174fe1a313ab987a3a3d17f09690a1d9/" class="commit-node commit-node--collapsed" title="Render `&lt;form&gt;` with `form_tag` with `form_with`
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Render `&lt;form&gt;` with `form_tag` with `form_with`
+" aria-current="page"></a>
                 <a href="../49b8279f8ff4e36b30b790224201a30f1e1ab55b/" class="commit-node commit-node--collapsed" title="Build `&lt;textarea&gt;` with `text_area` helper
 "></a>
                 <a href="../7336a9fb89c6c257a393ef7a523c856734ab573e/" class="commit-node commit-node--collapsed" title="Replace `&lt;label&gt;` with `#label` invocation
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -218,7 +219,7 @@
 
 </a><a href="../bcbf730dd0e6f86ad6c04decea1a611b1bc8012a/" class="commit-node commit-node--full">              <p>Use <code>form_tag</code> instead of <code>&lt;form&gt;</code></p>
 
-</a><a href="../b4865301174fe1a313ab987a3a3d17f09690a1d9/" class="commit-node commit-node--full">              <p>Render <code>&lt;form&gt;</code> with <code>form_tag</code> with <code>form_with</code></p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Render <code>&lt;form&gt;</code> with <code>form_tag</code> with <code>form_with</code></p>
 
 </a><a href="../49b8279f8ff4e36b30b790224201a30f1e1ab55b/" class="commit-node commit-node--full">              <p>Build <code>&lt;textarea&gt;</code> with <code>text_area</code> helper</p>
 
@@ -279,21 +280,62 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="render-form-with-form_tag-with-form_with">Render <code>&lt;form&gt;</code> with <code>form_tag</code> with <code>form_with</code></h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
-</code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
+<p>This commit refactors our application&rsquo;s View code by replacing our
+<code>notes#new</code> template&rsquo;s call to <code>form_tag</code> with a call to
+<a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/FormHelper.html#method-i-form_with"><code>form_with</code></a>.</p>
 
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
+<p>The <code>form_with</code> helper&rsquo;s behavior is very similar to the <code>form_tag</code>&lsquo;s.
+In addition to generating a CSRF Protection-compliant <code>&lt;form&gt;</code> element,
+the <code>form_with</code> helper will yield an instance of an
+[<code>ActionView::Helpers::FormBuilder</code>]. This commit doesn&rsquo;t yet make use
+of that instance, but its availability will enable future View layer
+refactorings.</p>
+
+<p>The <code>form_with</code> helper is invoked with the <a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/FormHelper.html#method-i-form_with-label-form_with+options"><code>local: true</code></a> option
+to opt-out of submitting form asynchronously through <a href="https://guides.rubyonrails.org/v5.2/working_with_javascript_in_rails.html#unobtrusive-javascript">Rails&rsquo; Unobtrusive
+JavaScript</a> (there will be more on that topic in future
+commits).</p>
+
+<p>When we run the test again after making this change, it still passes.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="app/views/notes/new.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/notes/new.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/notes/new.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/notes/new.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/notes/new.html.erb b/app/views/notes/new.html.erb
+index 8c45414..d7d7f0e 100644
+</span><span class="gd">--- a/app/views/notes/new.html.erb
+</span><span class="gi">+++ b/app/views/notes/new.html.erb
+</span><span class="p">@@ -1,4 +1,4 @@</span>
+<span class="gd">-&lt;%= form_tag "/notes", method: :post do %&gt;
+</span><span class="gi">+&lt;%= form_with(url: "/notes", method: :post, local: true) do %&gt;
+</span>   &lt;label for="content"&gt;Message&lt;/label&gt;
+   &lt;textarea id="content" name="content"&gt;&lt;/textarea&gt;
+ 
+</code></pre></div></details>
+
           </aside>
       </article>
     </main>

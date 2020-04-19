@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Declare `GET "/"` route
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../70c42f43453701d26e42c1bfe3b73cd228583f75/">              &#8592; Previous
+</a>
+<a href="../07763eecbf298c260e1088567881d0c4842f8af9/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -50,8 +51,8 @@
 "></a>
                 <a href="../70c42f43453701d26e42c1bfe3b73cd228583f75/" class="commit-node commit-node--collapsed" title="Add a failing system test
 "></a>
-                <a href="../5b0159c6d9d051f6ddab00eca1a58f7d7f59a40b/" class="commit-node commit-node--collapsed" title="Declare `GET &quot;/&quot;` route
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Declare `GET &quot;/&quot;` route
+" aria-current="page"></a>
                 <a href="../07763eecbf298c260e1088567881d0c4842f8af9/" class="commit-node commit-node--collapsed" title="Declare `NotesController`
 "></a>
                 <a href="../73e3b8a35eb49f1717d5d5380c54875184b7b3af/" class="commit-node commit-node--collapsed" title="Extend from `ApplicationController`
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -184,7 +185,7 @@
 
 </a><a href="../70c42f43453701d26e42c1bfe3b73cd228583f75/" class="commit-node commit-node--full">              <p>Add a failing system test</p>
 
-</a><a href="../5b0159c6d9d051f6ddab00eca1a58f7d7f59a40b/" class="commit-node commit-node--full">              <p>Declare <code>GET &quot;/&quot;</code> route</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Declare <code>GET &quot;/&quot;</code> route</p>
 
 </a><a href="../07763eecbf298c260e1088567881d0c4842f8af9/" class="commit-node commit-node--full">              <p>Declare <code>NotesController</code></p>
 
@@ -279,21 +280,68 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="declare-get-route">Declare <code>GET &quot;/&quot;</code> route</h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
+<p>In order to access the <code>GET /</code> route in <code>UserSharesAMessageTest</code>,
+declare a route using the <a href="https://api.rubyonrails.org/v5.2/classes/ActionDispatch/Routing/Mapper/HttpHelpers.html#method-i-get"><code>get</code> route helper</a>, which delegates its
+arguments to the underlying <a href="https://api.rubyonrails.org/v5.2/classes/ActionDispatch/Routing/Mapper/Base.html#method-i-match"><code>match</code> route helper</a>, in order to
+handle requests made with the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET"><code>GET</code> HTTP Verb</a>.</p>
+
+<p>The <a href="https://api.rubyonrails.org/v5.2/classes/ActionDispatch/Routing/Mapper/Base.html#method-i-match-label-Options"><code>get</code> declaration accepts options</a>. The <code>controller:</code>
+option instructs the router to route requests with the <code>GET</code> verb and
+the <code>&quot;/&quot;</code> path to the controller name with the corresponding name.</p>
+
+<p>In this commit&rsquo;s case, <code>controller: &quot;notes&quot;</code> corresponds to the
+<code>NotesController</code>.</p>
+
+<p>Another option the <code>get</code> helper accepts is <code>action:</code>. The value assigned
+to the <code>action:</code> key instructs the router to route requests that match
+the criteria to the corresponding controller&rsquo;s instance method.</p>
+
+<p>In this commit&rsquo;s case, <code>action: &quot;index&quot;</code> corresponds to the
+<code>NotesController#index</code> instance method.</p>
+
+<p>Once the route exists, the request made in the test yields a new error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserSharesAMessagesTest#test_visiting_the_index:
+ActionController::RoutingError: uninitialized constant NotesController
+Did you mean?  ActionController
 </code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
-
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
-
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="config/routes.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse config/routes.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand config/routes.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      config/routes.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/config/routes.rb b/config/routes.rb
+index c06383a..4a0c5b7 100644
+</span><span class="gd">--- a/config/routes.rb
+</span><span class="gi">+++ b/config/routes.rb
+</span><span class="p">@@ -1,3 +1,4 @@</span>
+ Rails.application.routes.draw do
+   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+<span class="gi">+  get "/", controller: "notes", action: "index"
+</span> end
+</code></pre></div></details>
+
           </aside>
       </article>
     </main>

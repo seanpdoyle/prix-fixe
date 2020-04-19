@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Replace root with Redirect to `/notes`
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../3867e653497ad7d479edfb817b9e7246c4c4f79c/">              &#8592; Previous
+</a>
+<a href="../566ac5affe484211b63bd350f790b3709b5b7ce3/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -106,8 +107,8 @@
 "></a>
                 <a href="../3867e653497ad7d479edfb817b9e7246c4c4f79c/" class="commit-node commit-node--collapsed" title="Complete the first TDD Red-Green-Refactor Cycle
 "></a>
-                <a href="../e4c1b81ffa5e82bbed37c8b1dffff1810f1a3eff/" class="commit-node commit-node--collapsed" title="Replace root with Redirect to `/notes`
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Replace root with Redirect to `/notes`
+" aria-current="page"></a>
                 <a href="../566ac5affe484211b63bd350f790b3709b5b7ce3/" class="commit-node commit-node--collapsed" title="Add failing system test
 "></a>
                 <a href="../08a4db69d3b8f7f0363751f280b69b5273bf07ba/" class="commit-node commit-node--collapsed" title="Generate `Note` model
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -240,7 +241,7 @@
 
 </a><a href="../3867e653497ad7d479edfb817b9e7246c4c4f79c/" class="commit-node commit-node--full">              <p>Complete the first TDD Red-Green-Refactor Cycle</p>
 
-</a><a href="../e4c1b81ffa5e82bbed37c8b1dffff1810f1a3eff/" class="commit-node commit-node--full">              <p>Replace root with Redirect to <code>/notes</code></p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Replace root with Redirect to <code>/notes</code></p>
 
 </a><a href="../566ac5affe484211b63bd350f790b3709b5b7ce3/" class="commit-node commit-node--full">              <p>Add failing system test</p>
 
@@ -279,21 +280,67 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="replace-root-with-redirect-to-notes">Replace root with Redirect to <code>/notes</code></h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
-</code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
+<p>The previous route declaration configures our application to handle
+requests to <code>/</code> with the <code>notes#index</code> controller action.</p>
 
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
+<p>This behaved as specified by our system tests that exercise the
+application by visiting <code>/</code> directly.</p>
+
+<p>Our application declares a <code>notes#index</code> view template, which our
+<code>NotesController#index</code> implicitly renders.</p>
+
+<p>This approach adheres to conventional Rails patterns. However, without a
+corresponding <code>:index</code> declaration in our <code>resources :notes</code>&lsquo;s <code>only:</code>
+key, our application won&rsquo;t generate a <code>notes_path</code> routing helper.</p>
+
+<p>Our application redirects responses to the <code>/</code> path instead of what
+could be the <code>/notes</code> path.</p>
+
+<p>This commit reconfigures the <code>root</code> route declaration to <a href="https://api.rubyonrails.org/v5.2/classes/ActionDispatch/Routing/Redirection.html#method-i-redirect">redirect <code>/</code>
+requests to <code>/notes</code></a>, and adds <code>:index</code> to the list of
+supported <code>NotesController</code> actions.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="config/routes.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse config/routes.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand config/routes.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      config/routes.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/config/routes.rb b/config/routes.rb
+index a74f93c..7345d17 100644
+</span><span class="gd">--- a/config/routes.rb
+</span><span class="gi">+++ b/config/routes.rb
+</span><span class="p">@@ -1,6 +1,6 @@</span>
+ Rails.application.routes.draw do
+   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+<span class="gd">-  resources :notes, only: [:new, :create]
+</span><span class="gi">+  resources :notes, only: [:new, :create, :index]
+</span> 
+<span class="gd">-  root controller: "notes", action: "index"
+</span><span class="gi">+  root to: redirect("/notes")
+</span> end
+</code></pre></div></details>
+
           </aside>
       </article>
     </main>

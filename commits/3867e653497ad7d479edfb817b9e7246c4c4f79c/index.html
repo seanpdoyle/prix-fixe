@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Complete the first TDD Red-Green-Refactor Cycle
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../f6d6deecb49b61176dff33aa960c4a95b29a1b9e/">              &#8592; Previous
+</a>
+<a href="../e4c1b81ffa5e82bbed37c8b1dffff1810f1a3eff/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -104,8 +105,8 @@
 "></a>
                 <a href="../f6d6deecb49b61176dff33aa960c4a95b29a1b9e/" class="commit-node commit-node--collapsed" title="Drive system tests with Headless Chrome Browser
 "></a>
-                <a href="../3867e653497ad7d479edfb817b9e7246c4c4f79c/" class="commit-node commit-node--collapsed" title="Complete the first TDD Red-Green-Refactor Cycle
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Complete the first TDD Red-Green-Refactor Cycle
+" aria-current="page"></a>
                 <a href="../e4c1b81ffa5e82bbed37c8b1dffff1810f1a3eff/" class="commit-node commit-node--collapsed" title="Replace root with Redirect to `/notes`
 "></a>
                 <a href="../566ac5affe484211b63bd350f790b3709b5b7ce3/" class="commit-node commit-node--collapsed" title="Add failing system test
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -238,7 +239,7 @@
 
 </a><a href="../f6d6deecb49b61176dff33aa960c4a95b29a1b9e/" class="commit-node commit-node--full">              <p>Drive system tests with Headless Chrome Browser</p>
 
-</a><a href="../3867e653497ad7d479edfb817b9e7246c4c4f79c/" class="commit-node commit-node--full">              <p>Complete the first TDD Red-Green-Refactor Cycle</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Complete the first TDD Red-Green-Refactor Cycle</p>
 
 </a><a href="../e4c1b81ffa5e82bbed37c8b1dffff1810f1a3eff/" class="commit-node commit-node--full">              <p>Replace root with Redirect to <code>/notes</code></p>
 
@@ -279,21 +280,93 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="complete-the-first-tdd-red-green-refactor-cycle">Complete the first TDD Red-Green-Refactor Cycle</h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
-</code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
+<p>After finishing this round of refactoring, we can pause and assess the
+code related to the <a href="https://github.com/seanpdoyle/prix-fixe/projects/1#card-20484715">original feature</a>.</p>
 
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
+<p>Depending on your design preferences or programming practices, there are
+more changes that could be made in the name of refactoring.</p>
+
+<p>For the sake of maintaining forward momentum, it now feels like an
+appropriate time to consider this feature &ldquo;ready&rdquo; to be opened as a pull
+request and ultimately merged into the <code>master</code> branch.</p>
+
+<p>If you&rsquo;re feeling skeptical this this feature &ldquo;works&rdquo; as intended
+without any models, database queries, or persistence of any kind, that
+skepticism is justified!</p>
+
+<p>One valuable aspect of practicing outside-in testing and <abbr
+title="Test Driven Development">TDD</abbr> is that authors can feel
+confident that if the tests are well written and passing, the
+features are &ldquo;working&rdquo; for end-users.</p>
+
+<p>Another aspect of practicing outside-in testing and TDD is that there
+will <em>always</em> another test to write. An inevitable outcome of writing
+that test is that the implementation will need to be extended to get
+that test to pass. We can expect that future features will demand more
+from Rails. When its appropriate, we will introduce more concepts and
+complexities.</p>
+
+<p>For now, we can be confident that our application behaves exactly in the
+one way that we&rsquo;ve specified. For now, let&rsquo;s appreciate the simplicity
+of our system.</p>
+
+<p>With that in mind, it&rsquo;s time to move onto the next feature.</p>
+
+<h2 id="n-b">N.B.</h2>
+
+<p>In previous commits, this feature&rsquo;s test-driven development steps have
+been thoroughly documented at a very granular level.</p>
+
+<p>Future features will be test-driven, and those tests and their
+corresponding implementation changes will be introduced into the
+codebase through a similar process.</p>
+
+<p>For the sake of the reader, subsequent test-driven development steps and
+Red-Green-Refactor Cycles may be omitted, undocumented, or combined into
+larger and less granular commits.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="README.md"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse README.md</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand README.md</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      README.md
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/README.md b/README.md
+index c6f99ce..f8e7aa3 100644
+</span><span class="gd">--- a/README.md
+</span><span class="gi">+++ b/README.md
+</span><span class="p">@@ -116,6 +116,9 @@</span> Once we're finished iterating through a single [Red-Green-Refactor
+ cycle][red-green-refactor], the granularity of our commits will increase in
+ both size and scope.
+ 
+<span class="gi">+For the reader's sake, imagine commits added after the end of the first cycle as
++the output of adhering to the same process as those created during that cycle.
++
+</span> [gh-pages]: https://seanpdoyle.github.io/prix-fixe
+ [git-read]: https://github.com/seanpdoyle/git-read
+ [git]: https://git-scm.com/
+</code></pre></div></details>
+
           </aside>
       </article>
     </main>

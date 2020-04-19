@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Render `<form>` element in `notes#new` template
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../ce64691acf6d776fddbcf5773eccdf126d98231f/">              &#8592; Previous
+</a>
+<a href="../ad7477eb98a134e997ae62742f476ae4ba159107/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -70,8 +71,8 @@
 "></a>
                 <a href="../ce64691acf6d776fddbcf5773eccdf126d98231f/" class="commit-node commit-node--collapsed" title="Render `&lt;button&gt;` in `notes#new` template
 "></a>
-                <a href="../8808cdda9867a59922220de9a6b8511b9743c1f7/" class="commit-node commit-node--collapsed" title="Render `&lt;form&gt;` element in `notes#new` template
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Render `&lt;form&gt;` element in `notes#new` template
+" aria-current="page"></a>
                 <a href="../ad7477eb98a134e997ae62742f476ae4ba159107/" class="commit-node commit-node--collapsed" title="Declare a `POST /notes` route
 "></a>
                 <a href="../d575716475fc0c2b0e73189f20ba77accfb804b0/" class="commit-node commit-node--collapsed" title="Declare `notes#create` view template
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -204,7 +205,7 @@
 
 </a><a href="../ce64691acf6d776fddbcf5773eccdf126d98231f/" class="commit-node commit-node--full">              <p>Render <code>&lt;button&gt;</code> in <code>notes#new</code> template</p>
 
-</a><a href="../8808cdda9867a59922220de9a6b8511b9743c1f7/" class="commit-node commit-node--full">              <p>Render <code>&lt;form&gt;</code> element in <code>notes#new</code> template</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Render <code>&lt;form&gt;</code> element in <code>notes#new</code> template</p>
 
 </a><a href="../ad7477eb98a134e997ae62742f476ae4ba159107/" class="commit-node commit-node--full">              <p>Declare a <code>POST /notes</code> route</p>
 
@@ -279,21 +280,79 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="render-form-element-in-notes-new-template">Render <code>&lt;form&gt;</code> element in <code>notes#new</code> template</h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
+<p>This commit attempts to resolve the previous error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Failure:
+UserSharesAMessageTest#test_visiting_the_index [/Users/seanpdoyle/src/prix-fixe/test/system/user_shares_a_message_test.rb:12]:
+expected to find text "Hello, World!" in "Message Share"
 </code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
+<p>Our test&rsquo;s assertion that the page contains the contents of our new note
+(i.e. <code>&quot;Hello, World!&quot;</code>) fails.</p>
 
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
+<p>The test makes this assertion by invoking <a href="https://www.rubydoc.info/github/teamcapybara/capybara/master/Capybara/Node/Matchers#assert_text-instance_method"><code>assert_text</code></a>.
+The failure message&rsquo;s <code>&quot;Message Share&quot;</code> is derived by extracting the
+text out of our page&rsquo;s <code>&lt;body&gt;</code>, ignoring HTML markup.</p>
 
+<p>The change this commit includes (in an effort to advance our test to a
+new, different failure) aspires to submit the contents of the page&rsquo;s
+<code>&lt;textarea&gt;</code> to our server. However, without a <code>&lt;form&gt;</code> element
+ancestor, our <code>&lt;textarea&gt;</code> does not have the means to submit its
+contents to our server.</p>
+
+<p>This commit wraps the <code>&lt;textarea&gt;</code> and <code>&lt;button&gt;</code> in a <code>&lt;form&gt;</code> element
+that declares <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-action"><code>action=&quot;/notes&quot;</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-method"><code>method=&quot;post&quot;</code></a>.</p>
+
+<p>The combination of these two attributes results in the <code>&lt;form&gt;</code> element
+submitting a <code>POST</code> HTTP request to the application&rsquo;s <code>/notes</code> path. The
+intention behind issuing a <code>POST /notes</code> request is to adhere to <a href="https://guides.rubyonrails.org/routing.html#crud-verbs-and-actions">Rails&rsquo;
+REST-inspired routing convention</a>.</p>
+
+<p>When running the suite again, a new error is raised.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserSharesAMessageTest#test_visiting_the_index:
+ActionController::RoutingError: No route matches [POST] "/notes"
+</code></pre></div>
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="app/views/notes/new.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/notes/new.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/notes/new.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/notes/new.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/notes/new.html.erb b/app/views/notes/new.html.erb
+index c2bbe44..3f8d8e7 100644
+</span><span class="gd">--- a/app/views/notes/new.html.erb
+</span><span class="gi">+++ b/app/views/notes/new.html.erb
+</span><span class="p">@@ -1,4 +1,6 @@</span>
+<span class="gd">-&lt;label for="content"&gt;Message&lt;/label&gt;
+-&lt;textarea id="content"&gt;&lt;/textarea&gt;
+</span><span class="gi">+&lt;form action="/notes" method="post"&gt;
++  &lt;label for="content"&gt;Message&lt;/label&gt;
++  &lt;textarea id="content"&gt;&lt;/textarea&gt;
+</span> 
+<span class="gd">-&lt;button&gt;Share&lt;/button&gt;
+</span><span class="gi">+  &lt;button&gt;Share&lt;/button&gt;
++&lt;/form&gt;
+</span></code></pre></div></details>
+
           </aside>
       </article>
     </main>

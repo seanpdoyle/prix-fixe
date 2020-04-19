@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Use `form_tag` instead of `<form>`
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../d142ebb3952be63ef4e9616b1560f231043c8389/">              &#8592; Previous
+</a>
+<a href="../b4865301174fe1a313ab987a3a3d17f09690a1d9/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -82,8 +83,8 @@
 "></a>
                 <a href="../d142ebb3952be63ef4e9616b1560f231043c8389/" class="commit-node commit-node--collapsed" title="Enable Request Forgery Protection in `test`
 "></a>
-                <a href="../bcbf730dd0e6f86ad6c04decea1a611b1bc8012a/" class="commit-node commit-node--collapsed" title="Use `form_tag` instead of `&lt;form&gt;`
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Use `form_tag` instead of `&lt;form&gt;`
+" aria-current="page"></a>
                 <a href="../b4865301174fe1a313ab987a3a3d17f09690a1d9/" class="commit-node commit-node--collapsed" title="Render `&lt;form&gt;` with `form_tag` with `form_with`
 "></a>
                 <a href="../49b8279f8ff4e36b30b790224201a30f1e1ab55b/" class="commit-node commit-node--collapsed" title="Build `&lt;textarea&gt;` with `text_area` helper
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -216,7 +217,7 @@
 
 </a><a href="../d142ebb3952be63ef4e9616b1560f231043c8389/" class="commit-node commit-node--full">              <p>Enable Request Forgery Protection in <code>test</code></p>
 
-</a><a href="../bcbf730dd0e6f86ad6c04decea1a611b1bc8012a/" class="commit-node commit-node--full">              <p>Use <code>form_tag</code> instead of <code>&lt;form&gt;</code></p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Use <code>form_tag</code> instead of <code>&lt;form&gt;</code></p>
 
 </a><a href="../b4865301174fe1a313ab987a3a3d17f09690a1d9/" class="commit-node commit-node--full">              <p>Render <code>&lt;form&gt;</code> with <code>form_tag</code> with <code>form_with</code></p>
 
@@ -279,21 +280,79 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="use-form_tag-instead-of-form">Use <code>form_tag</code> instead of <code>&lt;form&gt;</code></h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
+<p>This commit is in response to the previous error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserSharesAMessageTest#test_visiting_the_index:
+DRb::DRbRemoteError: ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken)
 </code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
+<p>This commit replaces the hard-coded <code>&lt;form&gt;</code> element with a call to
+<a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/FormTagHelper.html#method-i-form_tag">Rails&rsquo; <code>form_tag</code> view helper</a>.</p>
 
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
+<p>The <code>form_tag</code> helper&rsquo;s
+interface closely resembles how a <code>&lt;form&gt;</code> element is declared. Its
+first argument is the path or URL to submit the <code>&lt;form&gt;</code> to (which is
+otherwise represented as the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-action"><code>action</code> attribute</a>). Otherwise,
+the rest of the options that <code>form_tag</code> accepts correspond to attribute
+on the generated <code>&lt;form&gt;</code> element.</p>
 
+<p>Most importantly, by using the <code>form_tag</code> and passing our <code>&lt;label&gt;</code>,
+<code>&lt;textarea&gt;</code> and <code>&lt;button&gt;</code> elements into the <code>form_tag</code> invocation&rsquo;s
+block, we guarantee that the <code>&lt;form&gt;</code> element is generated with an
+<code>&lt;input type=&quot;hidden&quot; name=&quot;authenticity_token&quot; value=&quot;...&quot;&gt;</code> element to
+integrate with Rails&rsquo; CSRF protection.</p>
+
+<p>When we run the test again, it passes:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>
+Capybara starting Puma...
+* Version 3.12.1 , codename: Llamas in Pajamas
+* Min threads: 0, max threads: 4
+* Listening on tcp://127.0.0.1:55494
+.
+
+Finished in 4.141942s, 0.2414 runs/s, 0.2414 assertions/s.
+1 runs, 1 assertions, 0 failures, 0 errors, 0 skips
+</code></pre></div>
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="app/views/notes/new.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/notes/new.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/notes/new.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/notes/new.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/notes/new.html.erb b/app/views/notes/new.html.erb
+index 10ebc3d..8c45414 100644
+</span><span class="gd">--- a/app/views/notes/new.html.erb
+</span><span class="gi">+++ b/app/views/notes/new.html.erb
+</span><span class="p">@@ -1,6 +1,6 @@</span>
+<span class="gd">-&lt;form action="/notes" method="post"&gt;
+</span><span class="gi">+&lt;%= form_tag "/notes", method: :post do %&gt;
+</span>   &lt;label for="content"&gt;Message&lt;/label&gt;
+   &lt;textarea id="content" name="content"&gt;&lt;/textarea&gt;
+ 
+   &lt;button&gt;Share&lt;/button&gt;
+<span class="gd">-&lt;/form&gt;
+</span><span class="gi">+&lt;% end %&gt;
+</span></code></pre></div></details>
+
           </aside>
       </article>
     </main>

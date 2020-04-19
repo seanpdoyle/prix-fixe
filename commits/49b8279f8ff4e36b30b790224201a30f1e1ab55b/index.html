@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Build `<textarea>` with `text_area` helper
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../b4865301174fe1a313ab987a3a3d17f09690a1d9/">              &#8592; Previous
+</a>
+<a href="../7336a9fb89c6c257a393ef7a523c856734ab573e/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -86,8 +87,8 @@
 "></a>
                 <a href="../b4865301174fe1a313ab987a3a3d17f09690a1d9/" class="commit-node commit-node--collapsed" title="Render `&lt;form&gt;` with `form_tag` with `form_with`
 "></a>
-                <a href="../49b8279f8ff4e36b30b790224201a30f1e1ab55b/" class="commit-node commit-node--collapsed" title="Build `&lt;textarea&gt;` with `text_area` helper
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Build `&lt;textarea&gt;` with `text_area` helper
+" aria-current="page"></a>
                 <a href="../7336a9fb89c6c257a393ef7a523c856734ab573e/" class="commit-node commit-node--collapsed" title="Replace `&lt;label&gt;` with `#label` invocation
 "></a>
                 <a href="../b8d0189ad48500969385bb7152aa4bbd668b2891/" class="commit-node commit-node--collapsed" title="Replace `&lt;button&gt;` with `#submit` invocation
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -220,7 +221,7 @@
 
 </a><a href="../b4865301174fe1a313ab987a3a3d17f09690a1d9/" class="commit-node commit-node--full">              <p>Render <code>&lt;form&gt;</code> with <code>form_tag</code> with <code>form_with</code></p>
 
-</a><a href="../49b8279f8ff4e36b30b790224201a30f1e1ab55b/" class="commit-node commit-node--full">              <p>Build <code>&lt;textarea&gt;</code> with <code>text_area</code> helper</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Build <code>&lt;textarea&gt;</code> with <code>text_area</code> helper</p>
 
 </a><a href="../7336a9fb89c6c257a393ef7a523c856734ab573e/" class="commit-node commit-node--full">              <p>Replace <code>&lt;label&gt;</code> with <code>#label</code> invocation</p>
 
@@ -279,21 +280,63 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="build-textarea-with-text_area-helper">Build <code>&lt;textarea&gt;</code> with <code>text_area</code> helper</h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
-</code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
+<p>This commit refactors the View layer&rsquo;s <code>notes#new</code> template by replacing
+a hard-coded <code>&lt;textarea&gt;</code> element with an invocation to
+<a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/FormHelper.html#method-i-text_area"><code>text_area</code></a>.</p>
 
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
+<p>First, we modify the <code>form_with</code> call to yield a <code>FormBuilder</code> instance
+to the block.</p>
+
+<p>Next, we invoke <code>FormBuilder#text_area</code> and pass <code>:content</code> as the first
+argument. This constructs a <code>&lt;textarea&gt;</code> element with
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-id"><code>id=&quot;content&quot;</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-name"><code>name=&quot;content&quot;</code></a>. Since our previous
+commits depended on both the <code>id</code> and <code>name</code> attributes&rsquo; presence, it&rsquo;s
+helpful to emphasize that the <code>FromBuilder#text_area</code> will generate the
+necessary HTML.</p>
+
+<p>When we run the test again, it is still passing.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="app/views/notes/new.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/notes/new.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/notes/new.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/notes/new.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/notes/new.html.erb b/app/views/notes/new.html.erb
+index d7d7f0e..204fc08 100644
+</span><span class="gd">--- a/app/views/notes/new.html.erb
+</span><span class="gi">+++ b/app/views/notes/new.html.erb
+</span><span class="p">@@ -1,6 +1,6 @@</span>
+<span class="gd">-&lt;%= form_with(url: "/notes", method: :post, local: true) do %&gt;
+</span><span class="gi">+&lt;%= form_with(url: "/notes", method: :post, local: true) do |form| %&gt;
+</span>   &lt;label for="content"&gt;Message&lt;/label&gt;
+<span class="gd">-  &lt;textarea id="content" name="content"&gt;&lt;/textarea&gt;
+</span><span class="gi">+  &lt;%= form.text_area(:content) %&gt;
+</span> 
+   &lt;button&gt;Share&lt;/button&gt;
+ &lt;% end %&gt;
+</code></pre></div></details>
+
           </aside>
       </article>
     </main>

@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Pass `model:` instead of `url:` in `notes#new`
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -20,10 +20,11 @@
       <nav class="
         header__navigation
         navigation
-        navigation--next
+        
       ">
-
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              Next &#8594;
+<a href="../1f9d9ed47ed05a7884321dfb0b47ddbaaf20f718/">              &#8592; Previous
+</a>
+<a href="../9d52da5296384c847af7a3127391481400da4d0e/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -36,8 +37,8 @@
               u-db-overflow-y--auto
               u-mb-overflow-x--scroll
             ">
-                <a href="./" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
-" aria-current="page"></a>
+                <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
@@ -128,8 +129,8 @@
 "></a>
                 <a href="../1f9d9ed47ed05a7884321dfb0b47ddbaaf20f718/" class="commit-node commit-node--collapsed" title="Validate presence of `notes.content`
 "></a>
-                <a href="../ed03b44887c1312b91b361fca93d1d8bb3393715/" class="commit-node commit-node--collapsed" title="Pass `model:` instead of `url:` in `notes#new`
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Pass `model:` instead of `url:` in `notes#new`
+" aria-current="page"></a>
                 <a href="../9d52da5296384c847af7a3127391481400da4d0e/" class="commit-node commit-node--collapsed" title="Internationalize application's text
 "></a>
                 <a href="../a0cbe79976527638f0bef6cb768cf35f362c2dde/" class="commit-node commit-node--collapsed" title="Use `FormBuilder` to internationalize labels
@@ -170,7 +171,7 @@
           u-db-overflow-y--auto
           u-mb-overflow-x--scroll
         ">
-<a href="./" class="commit-node commit-node--full" aria-current="page">              <p>[GENERATED] Initial Commit</p>
+<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
@@ -262,7 +263,7 @@
 
 </a><a href="../1f9d9ed47ed05a7884321dfb0b47ddbaaf20f718/" class="commit-node commit-node--full">              <p>Validate presence of <code>notes.content</code></p>
 
-</a><a href="../ed03b44887c1312b91b361fca93d1d8bb3393715/" class="commit-node commit-node--full">              <p>Pass <code>model:</code> instead of <code>url:</code> in <code>notes#new</code></p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Pass <code>model:</code> instead of <code>url:</code> in <code>notes#new</code></p>
 
 </a><a href="../9d52da5296384c847af7a3127391481400da4d0e/" class="commit-node commit-node--full">              <p>Internationalize application&#39;s text</p>
 
@@ -279,21 +280,176 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="generated-initial-commit">[GENERATED] Initial Commit</h1>
+          <h1 id="pass-model-instead-of-url-in-notes-new">Pass <code>model:</code> instead of <code>url:</code> in <code>notes#new</code></h1>
 
-<p>This commit contains the output of:</p>
-<div class="highlight"><pre class="highlight shell"><code>rails new prix-fixe <span class="nt">--webpack</span><span class="o">=</span>stimulus
+<p>After the previous commit, an invalid submission to the <code>notes#create</code>
+action results in a re-rendering of the <code>notes#new</code> template. When
+re-rendering the <code>notes#new</code> template, the controller could pass a
+reference to the invalid <code>Note</code> instance to pre-populate the <code>&lt;form&gt;</code>
+element&rsquo;s fields with the previously submitted values.</p>
+
+<p>Unfortunately, the <code>&lt;form&gt;</code> element in the <code>notes#new</code> template doesn&rsquo;t
+use a reference to a <code>Note</code> instance at all. Instead, <a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/FormHelper.html#method-i-form_with">it passes a value
+for the <code>url:</code> key to the <code>form_with</code> helper</a>. When the
+<code>url:</code> key is replaced with a <code>model:</code> key that references an instance
+of <code>Note</code>, the structure of the request body submitted to <code>POST /notes</code>.</p>
+
+<p>Instead of the <a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/FormBuilder.html"><code>FormBuilder</code></a> building a <code>&lt;textarea&gt;</code>
+element with <code>name=&quot;content&quot;</code>, a <code>form_with</code> passed a <code>model:</code> reference
+uses the <a href="https://api.rubyonrails.org/v5.2/classes/ActiveModel/Naming.html#method-i-model_name"><code>Note.model_name</code></a> to namespace the <code>name</code>
+attribute with <code>note</code>, and renders <code>&lt;textarea name=&quot;note[content]&quot;&gt;</code>.</p>
+
+<p>When the server responds to a <code>POST /notes</code> request submitted by such a
+<code>&lt;form&gt;</code>, the values are nested within a key of that namespace.</p>
+
+<p>In our case, <code>&lt;textarea name=&quot;note[content]&quot;&gt;</code> results in
+<a href="https://api.rubyonrails.org/v5.2/classes/ActionController/StrongParameters.html"><code>strong_params</code></a>-compliant
+<code>params</code> helper that can access the <code>content</code> value by chaining
+<a href="https://api.rubyonrails.org/v5.2/classes/ActionController/Parameters.html#method-i-require"><code>#require</code></a> and <a href="https://api.rubyonrails.org/v5.2/classes/ActionController/Parameters.html#method-i-permit"><code>#permit</code></a>:</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:note</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="ss">:content</span><span class="p">)</span>
 </code></pre></div>
-<p>Providing the <code>--webpack=stimulus</code> flag will signal to the generator to
-create the corresponding files for both <a href="https://webpack.js.org/concepts/">Webpack</a> and <a href="https://stimulusjs.org/handbook/introduction">StimulusJS</a>.</p>
-
-<p>In spite of requiring an additional command line flag to opt into
-<a href="https://github.com/rails/webpacker"><code>webpacker</code></a> integration, this step does not add an
-additional dependency to the <code>Gemfile</code>.</p>
-
         </section>
 
           <aside class="commit commit--diff commit--long-content">
+              <details
+  id="app/controllers/notes_controller.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/controllers/notes_controller.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/controllers/notes_controller.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/controllers/notes_controller.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/controllers/notes_controller.rb b/app/controllers/notes_controller.rb
+index 8375672..b16a6fe 100644
+</span><span class="gd">--- a/app/controllers/notes_controller.rb
+</span><span class="gi">+++ b/app/controllers/notes_controller.rb
+</span><span class="p">@@ -13,13 +13,21 @@</span> class NotesController &lt; ApplicationController
+     if note.save
+       redirect_to notes_url
+     else
+<span class="gd">-      render(:new, status: :unprocessable_entity)
+</span><span class="gi">+      render(:new, status: :unprocessable_entity, locals: { note: note })
+</span>     end
+   end
+ 
+<span class="gi">+  def new
++    note = Note.new
++
++    render(locals: {
++      note: note,
++    })
++  end
++
+</span>   private
+ 
+   def note_params
+<span class="gd">-    params.to_unsafe_h.slice(:content)
+</span><span class="gi">+    params.require(:note).permit(:content)
+</span>   end
+ end
+</code></pre></div></details>
+
+              <details
+  id="app/views/notes/new.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/notes/new.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/notes/new.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/notes/new.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/notes/new.html.erb b/app/views/notes/new.html.erb
+index 53dc22c..5b230bb 100644
+</span><span class="gd">--- a/app/views/notes/new.html.erb
+</span><span class="gi">+++ b/app/views/notes/new.html.erb
+</span><span class="p">@@ -1,4 +1,4 @@</span>
+<span class="gd">-&lt;%= form_with(url: notes_path, method: :post, local: true) do |form| %&gt;
+</span><span class="gi">+&lt;%= form_with(model: note, method: :post, local: true) do |form| %&gt;
+</span>   &lt;%= form.label(:content, "Message") %&gt;
+   &lt;%= form.text_area(:content) %&gt;
+ 
+</code></pre></div></details>
+
+              <details
+  id="test/controllers/notes_controller_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/controllers/notes_controller_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/controllers/notes_controller_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/controllers/notes_controller_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/controllers/notes_controller_test.rb b/test/controllers/notes_controller_test.rb
+index 2d64375..b27a5f8 100644
+</span><span class="gd">--- a/test/controllers/notes_controller_test.rb
+</span><span class="gi">+++ b/test/controllers/notes_controller_test.rb
+</span><span class="p">@@ -4,7 +4,7 @@</span> class NotesControllerTest &lt; ActionDispatch::IntegrationTest
+   test "#create persists a Note record" do
+     content = "Hello, World"
+ 
+<span class="gd">-    post notes_path, params: { content: content }
+</span><span class="gi">+    post notes_path, params: { note: { content: content } }
+</span> 
+     assert_equal Note.pluck(:content), [content]
+   end
+<span class="p">@@ -12,15 +12,15 @@</span> class NotesControllerTest &lt; ActionDispatch::IntegrationTest
+   test "#create redirects to /notes" do
+     note_attributes = { content: "Hello, World" }
+ 
+<span class="gd">-    post notes_path, params: note_attributes
+</span><span class="gi">+    post notes_path, params: { note: note_attributes }
+</span> 
+     assert_redirected_to notes_url
+   end
+ 
+   test "#create with invalid data responds with unprocessable entity" do
+<span class="gd">-    note_attributes = {}
+</span><span class="gi">+    note_attributes = { content: "" }
+</span> 
+<span class="gd">-    post notes_path, params: note_attributes
+</span><span class="gi">+    post notes_path, params: { note: note_attributes }
+</span> 
+     assert_response :unprocessable_entity
+   end
+</code></pre></div></details>
+
           </aside>
       </article>
     </main>
