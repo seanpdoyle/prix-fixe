@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Un-comment remaining `Gemfile` dependencies
+    <title>Render `notes#index` from controller action
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              &#8592; Previous
+<a href="../9c2180bd38afc27da8fbc1571e4b21ecd093cb38/">              &#8592; Previous
 </a>
-<a href="../7054cb0bdbcd5c302b9cb9c8bb504d70fa937ff0/">              Next &#8594;
+<a href="../5177568edf9a7e8596772206161341cd8ee0e70f/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -41,8 +41,8 @@
 "></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
-" aria-current="page"></a>
+                <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
+"></a>
                 <a href="../7054cb0bdbcd5c302b9cb9c8bb504d70fa937ff0/" class="commit-node commit-node--collapsed" title="Create `git-read` GitHub Action
 "></a>
                 <a href="../6e74b576f371146aa095015facdd5c6661effe7d/" class="commit-node commit-node--collapsed" title="Execute the Rails-generated `bin/setup` script
@@ -117,8 +117,8 @@
 "></a>
                 <a href="../9c2180bd38afc27da8fbc1571e4b21ecd093cb38/" class="commit-node commit-node--collapsed" title="Render a list of all `Note` records `notes#index`
 "></a>
-                <a href="../058f426f347216d0ef06683fa4a6782daedcd153/" class="commit-node commit-node--collapsed" title="Render `notes#index` from controller action
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Render `notes#index` from controller action
+" aria-current="page"></a>
                 <a href="../5177568edf9a7e8596772206161341cd8ee0e70f/" class="commit-node commit-node--collapsed" title="Introduce `NotesController` tests
 "></a>
                 <a href="../244f2e019cd4cc2cfd80b3d7670a371c1be3301c/" class="commit-node commit-node--collapsed" title="Disable CSRF-protection when in `test` environment
@@ -175,7 +175,7 @@
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Un-comment remaining <code>Gemfile</code> dependencies</p>
+</a><a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--full">              <p>Un-comment remaining <code>Gemfile</code> dependencies</p>
 
 </a><a href="../7054cb0bdbcd5c302b9cb9c8bb504d70fa937ff0/" class="commit-node commit-node--full">              <p>Create <code>git-read</code> GitHub Action</p>
 
@@ -251,7 +251,7 @@
 
 </a><a href="../9c2180bd38afc27da8fbc1571e4b21ecd093cb38/" class="commit-node commit-node--full">              <p>Render a list of all <code>Note</code> records <code>notes#index</code></p>
 
-</a><a href="../058f426f347216d0ef06683fa4a6782daedcd153/" class="commit-node commit-node--full">              <p>Render <code>notes#index</code> from controller action</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Render <code>notes#index</code> from controller action</p>
 
 </a><a href="../5177568edf9a7e8596772206161341cd8ee0e70f/" class="commit-node commit-node--full">              <p>Introduce <code>NotesController</code> tests</p>
 
@@ -280,155 +280,110 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="un-comment-remaining-gemfile-dependencies">Un-comment remaining <code>Gemfile</code> dependencies</h1>
+          <h1 id="render-notes-index-from-controller-action">Render <code>notes#index</code> from controller action</h1>
 
-<p>In the spirit of <a href="https://seanpdoyle.github.io/prix-fixe/index.html#the-rules">this project&rsquo;s rules</a>:</p>
+<p>This commit refactors the <code>notes#index</code> template, extracting the
+<code>Note.all</code> record retrieval logic into the controller.</p>
 
-<blockquote>
-<p>Once the rails new command completes, the project is forbidden from
-adding or removing a Rubygems, NPM, or Yarn dependency.</p>
-</blockquote>
+<p>The <code>NotesController#index</code> action invokes <a href="https://guides.rubyonrails.org/v5.2/layouts_and_rendering.html#passing-local-variables"><code>render</code> with the
+<code>locals</code></a> option to declare variables available as
+template-local variables.</p>
 
-<p>This commit installs <em>the exceptions</em> to that rule:</p>
+<p>Most Rails template rendering documentation suggests that controllers
+pass references to templates by <a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Base.html">declaring and sharing instance
+variables</a>.</p>
 
-<blockquote>
-<p>The <strong><em>only</em></strong> exceptions to this rule are dependencies in our
-<code>Gemfile</code> that were introduced by a <code>rails new</code> command. For example,
-the <strong><a href="https://github.com/codahale/bcrypt-ruby/tree/v3.1.13#why-you-should-use-bcrypt"><code>bcrypt</code> gem</a></strong>, the <strong><a href="https://github.com/janko/image_processing/tree/v1.2.0#usage"><code>image_processing</code>
-gem</a></strong>, and the <strong><a href="https://github.com/redis/redis-rb/tree/v4.0.0#getting-started"><code>redis</code> gem</a></strong> can be made
-available as dependencies, since they&rsquo;re generated by <code>rails new</code> as
-commented-out lines in the <code>Gemfile</code>.</p>
-</blockquote>
+<p>This commit deviates from that convention by explicitly passing the
+<code>notes</code> controller-local variable to the view template through as a
+<code>notes:</code> key in the <code>locals</code> hash.</p>
 
-<p>To get those dependencies out of the way, this commit pre-emptively
-installs them, closing the door on future dependencies.</p>
+<p>By being explicit about which variables our templates can access, our
+templates&rsquo; data dependencies are more apparent and discoverable. Instead
+of being unsure about which controller declares which instance variable,
+we can inspect the <code>render</code> call that invoked the view and see an
+exhaustive list of the variables that are available.</p>
+
+<p>When we re-run the system tests, they&rsquo;re still passing.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="Gemfile"
+  id="app/controllers/notes_controller.rb"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse Gemfile</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/controllers/notes_controller.rb</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand Gemfile</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/controllers/notes_controller.rb</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      Gemfile
+      app/controllers/notes_controller.rb
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile b/Gemfile
-index 11c43fb..60d75e9 100644
-</span><span class="gd">--- a/Gemfile
-</span><span class="gi">+++ b/Gemfile
-</span><span class="p">@@ -18,12 +18,12 @@</span> gem 'turbolinks', '~&gt; 5'
- # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
- gem 'jbuilder', '~&gt; 2.7'
- # Use Redis adapter to run Action Cable in production
-<span class="gd">-# gem 'redis', '~&gt; 4.0'
-</span><span class="gi">+gem 'redis', '~&gt; 4.0'
-</span> # Use Active Model has_secure_password
-<span class="gd">-# gem 'bcrypt', '~&gt; 3.1.7'
-</span><span class="gi">+gem 'bcrypt', '~&gt; 3.1.7'
-</span> 
- # Use Active Storage variant
-<span class="gd">-# gem 'image_processing', '~&gt; 1.2'
-</span><span class="gi">+gem 'image_processing', '~&gt; 1.2'
-</span> 
- # Reduces boot times through caching; required in config/boot.rb
- gem 'bootsnap', '&gt;= 1.4.2', require: false
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/controllers/notes_controller.rb b/app/controllers/notes_controller.rb
+index c94d2e3..b2252b5 100644
+</span><span class="gd">--- a/app/controllers/notes_controller.rb
+</span><span class="gi">+++ b/app/controllers/notes_controller.rb
+</span><span class="p">@@ -1,2 +1,9 @@</span>
+ class NotesController &lt; ApplicationController
+<span class="gi">+  def index
++    notes = Note.all
++
++    render(locals: {
++      notes: notes,
++    })
++  end
+</span> end
 </code></pre></div></details>
 
               <details
-  id="Gemfile.lock"
+  id="app/views/notes/index.html.erb"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse Gemfile.lock</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/notes/index.html.erb</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand Gemfile.lock</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/notes/index.html.erb</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      Gemfile.lock
+      app/views/notes/index.html.erb
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile.lock b/Gemfile.lock
-index 3c574ea..1cdce9a 100644
-</span><span class="gd">--- a/Gemfile.lock
-</span><span class="gi">+++ b/Gemfile.lock
-</span><span class="p">@@ -58,6 +58,7 @@</span> GEM
-       zeitwerk (~&gt; 2.2)
-     addressable (2.7.0)
-       public_suffix (&gt;= 2.0.2, &lt; 5.0)
-<span class="gi">+    bcrypt (3.1.13)
-</span>     bindex (0.8.1)
-     bootsnap (1.4.6)
-       msgpack (~&gt; 1.0)
-<span class="p">@@ -80,6 +81,9 @@</span> GEM
-       activesupport (&gt;= 4.2.0)
-     i18n (1.8.2)
-       concurrent-ruby (~&gt; 1.0)
-<span class="gi">+    image_processing (1.10.3)
-+      mini_magick (&gt;= 4.9.5, &lt; 5)
-+      ruby-vips (&gt;= 2.0.17, &lt; 3)
-</span>     jbuilder (2.10.0)
-       activesupport (&gt;= 5.0.0)
-     listen (3.1.5)
-<span class="p">@@ -95,6 +99,7 @@</span> GEM
-       mimemagic (~&gt; 0.3.2)
-     method_source (1.0.0)
-     mimemagic (0.3.4)
-<span class="gi">+    mini_magick (4.10.1)
-</span>     mini_mime (1.0.2)
-     mini_portile2 (2.4.0)
-     minitest (5.14.0)
-<span class="p">@@ -140,7 +145,10 @@</span> GEM
-     rb-fsevent (0.10.3)
-     rb-inotify (0.10.1)
-       ffi (~&gt; 1.0)
-<span class="gi">+    redis (4.1.3)
-</span>     regexp_parser (1.7.0)
-<span class="gi">+    ruby-vips (2.0.17)
-+      ffi (~&gt; 1.9)
-</span>     ruby_dep (1.5.0)
-     rubyzip (2.3.0)
-     sass-rails (6.0.0)
-<span class="p">@@ -200,13 +208,16 @@</span> PLATFORMS
-   ruby
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/notes/index.html.erb b/app/views/notes/index.html.erb
+index eeaa7fa..3720383 100644
+</span><span class="gd">--- a/app/views/notes/index.html.erb
+</span><span class="gi">+++ b/app/views/notes/index.html.erb
+</span><span class="p">@@ -2,6 +2,10 @@</span>
+   Share a Note
+ &lt;/a&gt;
  
- DEPENDENCIES
-<span class="gi">+  bcrypt (~&gt; 3.1.7)
-</span>   bootsnap (&gt;= 1.4.2)
-   byebug
-   capybara (&gt;= 2.15)
-<span class="gi">+  image_processing (~&gt; 1.2)
-</span>   jbuilder (~&gt; 2.7)
-   listen (&gt;= 3.0.5, &lt; 3.2)
-   puma (~&gt; 4.1)
-   rails (~&gt; 6.0.2, &gt;= 6.0.2.2)
-<span class="gi">+  redis (~&gt; 4.0)
-</span>   sass-rails (&gt;= 6)
-   selenium-webdriver
-   spring
-</code></pre></div></details>
+<span class="gd">-&lt;% Note.all.each do |note| %&gt;
+-  &lt;%= note.content %&gt;
+</span><span class="gi">+&lt;ul&gt;
++&lt;% notes.each do |note| %&gt;
++  &lt;li&gt;
++    &lt;%= note.content %&gt;
++  &lt;/li&gt;
+</span> &lt;% end %&gt;
+<span class="gi">+&lt;/ul&gt;
+</span></code></pre></div></details>
 
           </aside>
       </article>

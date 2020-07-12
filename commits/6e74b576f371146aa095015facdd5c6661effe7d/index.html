@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Un-comment remaining `Gemfile` dependencies
+    <title>Execute the Rails-generated `bin/setup` script
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              &#8592; Previous
+<a href="../7054cb0bdbcd5c302b9cb9c8bb504d70fa937ff0/">              &#8592; Previous
 </a>
-<a href="../7054cb0bdbcd5c302b9cb9c8bb504d70fa937ff0/">              Next &#8594;
+<a href="../db11ed1a1f3ac2b60e8f5815d12f654db5ea7f8e/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -41,12 +41,12 @@
 "></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
-" aria-current="page"></a>
+                <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
+"></a>
                 <a href="../7054cb0bdbcd5c302b9cb9c8bb504d70fa937ff0/" class="commit-node commit-node--collapsed" title="Create `git-read` GitHub Action
 "></a>
-                <a href="../6e74b576f371146aa095015facdd5c6661effe7d/" class="commit-node commit-node--collapsed" title="Execute the Rails-generated `bin/setup` script
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Execute the Rails-generated `bin/setup` script
+" aria-current="page"></a>
                 <a href="../db11ed1a1f3ac2b60e8f5815d12f654db5ea7f8e/" class="commit-node commit-node--collapsed" title="Add `UserSharesAMessageTest`
 "></a>
                 <a href="../34086aa24fa23fb16937294f915e91b5c32a1695/" class="commit-node commit-node--collapsed" title="Add a failing system test
@@ -175,11 +175,11 @@
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Un-comment remaining <code>Gemfile</code> dependencies</p>
+</a><a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--full">              <p>Un-comment remaining <code>Gemfile</code> dependencies</p>
 
 </a><a href="../7054cb0bdbcd5c302b9cb9c8bb504d70fa937ff0/" class="commit-node commit-node--full">              <p>Create <code>git-read</code> GitHub Action</p>
 
-</a><a href="../6e74b576f371146aa095015facdd5c6661effe7d/" class="commit-node commit-node--full">              <p>Execute the Rails-generated <code>bin/setup</code> script</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Execute the Rails-generated <code>bin/setup</code> script</p>
 
 </a><a href="../db11ed1a1f3ac2b60e8f5815d12f654db5ea7f8e/" class="commit-node commit-node--full">              <p>Add <code>UserSharesAMessageTest</code></p>
 
@@ -280,155 +280,224 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="un-comment-remaining-gemfile-dependencies">Un-comment remaining <code>Gemfile</code> dependencies</h1>
+          <h1 id="execute-the-rails-generated-bin-setup-script">Execute the Rails-generated <code>bin/setup</code> script</h1>
 
-<p>In the spirit of <a href="https://seanpdoyle.github.io/prix-fixe/index.html#the-rules">this project&rsquo;s rules</a>:</p>
+<p>After generating the new project&rsquo;s scaffolding, the first thing we&rsquo;ll do
+is ensure that the application is executable.</p>
 
-<blockquote>
-<p>Once the rails new command completes, the project is forbidden from
-adding or removing a Rubygems, NPM, or Yarn dependency.</p>
-</blockquote>
+<p>Rails generates an executable <code>bin/setup</code> file that automates some of
+the development environment configuration process, including:</p>
 
-<p>This commit installs <em>the exceptions</em> to that rule:</p>
+<ul>
+<li>installing Ruby dependencies</li>
+<li>ensuring that SQL databases exist</li>
+<li>removing old <code>log/</code> and <code>tmp/</code> directories</li>
+<li>restarting any running Rails servers</li>
+</ul>
 
-<blockquote>
-<p>The <strong><em>only</em></strong> exceptions to this rule are dependencies in our
-<code>Gemfile</code> that were introduced by a <code>rails new</code> command. For example,
-the <strong><a href="https://github.com/codahale/bcrypt-ruby/tree/v3.1.13#why-you-should-use-bcrypt"><code>bcrypt</code> gem</a></strong>, the <strong><a href="https://github.com/janko/image_processing/tree/v1.2.0#usage"><code>image_processing</code>
-gem</a></strong>, and the <strong><a href="https://github.com/redis/redis-rb/tree/v4.0.0#getting-started"><code>redis</code> gem</a></strong> can be made
-available as dependencies, since they&rsquo;re generated by <code>rails new</code> as
-commented-out lines in the <code>Gemfile</code>.</p>
-</blockquote>
+<p>This commit un-comments a Rails-generated line so that the script will
+<em>also</em> install our project&rsquo;s JavaScript dependencies with
+<a href="https://yarnpkg.com/en/"><code>yarn</code></a>.</p>
 
-<p>To get those dependencies out of the way, this commit pre-emptively
-installs them, closing the door on future dependencies.</p>
+<p>When we execute <code>bin/setup</code> for the first time, an error is raised:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>== Installing dependencies ==
+The dependency tzinfo-data (&gt;= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ru
+by but the dependency is only for x86-mingw32, x86-mswin32, x64-mingw32, java. To add those platforms to the bundle, run `bundle
+ lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java`.
+The Gemfile's dependencies are satisfied
+yarn install v1.15.2
+[1/4] 🔍  Resolving packages...
+[2/4] 🚚  Fetching packages...
+error @rails/webpacker@4.0.2: The engine "node" is incompatible with this module. Expected version "&gt;=6.14.4". Got "6.14.2"
+error Found incompatible module
+info Visit https://yarnpkg.com/en/docs/cli/install for documentation about this command.
+</code></pre></div>
+<p>For emphasis, the line of that error message that is most interesting:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>error @rails/webpacker@4.0.2: The engine "node" is incompatible with
+  this module. Expected version "&gt;=6.14.4". Got "6.14.2"
+</code></pre></div>
+<p>By executing <code>rails new</code>, Rails has already generated a <code>.ruby-version</code>
+file on our behalf.</p>
+
+<p>Locally, we&rsquo;re using the <a href="https://asdf-vm.com"><code>asdf</code> Tool Version Manager</a> to ensure
+that our the versions of our languages that this project depends on are
+available.</p>
+
+<p>Out-of-the-box, <a href="https://asdf-vm.com">ASDF</a> expects all dependencies to be declared in
+the <code>.tool-versions</code> file, so this commit first renames <code>.ruby-version</code>
+to <a href="#.tool-versions"><code>.tool-versions</code></a>.</p>
+
+<p>To respond to the error raised by Webpacker, this commit extends that
+<a href="#.tool-versions"><code>.tool-versions</code> file</a> to configure the <a href="https://github.com/asdf-vm/asdf-nodejs"><code>asdf-nodejs</code>
+plugin</a>.</p>
+
+<p>Our <a href="#.tool-versions"><code>.tool-versions</code> file</a> declares that the project
+requires Node version <code>11.14.0</code>, which meets the <code>&quot;&gt;=6.14.4&quot;</code>
+requirement.</p>
+
+<p>By running <code>bin/setup</code> again, a new error is raised:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>== Preparing database ==
+Created database 'db/development.sqlite3'
+Created database 'db/test.sqlite3'
+/Users/seanpdoyle/src/prix-fixe/db/schema.rb doesn't exist yet. Run `rails db:migrate` to create it, then try again. If you do $
+ot intend to use a database, you should instead alter /Users/seanpdoyle/src/prix-fixe/config/application.rb to limit the framew$
+rks that will be loaded.
+
+== Command ["bin/rails db:setup"] failed ==
+</code></pre></div>
+<p>For emphasis, the most interesting part of the error message is:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>/Users/seanpdoyle/src/prix-fixe/db/schema.rb doesn't exist yet. Run
+  `rails db:migrate` to create it, then try again.
+</code></pre></div>
+<p>To resolve this issue, run:</p>
+<div class="highlight"><pre class="highlight shell"><code>% rails db:migrate
+</code></pre></div>
+<p>This commit includes the output of that command in the
+<a href="#db/schema.rb"><code>db/schema.rb</code> file</a>.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="Gemfile"
+  id=".ruby-version"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse Gemfile</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse .ruby-version</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand Gemfile</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand .ruby-version</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      Gemfile
+      .ruby-version
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile b/Gemfile
-index 11c43fb..60d75e9 100644
-</span><span class="gd">--- a/Gemfile
-</span><span class="gi">+++ b/Gemfile
-</span><span class="p">@@ -18,12 +18,12 @@</span> gem 'turbolinks', '~&gt; 5'
- # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
- gem 'jbuilder', '~&gt; 2.7'
- # Use Redis adapter to run Action Cable in production
-<span class="gd">-# gem 'redis', '~&gt; 4.0'
-</span><span class="gi">+gem 'redis', '~&gt; 4.0'
-</span> # Use Active Model has_secure_password
-<span class="gd">-# gem 'bcrypt', '~&gt; 3.1.7'
-</span><span class="gi">+gem 'bcrypt', '~&gt; 3.1.7'
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/.ruby-version b/.ruby-version
+</span><span class="p">deleted file mode 100644
+</span><span class="gh">index d7edb56..0000000
+</span><span class="gd">--- a/.ruby-version
+</span><span class="gi">+++ /dev/null
+</span><span class="p">@@ -1 +0,0 @@</span>
+<span class="gd">-ruby-2.6.5
+</span></code></pre></div></details>
+
+              <details
+  id=".tool-versions"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse .tool-versions</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand .tool-versions</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      .tool-versions
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/.tool-versions b/.tool-versions
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..b137882
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/.tool-versions
+</span><span class="p">@@ -0,0 +1,2 @@</span>
+<span class="gi">+ruby 2.6.5
++nodejs 11.14.0
+</span></code></pre></div></details>
+
+              <details
+  id="bin/setup"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse bin/setup</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand bin/setup</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      bin/setup
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/bin/setup b/bin/setup
+index 5853b5e..2d33af1 100755
+</span><span class="gd">--- a/bin/setup
+</span><span class="gi">+++ b/bin/setup
+</span><span class="p">@@ -18,7 +18,7 @@</span> FileUtils.chdir APP_ROOT do
+   system('bundle check') || system!('bundle install')
+ 
+   # Install JavaScript dependencies
+<span class="gd">-  # system('bin/yarn')
+</span><span class="gi">+  system('bin/yarn')
 </span> 
- # Use Active Storage variant
-<span class="gd">-# gem 'image_processing', '~&gt; 1.2'
-</span><span class="gi">+gem 'image_processing', '~&gt; 1.2'
-</span> 
- # Reduces boot times through caching; required in config/boot.rb
- gem 'bootsnap', '&gt;= 1.4.2', require: false
+   # puts "\n== Copying sample files =="
+   # unless File.exist?('config/database.yml')
 </code></pre></div></details>
 
               <details
-  id="Gemfile.lock"
+  id="db/schema.rb"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse Gemfile.lock</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse db/schema.rb</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand Gemfile.lock</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand db/schema.rb</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      Gemfile.lock
+      db/schema.rb
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile.lock b/Gemfile.lock
-index 3c574ea..1cdce9a 100644
-</span><span class="gd">--- a/Gemfile.lock
-</span><span class="gi">+++ b/Gemfile.lock
-</span><span class="p">@@ -58,6 +58,7 @@</span> GEM
-       zeitwerk (~&gt; 2.2)
-     addressable (2.7.0)
-       public_suffix (&gt;= 2.0.2, &lt; 5.0)
-<span class="gi">+    bcrypt (3.1.13)
-</span>     bindex (0.8.1)
-     bootsnap (1.4.6)
-       msgpack (~&gt; 1.0)
-<span class="p">@@ -80,6 +81,9 @@</span> GEM
-       activesupport (&gt;= 4.2.0)
-     i18n (1.8.2)
-       concurrent-ruby (~&gt; 1.0)
-<span class="gi">+    image_processing (1.10.3)
-+      mini_magick (&gt;= 4.9.5, &lt; 5)
-+      ruby-vips (&gt;= 2.0.17, &lt; 3)
-</span>     jbuilder (2.10.0)
-       activesupport (&gt;= 5.0.0)
-     listen (3.1.5)
-<span class="p">@@ -95,6 +99,7 @@</span> GEM
-       mimemagic (~&gt; 0.3.2)
-     method_source (1.0.0)
-     mimemagic (0.3.4)
-<span class="gi">+    mini_magick (4.10.1)
-</span>     mini_mime (1.0.2)
-     mini_portile2 (2.4.0)
-     minitest (5.14.0)
-<span class="p">@@ -140,7 +145,10 @@</span> GEM
-     rb-fsevent (0.10.3)
-     rb-inotify (0.10.1)
-       ffi (~&gt; 1.0)
-<span class="gi">+    redis (4.1.3)
-</span>     regexp_parser (1.7.0)
-<span class="gi">+    ruby-vips (2.0.17)
-+      ffi (~&gt; 1.9)
-</span>     ruby_dep (1.5.0)
-     rubyzip (2.3.0)
-     sass-rails (6.0.0)
-<span class="p">@@ -200,13 +208,16 @@</span> PLATFORMS
-   ruby
- 
- DEPENDENCIES
-<span class="gi">+  bcrypt (~&gt; 3.1.7)
-</span>   bootsnap (&gt;= 1.4.2)
-   byebug
-   capybara (&gt;= 2.15)
-<span class="gi">+  image_processing (~&gt; 1.2)
-</span>   jbuilder (~&gt; 2.7)
-   listen (&gt;= 3.0.5, &lt; 3.2)
-   puma (~&gt; 4.1)
-   rails (~&gt; 6.0.2, &gt;= 6.0.2.2)
-<span class="gi">+  redis (~&gt; 4.0)
-</span>   sass-rails (&gt;= 6)
-   selenium-webdriver
-   spring
-</code></pre></div></details>
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/db/schema.rb b/db/schema.rb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..79b5c13
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/db/schema.rb
+</span><span class="p">@@ -0,0 +1,15 @@</span>
+<span class="gi">+# This file is auto-generated from the current state of the database. Instead
++# of editing this file, please use the migrations feature of Active Record to
++# incrementally modify your database, and then regenerate this schema definition.
++#
++# This file is the source Rails uses to define your schema when running `rails
++# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
++# be faster and is potentially less error prone than running all of your
++# migrations from scratch. Old migrations may fail to apply correctly if those
++# migrations use external dependencies or application code.
++#
++# It's strongly recommended that you check this file into your version control system.
++
++ActiveRecord::Schema.define(version: 0) do
++
++end
+</span></code></pre></div></details>
 
           </aside>
       </article>
