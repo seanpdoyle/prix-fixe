@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Un-comment remaining `Gemfile` dependencies
+    <title>Run the `create_notes` migration
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              &#8592; Previous
+<a href="../054bc1b65efc395be2b69d7f76200eea7ebe5ac5/">              &#8592; Previous
 </a>
-<a href="../b61f133f62c450541ce82381d08dd1c8a8776854/">              Next &#8594;
+<a href="../3917d2deca02584c6b75a38fa7b8e9955c566e7d/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -41,8 +41,8 @@
 "></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
-" aria-current="page"></a>
+                <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
+"></a>
                 <a href="../b61f133f62c450541ce82381d08dd1c8a8776854/" class="commit-node commit-node--collapsed" title="Create `git-read` GitHub Action
 "></a>
                 <a href="../73a1a3f929d0ebcfb6eaba6597e6f764c59a37a0/" class="commit-node commit-node--collapsed" title="Execute the Rails-generated `bin/setup` script
@@ -113,8 +113,8 @@
 "></a>
                 <a href="../054bc1b65efc395be2b69d7f76200eea7ebe5ac5/" class="commit-node commit-node--collapsed" title="Generate `Note` model
 "></a>
-                <a href="../b8bf1075c23188a7cc48a528cf8868c5b4eee32a/" class="commit-node commit-node--collapsed" title="Run the `create_notes` migration
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Run the `create_notes` migration
+" aria-current="page"></a>
                 <a href="../3917d2deca02584c6b75a38fa7b8e9955c566e7d/" class="commit-node commit-node--collapsed" title="Render a list of all `Note` records `notes#index`
 "></a>
                 <a href="../6fda53e6476d564d175941a1c0a46c229ff2fa39/" class="commit-node commit-node--collapsed" title="Render `notes#index` from controller action
@@ -175,7 +175,7 @@
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Un-comment remaining <code>Gemfile</code> dependencies</p>
+</a><a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--full">              <p>Un-comment remaining <code>Gemfile</code> dependencies</p>
 
 </a><a href="../b61f133f62c450541ce82381d08dd1c8a8776854/" class="commit-node commit-node--full">              <p>Create <code>git-read</code> GitHub Action</p>
 
@@ -247,7 +247,7 @@
 
 </a><a href="../054bc1b65efc395be2b69d7f76200eea7ebe5ac5/" class="commit-node commit-node--full">              <p>Generate <code>Note</code> model</p>
 
-</a><a href="../b8bf1075c23188a7cc48a528cf8868c5b4eee32a/" class="commit-node commit-node--full">              <p>Run the <code>create_notes</code> migration</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Run the <code>create_notes</code> migration</p>
 
 </a><a href="../3917d2deca02584c6b75a38fa7b8e9955c566e7d/" class="commit-node commit-node--full">              <p>Render a list of all <code>Note</code> records <code>notes#index</code></p>
 
@@ -280,154 +280,154 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="un-comment-remaining-gemfile-dependencies">Un-comment remaining <code>Gemfile</code> dependencies</h1>
+          <h1 id="run-the-create_notes-migration">Run the <code>create_notes</code> migration</h1>
 
-<p>In the spirit of <a href="https://seanpdoyle.github.io/prix-fixe/index.html#the-rules">this project&rsquo;s rules</a>:</p>
+<p>This commit resolves the previous error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Migrations are pending. To resolve this issue, run:
 
-<blockquote>
-<p>Once the rails new command completes, the project is forbidden from
-adding or removing a Rubygems, NPM, or Yarn dependency.</p>
-</blockquote>
+        rails db:migrate RAILS_ENV=test
+</code></pre></div>
+<p>Before running the suggested command, this commit introduces a <a href="https://www.w3schools.com/sql/sql_notnull.asp"><code>NOT
+NULL</code> database constraint</a> to the <code>notes.content</code> column,
+preventing it from accepting <code>NULL</code> values. It&rsquo;s important to make this
+modification to the generated migration <em>before</em> executing the
+migration.</p>
 
-<p>This commit installs <em>the exceptions</em> to that rule:</p>
+<p>To do so, this commit adds a <a href="https://api.rubyonrails.org/v6.0/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-add_column"><code>null: false</code> option</a> to the
+<a href="https://api.rubyonrails.org/v6.0/classes/ActiveRecord/ConnectionAdapters/Table.html"><code>Table#text</code></a> declaration, then runs the migration:</p>
+<div class="highlight"><pre class="highlight shell"><code>rails db:migrate
+</code></pre></div>
+<p>To ensure that our <code>NOT NULL</code> database constraint is enforced, this
+commit introduces our first model test.</p>
 
-<blockquote>
-<p>The <strong><em>only</em></strong> exceptions to this rule are dependencies in our
-<code>Gemfile</code> that were introduced by a <code>rails new</code> command. For example,
-the <strong><a href="https://github.com/codahale/bcrypt-ruby/tree/v3.1.13#why-you-should-use-bcrypt"><code>bcrypt</code> gem</a></strong>, the <strong><a href="https://github.com/janko/image_processing/tree/v1.2.0#usage"><code>image_processing</code>
-gem</a></strong>, and the <strong><a href="https://github.com/redis/redis-rb/tree/v4.0.0#getting-started"><code>redis</code> gem</a></strong> can be made
-available as dependencies, since they&rsquo;re generated by <code>rails new</code> as
-commented-out lines in the <code>Gemfile</code>.</p>
-</blockquote>
-
-<p>To get those dependencies out of the way, this commit pre-emptively
-installs them, closing the door on future dependencies.</p>
-
+<p>When we execute the test, it passes:</p>
+<div class="highlight"><pre class="highlight shell"><code>rails <span class="nb">test test</span>/models/note_test.rb
+</code></pre></div>
+<p>When our system tests are re-run, there is a new error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Failure:
+  UserDiscoversANoteTest#test_from_the_root [/Users/seanpdoyle/src/prix-fixe/test/system/user_discovers_a_note_test.rb:9]:
+  expected to find text "Hello, World" in "Share a Note"
+</code></pre></div>
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="Gemfile"
+  id="db/migrate/20190506032859_create_notes.rb"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse Gemfile</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse db/migrate/20190506032859_create_notes.rb</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand Gemfile</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand db/migrate/20190506032859_create_notes.rb</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      Gemfile
+      db/migrate/20190506032859_create_notes.rb
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile b/Gemfile
-index 11c43fb..60d75e9 100644
-</span><span class="gd">--- a/Gemfile
-</span><span class="gi">+++ b/Gemfile
-</span><span class="p">@@ -18,12 +18,12 @@</span> gem 'turbolinks', '~&gt; 5'
- # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
- gem 'jbuilder', '~&gt; 2.7'
- # Use Redis adapter to run Action Cable in production
-<span class="gd">-# gem 'redis', '~&gt; 4.0'
-</span><span class="gi">+gem 'redis', '~&gt; 4.0'
-</span> # Use Active Model has_secure_password
-<span class="gd">-# gem 'bcrypt', '~&gt; 3.1.7'
-</span><span class="gi">+gem 'bcrypt', '~&gt; 3.1.7'
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/db/migrate/20190506032859_create_notes.rb b/db/migrate/20190506032859_create_notes.rb
+index f639221..b9a63af 100644
+</span><span class="gd">--- a/db/migrate/20190506032859_create_notes.rb
+</span><span class="gi">+++ b/db/migrate/20190506032859_create_notes.rb
+</span><span class="p">@@ -1,7 +1,7 @@</span>
+ class CreateNotes &lt; ActiveRecord::Migration[6.0]
+   def change
+     create_table :notes do |t|
+<span class="gd">-      t.text :content
+</span><span class="gi">+      t.text :content, null: false
 </span> 
- # Use Active Storage variant
-<span class="gd">-# gem 'image_processing', '~&gt; 1.2'
-</span><span class="gi">+gem 'image_processing', '~&gt; 1.2'
-</span> 
- # Reduces boot times through caching; required in config/boot.rb
- gem 'bootsnap', '&gt;= 1.4.2', require: false
+       t.timestamps
+     end
 </code></pre></div></details>
 
               <details
-  id="Gemfile.lock"
+  id="db/schema.rb"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse Gemfile.lock</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse db/schema.rb</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand Gemfile.lock</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand db/schema.rb</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      Gemfile.lock
+      db/schema.rb
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile.lock b/Gemfile.lock
-index 3c574ea..1cdce9a 100644
-</span><span class="gd">--- a/Gemfile.lock
-</span><span class="gi">+++ b/Gemfile.lock
-</span><span class="p">@@ -58,6 +58,7 @@</span> GEM
-       zeitwerk (~&gt; 2.2)
-     addressable (2.7.0)
-       public_suffix (&gt;= 2.0.2, &lt; 5.0)
-<span class="gi">+    bcrypt (3.1.13)
-</span>     bindex (0.8.1)
-     bootsnap (1.4.6)
-       msgpack (~&gt; 1.0)
-<span class="p">@@ -80,6 +81,9 @@</span> GEM
-       activesupport (&gt;= 4.2.0)
-     i18n (1.8.2)
-       concurrent-ruby (~&gt; 1.0)
-<span class="gi">+    image_processing (1.10.3)
-+      mini_magick (&gt;= 4.9.5, &lt; 5)
-+      ruby-vips (&gt;= 2.0.17, &lt; 3)
-</span>     jbuilder (2.10.0)
-       activesupport (&gt;= 5.0.0)
-     listen (3.1.5)
-<span class="p">@@ -95,6 +99,7 @@</span> GEM
-       mimemagic (~&gt; 0.3.2)
-     method_source (1.0.0)
-     mimemagic (0.3.4)
-<span class="gi">+    mini_magick (4.10.1)
-</span>     mini_mime (1.0.2)
-     mini_portile2 (2.4.0)
-     minitest (5.14.0)
-<span class="p">@@ -140,7 +145,10 @@</span> GEM
-     rb-fsevent (0.10.3)
-     rb-inotify (0.10.1)
-       ffi (~&gt; 1.0)
-<span class="gi">+    redis (4.1.3)
-</span>     regexp_parser (1.7.0)
-<span class="gi">+    ruby-vips (2.0.17)
-+      ffi (~&gt; 1.9)
-</span>     ruby_dep (1.5.0)
-     rubyzip (2.3.0)
-     sass-rails (6.0.0)
-<span class="p">@@ -200,13 +208,16 @@</span> PLATFORMS
-   ruby
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/db/schema.rb b/db/schema.rb
+index 79b5c13..2558925 100644
+</span><span class="gd">--- a/db/schema.rb
+</span><span class="gi">+++ b/db/schema.rb
+</span><span class="p">@@ -10,6 +10,12 @@</span>
+ #
+ # It's strongly recommended that you check this file into your version control system.
  
- DEPENDENCIES
-<span class="gi">+  bcrypt (~&gt; 3.1.7)
-</span>   bootsnap (&gt;= 1.4.2)
-   byebug
-   capybara (&gt;= 2.15)
-<span class="gi">+  image_processing (~&gt; 1.2)
-</span>   jbuilder (~&gt; 2.7)
-   listen (&gt;= 3.0.5, &lt; 3.2)
-   puma (~&gt; 4.1)
-   rails (~&gt; 6.0.2, &gt;= 6.0.2.2)
-<span class="gi">+  redis (~&gt; 4.0)
-</span>   sass-rails (&gt;= 6)
-   selenium-webdriver
-   spring
+<span class="gd">-ActiveRecord::Schema.define(version: 0) do
+</span><span class="gi">+ActiveRecord::Schema.define(version: 2019_05_06_032859) do
++
++  create_table "notes", force: :cascade do |t|
++    t.text "content", null: false
++    t.datetime "created_at", precision: 6, null: false
++    t.datetime "updated_at", precision: 6, null: false
++  end
+</span> 
+ end
+</code></pre></div></details>
+
+              <details
+  id="test/models/note_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/models/note_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/models/note_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/models/note_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/models/note_test.rb b/test/models/note_test.rb
+index 7bbab53..42a53e2 100644
+</span><span class="gd">--- a/test/models/note_test.rb
+</span><span class="gi">+++ b/test/models/note_test.rb
+</span><span class="p">@@ -1,7 +1,11 @@</span>
+ require 'test_helper'
+ 
+ class NoteTest &lt; ActiveSupport::TestCase
+<span class="gd">-  # test "the truth" do
+-  #   assert true
+-  # end
+</span><span class="gi">+  test "NOT NULL database constraint on notes.content" do
++    note = Note.new
++
++    exercise = -&gt; { note.save! }
++
++    assert_raises(ActiveRecord::NotNullViolation, /content/, &amp;exercise)
++  end
+</span> end
 </code></pre></div></details>
 
           </aside>

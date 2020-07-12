@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Un-comment remaining `Gemfile` dependencies
+    <title>Validate presence of `notes.content`
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../65bf913763168f594a3873bcd9d0f6577602c986/">              &#8592; Previous
+<a href="../08843e793b0ee61648d5296e5abe440cade50752/">              &#8592; Previous
 </a>
-<a href="../b61f133f62c450541ce82381d08dd1c8a8776854/">              Next &#8594;
+<a href="../8329e2df3b008e4923cec5f2a0dc033a4fd27612/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -41,8 +41,8 @@
 "></a>
                 <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
-" aria-current="page"></a>
+                <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
+"></a>
                 <a href="../b61f133f62c450541ce82381d08dd1c8a8776854/" class="commit-node commit-node--collapsed" title="Create `git-read` GitHub Action
 "></a>
                 <a href="../73a1a3f929d0ebcfb6eaba6597e6f764c59a37a0/" class="commit-node commit-node--collapsed" title="Execute the Rails-generated `bin/setup` script
@@ -127,8 +127,8 @@
 "></a>
                 <a href="../08843e793b0ee61648d5296e5abe440cade50752/" class="commit-node commit-node--collapsed" title="Redirect to `/notes` after `POST /notes` requests
 "></a>
-                <a href="../8b393f24a8133716b2fee3d9e2b8829c70424774/" class="commit-node commit-node--collapsed" title="Validate presence of `notes.content`
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Validate presence of `notes.content`
+" aria-current="page"></a>
                 <a href="../8329e2df3b008e4923cec5f2a0dc033a4fd27612/" class="commit-node commit-node--collapsed" title="Pass `model:` instead of `url:` in `notes#new`
 "></a>
                 <a href="../b7aa16fa1cf2b1bd904385fe02f7bb686c6f7fbc/" class="commit-node commit-node--collapsed" title="Internationalize application's text
@@ -175,7 +175,7 @@
 
 </a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Un-comment remaining <code>Gemfile</code> dependencies</p>
+</a><a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--full">              <p>Un-comment remaining <code>Gemfile</code> dependencies</p>
 
 </a><a href="../b61f133f62c450541ce82381d08dd1c8a8776854/" class="commit-node commit-node--full">              <p>Create <code>git-read</code> GitHub Action</p>
 
@@ -261,7 +261,7 @@
 
 </a><a href="../08843e793b0ee61648d5296e5abe440cade50752/" class="commit-node commit-node--full">              <p>Redirect to <code>/notes</code> after <code>POST /notes</code> requests</p>
 
-</a><a href="../8b393f24a8133716b2fee3d9e2b8829c70424774/" class="commit-node commit-node--full">              <p>Validate presence of <code>notes.content</code></p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Validate presence of <code>notes.content</code></p>
 
 </a><a href="../8329e2df3b008e4923cec5f2a0dc033a4fd27612/" class="commit-node commit-node--full">              <p>Pass <code>model:</code> instead of <code>url:</code> in <code>notes#new</code></p>
 
@@ -280,154 +280,200 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="un-comment-remaining-gemfile-dependencies">Un-comment remaining <code>Gemfile</code> dependencies</h1>
+          <h1 id="validate-presence-of-notes-content">Validate presence of <code>notes.content</code></h1>
 
-<p>In the spirit of <a href="https://seanpdoyle.github.io/prix-fixe/index.html#the-rules">this project&rsquo;s rules</a>:</p>
+<p>This commit adds both model and controller coverage for validating that
+<code>Note</code> model is created with its required fields.</p>
 
-<blockquote>
-<p>Once the rails new command completes, the project is forbidden from
-adding or removing a Rubygems, NPM, or Yarn dependency.</p>
-</blockquote>
+<p>Extends the <code>Note</code> model to use the
+<a href="https://api.rubyonrails.org/v5.2/classes/ActiveRecord/Validations/ClassMethods.html#method-i-validates_presence_of"><code>validates_presence_of</code></a> validator by <a href="https://api.rubyonrails.org/v5.2/classes/ActiveModel/Validations/ClassMethods.html#method-i-validates">passing
+<code>presence: true</code> to the <code>validates</code> macro</a>.</p>
 
-<p>This commit installs <em>the exceptions</em> to that rule:</p>
+<p>When validating a record without a <code>content</code> field, the <code>presence: true</code>
+validation&rsquo;s failure supersedes the previous behavior of violating the
+column&rsquo;s <code>NOT NULL</code> constraint and raising a
+<code>ActiveRecord::NotNullViolation</code> error. Since the two are not
+compatible, this commit removes the previous test coverage from
+<code>notes_test.rb</code>.</p>
 
-<blockquote>
-<p>The <strong><em>only</em></strong> exceptions to this rule are dependencies in our
-<code>Gemfile</code> that were introduced by a <code>rails new</code> command. For example,
-the <strong><a href="https://github.com/codahale/bcrypt-ruby/tree/v3.1.13#why-you-should-use-bcrypt"><code>bcrypt</code> gem</a></strong>, the <strong><a href="https://github.com/janko/image_processing/tree/v1.2.0#usage"><code>image_processing</code>
-gem</a></strong>, and the <strong><a href="https://github.com/redis/redis-rb/tree/v4.0.0#getting-started"><code>redis</code> gem</a></strong> can be made
-available as dependencies, since they&rsquo;re generated by <code>rails new</code> as
-commented-out lines in the <code>Gemfile</code>.</p>
-</blockquote>
-
-<p>To get those dependencies out of the way, this commit pre-emptively
-installs them, closing the door on future dependencies.</p>
+<p>When responding to a <code>POST /notes</code> request that would result in an
+invalid <code>Note</code> record, our controller will re-render the <code>notes#new</code> to
+present the client with another opportunity to submit a Note. In
+addition, the controller will respond with a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422">422 HTTP Status</a> to
+indicate to the client that the previous request was unprocessable
+entity.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="Gemfile"
+  id="app/controllers/notes_controller.rb"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse Gemfile</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/controllers/notes_controller.rb</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand Gemfile</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/controllers/notes_controller.rb</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      Gemfile
+      app/controllers/notes_controller.rb
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile b/Gemfile
-index 11c43fb..60d75e9 100644
-</span><span class="gd">--- a/Gemfile
-</span><span class="gi">+++ b/Gemfile
-</span><span class="p">@@ -18,12 +18,12 @@</span> gem 'turbolinks', '~&gt; 5'
- # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
- gem 'jbuilder', '~&gt; 2.7'
- # Use Redis adapter to run Action Cable in production
-<span class="gd">-# gem 'redis', '~&gt; 4.0'
-</span><span class="gi">+gem 'redis', '~&gt; 4.0'
-</span> # Use Active Model has_secure_password
-<span class="gd">-# gem 'bcrypt', '~&gt; 3.1.7'
-</span><span class="gi">+gem 'bcrypt', '~&gt; 3.1.7'
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/controllers/notes_controller.rb b/app/controllers/notes_controller.rb
+index 7534670..8375672 100644
+</span><span class="gd">--- a/app/controllers/notes_controller.rb
+</span><span class="gi">+++ b/app/controllers/notes_controller.rb
+</span><span class="p">@@ -8,8 +8,18 @@</span> class NotesController &lt; ApplicationController
+   end
+ 
+   def create
+<span class="gd">-    note = Note.create!(params.to_unsafe_h.slice(:content))
+</span><span class="gi">+    note = Note.new(note_params)
 </span> 
- # Use Active Storage variant
-<span class="gd">-# gem 'image_processing', '~&gt; 1.2'
-</span><span class="gi">+gem 'image_processing', '~&gt; 1.2'
-</span> 
- # Reduces boot times through caching; required in config/boot.rb
- gem 'bootsnap', '&gt;= 1.4.2', require: false
+<span class="gd">-    redirect_to notes_url
+</span><span class="gi">+    if note.save
++      redirect_to notes_url
++    else
++      render(:new, status: :unprocessable_entity)
++    end
++  end
++
++  private
++
++  def note_params
++    params.to_unsafe_h.slice(:content)
+</span>   end
+ end
 </code></pre></div></details>
 
               <details
-  id="Gemfile.lock"
+  id="app/models/note.rb"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse Gemfile.lock</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/models/note.rb</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand Gemfile.lock</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/models/note.rb</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      Gemfile.lock
+      app/models/note.rb
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile.lock b/Gemfile.lock
-index 3c574ea..1cdce9a 100644
-</span><span class="gd">--- a/Gemfile.lock
-</span><span class="gi">+++ b/Gemfile.lock
-</span><span class="p">@@ -58,6 +58,7 @@</span> GEM
-       zeitwerk (~&gt; 2.2)
-     addressable (2.7.0)
-       public_suffix (&gt;= 2.0.2, &lt; 5.0)
-<span class="gi">+    bcrypt (3.1.13)
-</span>     bindex (0.8.1)
-     bootsnap (1.4.6)
-       msgpack (~&gt; 1.0)
-<span class="p">@@ -80,6 +81,9 @@</span> GEM
-       activesupport (&gt;= 4.2.0)
-     i18n (1.8.2)
-       concurrent-ruby (~&gt; 1.0)
-<span class="gi">+    image_processing (1.10.3)
-+      mini_magick (&gt;= 4.9.5, &lt; 5)
-+      ruby-vips (&gt;= 2.0.17, &lt; 3)
-</span>     jbuilder (2.10.0)
-       activesupport (&gt;= 5.0.0)
-     listen (3.1.5)
-<span class="p">@@ -95,6 +99,7 @@</span> GEM
-       mimemagic (~&gt; 0.3.2)
-     method_source (1.0.0)
-     mimemagic (0.3.4)
-<span class="gi">+    mini_magick (4.10.1)
-</span>     mini_mime (1.0.2)
-     mini_portile2 (2.4.0)
-     minitest (5.14.0)
-<span class="p">@@ -140,7 +145,10 @@</span> GEM
-     rb-fsevent (0.10.3)
-     rb-inotify (0.10.1)
-       ffi (~&gt; 1.0)
-<span class="gi">+    redis (4.1.3)
-</span>     regexp_parser (1.7.0)
-<span class="gi">+    ruby-vips (2.0.17)
-+      ffi (~&gt; 1.9)
-</span>     ruby_dep (1.5.0)
-     rubyzip (2.3.0)
-     sass-rails (6.0.0)
-<span class="p">@@ -200,13 +208,16 @@</span> PLATFORMS
-   ruby
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/models/note.rb b/app/models/note.rb
+index b6b1e5a..67129f0 100644
+</span><span class="gd">--- a/app/models/note.rb
+</span><span class="gi">+++ b/app/models/note.rb
+</span><span class="p">@@ -1,2 +1,3 @@</span>
+ class Note &lt; ApplicationRecord
+<span class="gi">+  validates :content, presence: true
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="test/controllers/notes_controller_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/controllers/notes_controller_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/controllers/notes_controller_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/controllers/notes_controller_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/controllers/notes_controller_test.rb b/test/controllers/notes_controller_test.rb
+index eebcb0a..2d64375 100644
+</span><span class="gd">--- a/test/controllers/notes_controller_test.rb
+</span><span class="gi">+++ b/test/controllers/notes_controller_test.rb
+</span><span class="p">@@ -10,10 +10,18 @@</span> class NotesControllerTest &lt; ActionDispatch::IntegrationTest
+   end
  
- DEPENDENCIES
-<span class="gi">+  bcrypt (~&gt; 3.1.7)
-</span>   bootsnap (&gt;= 1.4.2)
-   byebug
-   capybara (&gt;= 2.15)
-<span class="gi">+  image_processing (~&gt; 1.2)
-</span>   jbuilder (~&gt; 2.7)
-   listen (&gt;= 3.0.5, &lt; 3.2)
-   puma (~&gt; 4.1)
-   rails (~&gt; 6.0.2, &gt;= 6.0.2.2)
-<span class="gi">+  redis (~&gt; 4.0)
-</span>   sass-rails (&gt;= 6)
-   selenium-webdriver
-   spring
+   test "#create redirects to /notes" do
+<span class="gd">-    notes_attributes = { content: "Hello, World" }
+</span><span class="gi">+    note_attributes = { content: "Hello, World" }
+</span> 
+<span class="gd">-    post notes_path, params: notes_attributes
+</span><span class="gi">+    post notes_path, params: note_attributes
+</span> 
+     assert_redirected_to notes_url
+   end
+<span class="gi">+
++  test "#create with invalid data responds with unprocessable entity" do
++    note_attributes = {}
++
++    post notes_path, params: note_attributes
++
++    assert_response :unprocessable_entity
++  end
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="test/models/note_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/models/note_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/models/note_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/models/note_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/models/note_test.rb b/test/models/note_test.rb
+index 42a53e2..679348d 100644
+</span><span class="gd">--- a/test/models/note_test.rb
+</span><span class="gi">+++ b/test/models/note_test.rb
+</span><span class="p">@@ -1,11 +1,12 @@</span>
+ require 'test_helper'
+ 
+ class NoteTest &lt; ActiveSupport::TestCase
+<span class="gd">-  test "NOT NULL database constraint on notes.content" do
+</span><span class="gi">+  test "validates content is present" do
+</span>     note = Note.new
+ 
+<span class="gd">-    exercise = -&gt; { note.save! }
+</span><span class="gi">+    valid = note.validate
+</span> 
+<span class="gd">-    assert_raises(ActiveRecord::NotNullViolation, /content/, &amp;exercise)
+</span><span class="gi">+    assert_equal valid, false
++    assert_equal note.errors[:content], [I18n.translate("errors.messages.blank")]
+</span>   end
+ end
 </code></pre></div></details>
 
           </aside>
