@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Elaborate on the project's goals in the README
+    <title>Complete the first TDD Red-Green-Refactor Cycle
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/">              &#8592; Previous
+<a href="../496aaa1c95ce60b181e9b8f6c13072066e41af9c/">              &#8592; Previous
 </a>
-<a href="../6d1482de076a391b14b055aba66413577d326997/">              Next &#8594;
+<a href="../c28f1f8e13a27a637c1e88960553d3d34952ffdb/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -39,8 +39,8 @@
             ">
                 <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
-" aria-current="page"></a>
+                <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
+"></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
 "></a>
                 <a href="../92ce75d8cdd5545f738507b2e439ba0f3b484447/" class="commit-node commit-node--collapsed" title="Create `git-read` GitHub Action
@@ -105,8 +105,8 @@
 "></a>
                 <a href="../496aaa1c95ce60b181e9b8f6c13072066e41af9c/" class="commit-node commit-node--collapsed" title="Drive system tests with Headless Chrome Browser
 "></a>
-                <a href="../6ec492fee8ea8e96a56e768876b536090293b708/" class="commit-node commit-node--collapsed" title="Complete the first TDD Red-Green-Refactor Cycle
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Complete the first TDD Red-Green-Refactor Cycle
+" aria-current="page"></a>
                 <a href="../c28f1f8e13a27a637c1e88960553d3d34952ffdb/" class="commit-node commit-node--collapsed" title="Replace root with Redirect to `/notes`
 "></a>
                 <a href="../ad84b0e28968efe3b12c016de8b1b2dadc8f9b5e/" class="commit-node commit-node--collapsed" title="Add failing system test
@@ -173,7 +173,7 @@
         ">
 <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Elaborate on the project&#39;s goals in the README</p>
+</a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
 </a><a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--full">              <p>Un-comment remaining <code>Gemfile</code> dependencies</p>
 
@@ -239,7 +239,7 @@
 
 </a><a href="../496aaa1c95ce60b181e9b8f6c13072066e41af9c/" class="commit-node commit-node--full">              <p>Drive system tests with Headless Chrome Browser</p>
 
-</a><a href="../6ec492fee8ea8e96a56e768876b536090293b708/" class="commit-node commit-node--full">              <p>Complete the first TDD Red-Green-Refactor Cycle</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Complete the first TDD Red-Green-Refactor Cycle</p>
 
 </a><a href="../c28f1f8e13a27a637c1e88960553d3d34952ffdb/" class="commit-node commit-node--full">              <p>Replace root with Redirect to <code>/notes</code></p>
 
@@ -280,17 +280,59 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="elaborate-on-the-projects-goals-in-the-readme">Elaborate on the project&rsquo;s goals in the README</h1>
+          <h1 id="complete-the-first-tdd-red-green-refactor-cycle">Complete the first TDD Red-Green-Refactor Cycle</h1>
 
-<p>We&rsquo;ll keep this commit brief: it expands upon the project&rsquo;s goals and
-constraints. To learn more, read the <a href="#README.md"><code>README.md</code></a>.</p>
+<p>After finishing this round of refactoring, we can pause and assess the
+code related to the <a href="https://github.com/seanpdoyle/prix-fixe/projects/1#card-20484715">original feature</a>.</p>
+
+<p>Depending on your design preferences or programming practices, there are
+more changes that could be made in the name of refactoring.</p>
+
+<p>For the sake of maintaining forward momentum, it now feels like an
+appropriate time to consider this feature &ldquo;ready&rdquo; to be opened as a pull
+request and ultimately merged into the <code>master</code> branch.</p>
+
+<p>If you&rsquo;re feeling skeptical this this feature &ldquo;works&rdquo; as intended
+without any models, database queries, or persistence of any kind, that
+skepticism is justified!</p>
+
+<p>One valuable aspect of practicing outside-in testing and <abbr
+title="Test Driven Development">TDD</abbr> is that authors can feel
+confident that if the tests are well written and passing, the
+features are &ldquo;working&rdquo; for end-users.</p>
+
+<p>Another aspect of practicing outside-in testing and TDD is that there
+will <em>always</em> another test to write. An inevitable outcome of writing
+that test is that the implementation will need to be extended to get
+that test to pass. We can expect that future features will demand more
+from Rails. When its appropriate, we will introduce more concepts and
+complexities.</p>
+
+<p>For now, we can be confident that our application behaves exactly in the
+one way that we&rsquo;ve specified. For now, let&rsquo;s appreciate the simplicity
+of our system.</p>
+
+<p>With that in mind, it&rsquo;s time to move onto the next feature.</p>
+
+<h2 id="n-b">N.B.</h2>
+
+<p>In previous commits, this feature&rsquo;s test-driven development steps have
+been thoroughly documented at a very granular level.</p>
+
+<p>Future features will be test-driven, and those tests and their
+corresponding implementation changes will be introduced into the
+codebase through a similar process.</p>
+
+<p>For the sake of the reader, subsequent test-driven development steps and
+Red-Green-Refactor Cycles may be omitted, undocumented, or combined into
+larger and less granular commits.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
   id="README.md"
-  
+  open
   class="file"
 >
   <summary class="file__name">
@@ -310,148 +352,20 @@ constraints. To learn more, read the <a href="#README.md"><code>README.md</code>
   </summary>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/README.md b/README.md
-index 7db80e4..c6f99ce 100644
+index c6f99ce..f8e7aa3 100644
 </span><span class="gd">--- a/README.md
 </span><span class="gi">+++ b/README.md
-</span><span class="p">@@ -1,24 +1,124 @@</span>
-<span class="gd">-# README
-</span><span class="gi">+Prix-Fixe
-+===
-</span> 
-<span class="gd">-This README would normally document whatever steps are necessary to get the
--application up and running.
-</span><span class="gi">+&gt; [**prix fixe**][definition] [ **pree fiks**; _French_ pree **feeks** ]
-+&gt;
-+&gt; _noun_, _plural_
-+&gt;
-+&gt; 1. a fixed price charged for any meal chosen from the variety listed on the
-+&gt; menu.
-</span> 
-<span class="gd">-Things you may want to cover:
-</span><span class="gi">+[definition]: https://www.dictionary.com/browse/prix-fixe
-</span> 
-<span class="gd">-* Ruby version
-</span><span class="gi">+---
-</span> 
-<span class="gd">-* System dependencies
-</span><span class="gi">+According to the [Ruby on Rails doctrine][doctrine]:
-</span> 
-<span class="gd">-* Configuration
-</span><span class="gi">+&gt; Rails is an
-+&gt; &lt;dfn id="omakase" title="a Japanese phrase that means &amp;quot;I’ll leave it up to you&amp;quot;"&gt;
-+&gt; omakase&lt;/dfn&gt; stack, it still allows you to replace certain frameworks
-+&gt; or libraries with alternatives. It just doesn’t require you to. Which means
-+&gt; you can delay those decisions until you’ve developed a clear, personal palette
-+&gt; that may prefer the occasional difference.
-</span> 
-<span class="gd">-* Database creation
-</span><span class="gi">+This project aspires to put that claim to the test.
-</span> 
-<span class="gd">-* Database initialization
-</span><span class="gi">+[doctrine]: https://rubyonrails.org/doctrine/
-</span> 
-<span class="gd">-* How to run the test suite
-</span><span class="gi">+The Rules
-+---
-</span> 
-<span class="gd">-* Services (job queues, cache servers, search engines, etc.)
-</span><span class="gi">+Once the `rails new` command completes, the project is _forbidden_ from adding
-+or removing a [Rubygems][rubygems], [NPM][npmjs], or [Yarn][yarnpkg] dependency.
-</span> 
-<span class="gd">-* Deployment instructions
-</span><span class="gi">+This means that we're stuck with Rails' out-of-the-box setup, including:
-</span> 
-<span class="gd">-* ...
-</span><span class="gi">+* [SQLite][] as our data persistance
-+* [ERB Templates][] for rendering HTML
-+* [JBuilder][] for serializing to JSON
-+* [MiniTest][] as our testing framework
-+* [Fixtures][] to generate test data
+</span><span class="p">@@ -116,6 +116,9 @@</span> Once we're finished iterating through a single [Red-Green-Refactor
+ cycle][red-green-refactor], the granularity of our commits will increase in
+ both size and scope.
+ 
+<span class="gi">+For the reader's sake, imagine commits added after the end of the first cycle as
++the output of adhering to the same process as those created during that cycle.
 +
-+The **_only_** exceptions to this rule are dependencies in our `Gemfile` that were
-+introduced by a `rails new` command. For example, the [`bcrypt` gem][bcrypt],
-+the [`image_processing` gem][image_processing], and the [`redis` gem][redis] can
-+be made available as dependencies, since they're generated by `rails new` as
-+commented-out lines in the `Gemfile`.
-+
-+[rubygems]: https://guides.rubygems.org/rubygems-basics/
-+[npmjs]: https://docs.npmjs.com/about-npm/
-+[yarnpkg]: https://yarnpkg.com/getting-started
-+[SQLite]: https://sqlite.org/index.html
-+[MiniTest]: https://github.com/seattlerb/minitest
-+[Fixtures]: https://api.rubyonrails.org/v6.0.2.2/classes/ActiveRecord/FixtureSet.html
-+[ERB Templates]: https://ruby-doc.org/stdlib-2.7.0/libdoc/erb/rdoc/ERB.html
-+[JBuilder]: https://github.com/rails/jbuilder/tree/v2.10.0#jbuilder
-+[bcrypt]: https://github.com/codahale/bcrypt-ruby/tree/v3.1.13#why-you-should-use-bcrypt
-+[redis]: https://github.com/redis/redis-rb/tree/v4.0.0#getting-started
-+[image_processing]: https://github.com/janko/image_processing/tree/v1.2.0#usage
-+
-+The Goals
-+---
-+
-+The primary goal is to tell Rails:
-+
-+&gt; I'll leave it up to you
-+
-+and to see what happens.
-+
-+We'll do our best to build an application with the exact combination of tools
-+that Rails provides us with.
-+
-+Rails tutorials of yesteryear often aspired to build toy ["microblogging"
-+platforms][microblogging], so this project will too.
-+
-+As an alternative to building a Tw\*tter clone, we'll be building a [Mastodon
-+client][mastodon]. [Mastodon is built atop the ActivityPub
-+protocol][mastodon-activitypub]:
-+
-+&gt; The ActivityPub protocol is a decentralized social networking protocol based
-+&gt; upon the [ActivityStreams] 2.0 data format. It provides a client to server API
-+&gt; for creating, updating and deleting content, as well as a federated server to
-+&gt; server API for delivering notifications and content.
-+&gt;
-+&gt; -- [The ActivityPub W3C Protocol Specification][w3c-activitypub]
-+
-+[microblogging]: https://en.wikipedia.org/wiki/Microblogging
-+[mastodon]: https://docs.joinmastodon.org/
-+[mastodon-activitypub]: https://docs.joinmastodon.org/#fediverse
-+[ActivityStreams]: https://www.w3.org/TR/2018/REC-activitypub-20180123/#bib-ActivityStreams
-+[w3c-activitypub]: https://www.w3.org/TR/2018/REC-activitypub-20180123/
-+
-+The Strategy
-+---
-+
-+* This application will be built atop a foundation of server-generated HTML,
-+  hyper-linked to one another through referencing URLs.
-+
-+* This application will be progressively enhanced in environments where
-+  JavaScript is available.
-+
-+* This application will be test driven.
-+
-+* Each commit in our version control will rationalize changes, illuminate
-+  details of interest, and (with any luck) will be informative to its reader.
-+
-+* [The project's story][gh-pages] will be told by its [`git-read`][git-read]
-+  website.
-+
-+The [`git` history][git] will start with a step-by-step example illustrating the
-+project's development style: [Test-Driven Development][tdd] from the
-+[Outside-in][]. The diffs in these commits will contain the **minimum** amount
-+of code to transition from one test failure to another, and will often contain
-+the terminal output from each test run.
-+
-+Once we're finished iterating through a single [Red-Green-Refactor
-+cycle][red-green-refactor], the granularity of our commits will increase in
-+both size and scope.
-+
-+[gh-pages]: https://seanpdoyle.github.io/prix-fixe
-+[git-read]: https://github.com/seanpdoyle/git-read
-+[git]: https://git-scm.com/
-+[Outside-in]: https://thoughtbot.com/blog/testing-from-the-outsidein
-+[tdd]: https://thoughtbot.com/upcase/fundamentals-of-tdd
-+[red-green-refactor]: https://www.codecademy.com/articles/tdd-red-green-refactor
-</span></code></pre></div></details>
+</span> [gh-pages]: https://seanpdoyle.github.io/prix-fixe
+ [git-read]: https://github.com/seanpdoyle/git-read
+ [git]: https://git-scm.com/
+</code></pre></div></details>
 
           </aside>
       </article>

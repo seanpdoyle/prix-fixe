@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Elaborate on the project's goals in the README
+    <title>Pass `model:` instead of `url:` in `notes#new`
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/">              &#8592; Previous
+<a href="../df8d72a1d49abe15a5a9cdead74f71b7bc3607e2/">              &#8592; Previous
 </a>
-<a href="../6d1482de076a391b14b055aba66413577d326997/">              Next &#8594;
+<a href="../d74173c1e48edafae5dba19b2e8e643b4aadfaa5/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -39,8 +39,8 @@
             ">
                 <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
-" aria-current="page"></a>
+                <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
+"></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
 "></a>
                 <a href="../92ce75d8cdd5545f738507b2e439ba0f3b484447/" class="commit-node commit-node--collapsed" title="Create `git-read` GitHub Action
@@ -129,8 +129,8 @@
 "></a>
                 <a href="../df8d72a1d49abe15a5a9cdead74f71b7bc3607e2/" class="commit-node commit-node--collapsed" title="Validate presence of `notes.content`
 "></a>
-                <a href="../1fbeed4edef0f0e6924c88ea92417d24b59d4a7b/" class="commit-node commit-node--collapsed" title="Pass `model:` instead of `url:` in `notes#new`
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Pass `model:` instead of `url:` in `notes#new`
+" aria-current="page"></a>
                 <a href="../d74173c1e48edafae5dba19b2e8e643b4aadfaa5/" class="commit-node commit-node--collapsed" title="Internationalize application's text
 "></a>
                 <a href="../9dac09a1b075b8ff486b109169d97e14ce7daf4e/" class="commit-node commit-node--collapsed" title="Use `FormBuilder` to internationalize labels
@@ -173,7 +173,7 @@
         ">
 <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Elaborate on the project&#39;s goals in the README</p>
+</a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
 </a><a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--full">              <p>Un-comment remaining <code>Gemfile</code> dependencies</p>
 
@@ -263,7 +263,7 @@
 
 </a><a href="../df8d72a1d49abe15a5a9cdead74f71b7bc3607e2/" class="commit-node commit-node--full">              <p>Validate presence of <code>notes.content</code></p>
 
-</a><a href="../1fbeed4edef0f0e6924c88ea92417d24b59d4a7b/" class="commit-node commit-node--full">              <p>Pass <code>model:</code> instead of <code>url:</code> in <code>notes#new</code></p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Pass <code>model:</code> instead of <code>url:</code> in <code>notes#new</code></p>
 
 </a><a href="../d74173c1e48edafae5dba19b2e8e643b4aadfaa5/" class="commit-node commit-node--full">              <p>Internationalize application&#39;s text</p>
 
@@ -280,178 +280,175 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="elaborate-on-the-projects-goals-in-the-readme">Elaborate on the project&rsquo;s goals in the README</h1>
+          <h1 id="pass-model-instead-of-url-in-notes-new">Pass <code>model:</code> instead of <code>url:</code> in <code>notes#new</code></h1>
 
-<p>We&rsquo;ll keep this commit brief: it expands upon the project&rsquo;s goals and
-constraints. To learn more, read the <a href="#README.md"><code>README.md</code></a>.</p>
+<p>After the previous commit, an invalid submission to the <code>notes#create</code>
+action results in a re-rendering of the <code>notes#new</code> template. When
+re-rendering the <code>notes#new</code> template, the controller could pass a
+reference to the invalid <code>Note</code> instance to pre-populate the <code>&lt;form&gt;</code>
+element&rsquo;s fields with the previously submitted values.</p>
 
+<p>Unfortunately, the <code>&lt;form&gt;</code> element in the <code>notes#new</code> template doesn&rsquo;t
+use a reference to a <code>Note</code> instance at all. Instead, <a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/FormHelper.html#method-i-form_with">it passes a value
+for the <code>url:</code> key to the <code>form_with</code> helper</a>. When the
+<code>url:</code> key is replaced with a <code>model:</code> key that references an instance
+of <code>Note</code>, the structure of the request body submitted to <code>POST /notes</code>.</p>
+
+<p>Instead of the <a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/FormBuilder.html"><code>FormBuilder</code></a> building a <code>&lt;textarea&gt;</code>
+element with <code>name=&quot;content&quot;</code>, a <code>form_with</code> passed a <code>model:</code> reference
+uses the <a href="https://api.rubyonrails.org/v5.2/classes/ActiveModel/Naming.html#method-i-model_name"><code>Note.model_name</code></a> to namespace the <code>name</code>
+attribute with <code>note</code>, and renders <code>&lt;textarea name=&quot;note[content]&quot;&gt;</code>.</p>
+
+<p>When the server responds to a <code>POST /notes</code> request submitted by such a
+<code>&lt;form&gt;</code>, the values are nested within a key of that namespace.</p>
+
+<p>In our case, <code>&lt;textarea name=&quot;note[content]&quot;&gt;</code> results in
+<a href="https://api.rubyonrails.org/v5.2/classes/ActionController/StrongParameters.html"><code>strong_params</code></a>-compliant
+<code>params</code> helper that can access the <code>content</code> value by chaining
+<a href="https://api.rubyonrails.org/v5.2/classes/ActionController/Parameters.html#method-i-require"><code>#require</code></a> and <a href="https://api.rubyonrails.org/v5.2/classes/ActionController/Parameters.html#method-i-permit"><code>#permit</code></a>:</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:note</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="ss">:content</span><span class="p">)</span>
+</code></pre></div>
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="README.md"
-  
+  id="app/controllers/notes_controller.rb"
+  open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/controllers/notes_controller.rb</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/controllers/notes_controller.rb</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      README.md
+      app/controllers/notes_controller.rb
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/README.md b/README.md
-index 7db80e4..c6f99ce 100644
-</span><span class="gd">--- a/README.md
-</span><span class="gi">+++ b/README.md
-</span><span class="p">@@ -1,24 +1,124 @@</span>
-<span class="gd">-# README
-</span><span class="gi">+Prix-Fixe
-+===
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/controllers/notes_controller.rb b/app/controllers/notes_controller.rb
+index 8375672..b16a6fe 100644
+</span><span class="gd">--- a/app/controllers/notes_controller.rb
+</span><span class="gi">+++ b/app/controllers/notes_controller.rb
+</span><span class="p">@@ -13,13 +13,21 @@</span> class NotesController &lt; ApplicationController
+     if note.save
+       redirect_to notes_url
+     else
+<span class="gd">-      render(:new, status: :unprocessable_entity)
+</span><span class="gi">+      render(:new, status: :unprocessable_entity, locals: { note: note })
+</span>     end
+   end
+ 
+<span class="gi">+  def new
++    note = Note.new
++
++    render(locals: {
++      note: note,
++    })
++  end
++
+</span>   private
+ 
+   def note_params
+<span class="gd">-    params.to_unsafe_h.slice(:content)
+</span><span class="gi">+    params.require(:note).permit(:content)
+</span>   end
+ end
+</code></pre></div></details>
+
+              <details
+  id="app/views/notes/new.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/notes/new.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/notes/new.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/notes/new.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/notes/new.html.erb b/app/views/notes/new.html.erb
+index 53dc22c..5b230bb 100644
+</span><span class="gd">--- a/app/views/notes/new.html.erb
+</span><span class="gi">+++ b/app/views/notes/new.html.erb
+</span><span class="p">@@ -1,4 +1,4 @@</span>
+<span class="gd">-&lt;%= form_with(url: notes_path, method: :post, local: true) do |form| %&gt;
+</span><span class="gi">+&lt;%= form_with(model: note, method: :post, local: true) do |form| %&gt;
+</span>   &lt;%= form.label(:content, "Message") %&gt;
+   &lt;%= form.text_area(:content) %&gt;
+ 
+</code></pre></div></details>
+
+              <details
+  id="test/controllers/notes_controller_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/controllers/notes_controller_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/controllers/notes_controller_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/controllers/notes_controller_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/controllers/notes_controller_test.rb b/test/controllers/notes_controller_test.rb
+index 2d64375..b27a5f8 100644
+</span><span class="gd">--- a/test/controllers/notes_controller_test.rb
+</span><span class="gi">+++ b/test/controllers/notes_controller_test.rb
+</span><span class="p">@@ -4,7 +4,7 @@</span> class NotesControllerTest &lt; ActionDispatch::IntegrationTest
+   test "#create persists a Note record" do
+     content = "Hello, World"
+ 
+<span class="gd">-    post notes_path, params: { content: content }
+</span><span class="gi">+    post notes_path, params: { note: { content: content } }
 </span> 
-<span class="gd">-This README would normally document whatever steps are necessary to get the
--application up and running.
-</span><span class="gi">+&gt; [**prix fixe**][definition] [ **pree fiks**; _French_ pree **feeks** ]
-+&gt;
-+&gt; _noun_, _plural_
-+&gt;
-+&gt; 1. a fixed price charged for any meal chosen from the variety listed on the
-+&gt; menu.
+     assert_equal Note.pluck(:content), [content]
+   end
+<span class="p">@@ -12,15 +12,15 @@</span> class NotesControllerTest &lt; ActionDispatch::IntegrationTest
+   test "#create redirects to /notes" do
+     note_attributes = { content: "Hello, World" }
+ 
+<span class="gd">-    post notes_path, params: note_attributes
+</span><span class="gi">+    post notes_path, params: { note: note_attributes }
 </span> 
-<span class="gd">-Things you may want to cover:
-</span><span class="gi">+[definition]: https://www.dictionary.com/browse/prix-fixe
+     assert_redirected_to notes_url
+   end
+ 
+   test "#create with invalid data responds with unprocessable entity" do
+<span class="gd">-    note_attributes = {}
+</span><span class="gi">+    note_attributes = { content: "" }
 </span> 
-<span class="gd">-* Ruby version
-</span><span class="gi">+---
+<span class="gd">-    post notes_path, params: note_attributes
+</span><span class="gi">+    post notes_path, params: { note: note_attributes }
 </span> 
-<span class="gd">-* System dependencies
-</span><span class="gi">+According to the [Ruby on Rails doctrine][doctrine]:
-</span> 
-<span class="gd">-* Configuration
-</span><span class="gi">+&gt; Rails is an
-+&gt; &lt;dfn id="omakase" title="a Japanese phrase that means &amp;quot;I’ll leave it up to you&amp;quot;"&gt;
-+&gt; omakase&lt;/dfn&gt; stack, it still allows you to replace certain frameworks
-+&gt; or libraries with alternatives. It just doesn’t require you to. Which means
-+&gt; you can delay those decisions until you’ve developed a clear, personal palette
-+&gt; that may prefer the occasional difference.
-</span> 
-<span class="gd">-* Database creation
-</span><span class="gi">+This project aspires to put that claim to the test.
-</span> 
-<span class="gd">-* Database initialization
-</span><span class="gi">+[doctrine]: https://rubyonrails.org/doctrine/
-</span> 
-<span class="gd">-* How to run the test suite
-</span><span class="gi">+The Rules
-+---
-</span> 
-<span class="gd">-* Services (job queues, cache servers, search engines, etc.)
-</span><span class="gi">+Once the `rails new` command completes, the project is _forbidden_ from adding
-+or removing a [Rubygems][rubygems], [NPM][npmjs], or [Yarn][yarnpkg] dependency.
-</span> 
-<span class="gd">-* Deployment instructions
-</span><span class="gi">+This means that we're stuck with Rails' out-of-the-box setup, including:
-</span> 
-<span class="gd">-* ...
-</span><span class="gi">+* [SQLite][] as our data persistance
-+* [ERB Templates][] for rendering HTML
-+* [JBuilder][] for serializing to JSON
-+* [MiniTest][] as our testing framework
-+* [Fixtures][] to generate test data
-+
-+The **_only_** exceptions to this rule are dependencies in our `Gemfile` that were
-+introduced by a `rails new` command. For example, the [`bcrypt` gem][bcrypt],
-+the [`image_processing` gem][image_processing], and the [`redis` gem][redis] can
-+be made available as dependencies, since they're generated by `rails new` as
-+commented-out lines in the `Gemfile`.
-+
-+[rubygems]: https://guides.rubygems.org/rubygems-basics/
-+[npmjs]: https://docs.npmjs.com/about-npm/
-+[yarnpkg]: https://yarnpkg.com/getting-started
-+[SQLite]: https://sqlite.org/index.html
-+[MiniTest]: https://github.com/seattlerb/minitest
-+[Fixtures]: https://api.rubyonrails.org/v6.0.2.2/classes/ActiveRecord/FixtureSet.html
-+[ERB Templates]: https://ruby-doc.org/stdlib-2.7.0/libdoc/erb/rdoc/ERB.html
-+[JBuilder]: https://github.com/rails/jbuilder/tree/v2.10.0#jbuilder
-+[bcrypt]: https://github.com/codahale/bcrypt-ruby/tree/v3.1.13#why-you-should-use-bcrypt
-+[redis]: https://github.com/redis/redis-rb/tree/v4.0.0#getting-started
-+[image_processing]: https://github.com/janko/image_processing/tree/v1.2.0#usage
-+
-+The Goals
-+---
-+
-+The primary goal is to tell Rails:
-+
-+&gt; I'll leave it up to you
-+
-+and to see what happens.
-+
-+We'll do our best to build an application with the exact combination of tools
-+that Rails provides us with.
-+
-+Rails tutorials of yesteryear often aspired to build toy ["microblogging"
-+platforms][microblogging], so this project will too.
-+
-+As an alternative to building a Tw\*tter clone, we'll be building a [Mastodon
-+client][mastodon]. [Mastodon is built atop the ActivityPub
-+protocol][mastodon-activitypub]:
-+
-+&gt; The ActivityPub protocol is a decentralized social networking protocol based
-+&gt; upon the [ActivityStreams] 2.0 data format. It provides a client to server API
-+&gt; for creating, updating and deleting content, as well as a federated server to
-+&gt; server API for delivering notifications and content.
-+&gt;
-+&gt; -- [The ActivityPub W3C Protocol Specification][w3c-activitypub]
-+
-+[microblogging]: https://en.wikipedia.org/wiki/Microblogging
-+[mastodon]: https://docs.joinmastodon.org/
-+[mastodon-activitypub]: https://docs.joinmastodon.org/#fediverse
-+[ActivityStreams]: https://www.w3.org/TR/2018/REC-activitypub-20180123/#bib-ActivityStreams
-+[w3c-activitypub]: https://www.w3.org/TR/2018/REC-activitypub-20180123/
-+
-+The Strategy
-+---
-+
-+* This application will be built atop a foundation of server-generated HTML,
-+  hyper-linked to one another through referencing URLs.
-+
-+* This application will be progressively enhanced in environments where
-+  JavaScript is available.
-+
-+* This application will be test driven.
-+
-+* Each commit in our version control will rationalize changes, illuminate
-+  details of interest, and (with any luck) will be informative to its reader.
-+
-+* [The project's story][gh-pages] will be told by its [`git-read`][git-read]
-+  website.
-+
-+The [`git` history][git] will start with a step-by-step example illustrating the
-+project's development style: [Test-Driven Development][tdd] from the
-+[Outside-in][]. The diffs in these commits will contain the **minimum** amount
-+of code to transition from one test failure to another, and will often contain
-+the terminal output from each test run.
-+
-+Once we're finished iterating through a single [Red-Green-Refactor
-+cycle][red-green-refactor], the granularity of our commits will increase in
-+both size and scope.
-+
-+[gh-pages]: https://seanpdoyle.github.io/prix-fixe
-+[git-read]: https://github.com/seanpdoyle/git-read
-+[git]: https://git-scm.com/
-+[Outside-in]: https://thoughtbot.com/blog/testing-from-the-outsidein
-+[tdd]: https://thoughtbot.com/upcase/fundamentals-of-tdd
-+[red-green-refactor]: https://www.codecademy.com/articles/tdd-red-green-refactor
-</span></code></pre></div></details>
+     assert_response :unprocessable_entity
+   end
+</code></pre></div></details>
 
           </aside>
       </article>

@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Elaborate on the project's goals in the README
+    <title>Link to `"/"`
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/">              &#8592; Previous
+<a href="../47cc28394bea53c6758fa7e419c7c57629f07d35/">              &#8592; Previous
 </a>
-<a href="../6d1482de076a391b14b055aba66413577d326997/">              Next &#8594;
+<a href="../10ff602f121bf86b55ac2f1ad3b9291e39226509/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -39,8 +39,8 @@
             ">
                 <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
-" aria-current="page"></a>
+                <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
+"></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
 "></a>
                 <a href="../92ce75d8cdd5545f738507b2e439ba0f3b484447/" class="commit-node commit-node--collapsed" title="Create `git-read` GitHub Action
@@ -61,8 +61,8 @@
 "></a>
                 <a href="../47cc28394bea53c6758fa7e419c7c57629f07d35/" class="commit-node commit-node--collapsed" title="Render `&lt;a&gt;` containing `&quot;Share a Note&quot;`
 "></a>
-                <a href="../12fb0589a0eb42626c32c00e2632db7a83182b9f/" class="commit-node commit-node--collapsed" title="Link to `&quot;/&quot;`
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Link to `&quot;/&quot;`
+" aria-current="page"></a>
                 <a href="../10ff602f121bf86b55ac2f1ad3b9291e39226509/" class="commit-node commit-node--collapsed" title="Declare `GET /notes/new` route
 "></a>
                 <a href="../5781899e93eeb3f5c1668de4a8baa34355f417ef/" class="commit-node commit-node--collapsed" title="Declare `app/views/notes/new.html.erb` view
@@ -173,7 +173,7 @@
         ">
 <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Elaborate on the project&#39;s goals in the README</p>
+</a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
 </a><a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--full">              <p>Un-comment remaining <code>Gemfile</code> dependencies</p>
 
@@ -195,7 +195,7 @@
 
 </a><a href="../47cc28394bea53c6758fa7e419c7c57629f07d35/" class="commit-node commit-node--full">              <p>Render <code>&lt;a&gt;</code> containing <code>&quot;Share a Note&quot;</code></p>
 
-</a><a href="../12fb0589a0eb42626c32c00e2632db7a83182b9f/" class="commit-node commit-node--full">              <p>Link to <code>&quot;/&quot;</code></p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Link to <code>&quot;/&quot;</code></p>
 
 </a><a href="../10ff602f121bf86b55ac2f1ad3b9291e39226509/" class="commit-node commit-node--full">              <p>Declare <code>GET /notes/new</code> route</p>
 
@@ -280,178 +280,71 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="elaborate-on-the-projects-goals-in-the-readme">Elaborate on the project&rsquo;s goals in the README</h1>
+          <h1 id="link-to">Link to <code>&quot;/&quot;</code></h1>
 
-<p>We&rsquo;ll keep this commit brief: it expands upon the project&rsquo;s goals and
-constraints. To learn more, read the <a href="#README.md"><code>README.md</code></a>.</p>
+<p>This commit deviates from purely reactive, test-driven code changes.</p>
 
+<p>The previous error was:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserSharesAMessageTest#test_visiting_the_index:
+Capybara::ElementNotFound: Unable to find field "Message"
+    test/system/user_shares_a_message_test.rb:9:in `block in &lt;class:UserSharesAMessageTest&gt;'
+</code></pre></div>
+<p>The previous change to <code>click_on &quot;Share a Note&quot;</code> exercised an <a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#scroll-to-the-fragment-identifier"><code>&lt;a&gt;</code>
+element with an empty fragment (<code>href=&quot;#&quot;</code>)</a>. When
+clicked, the browser does not navigate to a separate page.</p>
+
+<p>If this change were motivated purely by test failures and error
+messages, we&rsquo;d need to add an element to the <code>notes#index</code> page with
+<code>&quot;Message&quot;</code>.</p>
+
+<p>However, since the call to <code>click_on &quot;Share a Note&quot;</code> didn&rsquo;t navigate to
+a new page, introducing a change that navigates to a &ldquo;new&rdquo; page shortens
+the path between our current behavior and our desired behavior.</p>
+
+<p>Instead of rendering the text onto the current page, this commit
+replaces the <code>&lt;a href=&quot;#&quot;&gt;...&lt;/a&gt;</code> with an <code>&lt;a&gt;</code> element that declares
+<code>href=&quot;/notes/new&quot;</code>.</p>
+
+<p>When the system tests are run, our test suite raises a new error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserSharesAMessageTest#test_visiting_the_index:
+AbstractController::ActionNotFound: The action 'new' could not be found for NotesController
+</code></pre></div>
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="README.md"
-  
+  id="app/views/notes/index.html.erb"
+  open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/notes/index.html.erb</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/notes/index.html.erb</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      README.md
+      app/views/notes/index.html.erb
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/README.md b/README.md
-index 7db80e4..c6f99ce 100644
-</span><span class="gd">--- a/README.md
-</span><span class="gi">+++ b/README.md
-</span><span class="p">@@ -1,24 +1,124 @@</span>
-<span class="gd">-# README
-</span><span class="gi">+Prix-Fixe
-+===
-</span> 
-<span class="gd">-This README would normally document whatever steps are necessary to get the
--application up and running.
-</span><span class="gi">+&gt; [**prix fixe**][definition] [ **pree fiks**; _French_ pree **feeks** ]
-+&gt;
-+&gt; _noun_, _plural_
-+&gt;
-+&gt; 1. a fixed price charged for any meal chosen from the variety listed on the
-+&gt; menu.
-</span> 
-<span class="gd">-Things you may want to cover:
-</span><span class="gi">+[definition]: https://www.dictionary.com/browse/prix-fixe
-</span> 
-<span class="gd">-* Ruby version
-</span><span class="gi">+---
-</span> 
-<span class="gd">-* System dependencies
-</span><span class="gi">+According to the [Ruby on Rails doctrine][doctrine]:
-</span> 
-<span class="gd">-* Configuration
-</span><span class="gi">+&gt; Rails is an
-+&gt; &lt;dfn id="omakase" title="a Japanese phrase that means &amp;quot;I’ll leave it up to you&amp;quot;"&gt;
-+&gt; omakase&lt;/dfn&gt; stack, it still allows you to replace certain frameworks
-+&gt; or libraries with alternatives. It just doesn’t require you to. Which means
-+&gt; you can delay those decisions until you’ve developed a clear, personal palette
-+&gt; that may prefer the occasional difference.
-</span> 
-<span class="gd">-* Database creation
-</span><span class="gi">+This project aspires to put that claim to the test.
-</span> 
-<span class="gd">-* Database initialization
-</span><span class="gi">+[doctrine]: https://rubyonrails.org/doctrine/
-</span> 
-<span class="gd">-* How to run the test suite
-</span><span class="gi">+The Rules
-+---
-</span> 
-<span class="gd">-* Services (job queues, cache servers, search engines, etc.)
-</span><span class="gi">+Once the `rails new` command completes, the project is _forbidden_ from adding
-+or removing a [Rubygems][rubygems], [NPM][npmjs], or [Yarn][yarnpkg] dependency.
-</span> 
-<span class="gd">-* Deployment instructions
-</span><span class="gi">+This means that we're stuck with Rails' out-of-the-box setup, including:
-</span> 
-<span class="gd">-* ...
-</span><span class="gi">+* [SQLite][] as our data persistance
-+* [ERB Templates][] for rendering HTML
-+* [JBuilder][] for serializing to JSON
-+* [MiniTest][] as our testing framework
-+* [Fixtures][] to generate test data
-+
-+The **_only_** exceptions to this rule are dependencies in our `Gemfile` that were
-+introduced by a `rails new` command. For example, the [`bcrypt` gem][bcrypt],
-+the [`image_processing` gem][image_processing], and the [`redis` gem][redis] can
-+be made available as dependencies, since they're generated by `rails new` as
-+commented-out lines in the `Gemfile`.
-+
-+[rubygems]: https://guides.rubygems.org/rubygems-basics/
-+[npmjs]: https://docs.npmjs.com/about-npm/
-+[yarnpkg]: https://yarnpkg.com/getting-started
-+[SQLite]: https://sqlite.org/index.html
-+[MiniTest]: https://github.com/seattlerb/minitest
-+[Fixtures]: https://api.rubyonrails.org/v6.0.2.2/classes/ActiveRecord/FixtureSet.html
-+[ERB Templates]: https://ruby-doc.org/stdlib-2.7.0/libdoc/erb/rdoc/ERB.html
-+[JBuilder]: https://github.com/rails/jbuilder/tree/v2.10.0#jbuilder
-+[bcrypt]: https://github.com/codahale/bcrypt-ruby/tree/v3.1.13#why-you-should-use-bcrypt
-+[redis]: https://github.com/redis/redis-rb/tree/v4.0.0#getting-started
-+[image_processing]: https://github.com/janko/image_processing/tree/v1.2.0#usage
-+
-+The Goals
-+---
-+
-+The primary goal is to tell Rails:
-+
-+&gt; I'll leave it up to you
-+
-+and to see what happens.
-+
-+We'll do our best to build an application with the exact combination of tools
-+that Rails provides us with.
-+
-+Rails tutorials of yesteryear often aspired to build toy ["microblogging"
-+platforms][microblogging], so this project will too.
-+
-+As an alternative to building a Tw\*tter clone, we'll be building a [Mastodon
-+client][mastodon]. [Mastodon is built atop the ActivityPub
-+protocol][mastodon-activitypub]:
-+
-+&gt; The ActivityPub protocol is a decentralized social networking protocol based
-+&gt; upon the [ActivityStreams] 2.0 data format. It provides a client to server API
-+&gt; for creating, updating and deleting content, as well as a federated server to
-+&gt; server API for delivering notifications and content.
-+&gt;
-+&gt; -- [The ActivityPub W3C Protocol Specification][w3c-activitypub]
-+
-+[microblogging]: https://en.wikipedia.org/wiki/Microblogging
-+[mastodon]: https://docs.joinmastodon.org/
-+[mastodon-activitypub]: https://docs.joinmastodon.org/#fediverse
-+[ActivityStreams]: https://www.w3.org/TR/2018/REC-activitypub-20180123/#bib-ActivityStreams
-+[w3c-activitypub]: https://www.w3.org/TR/2018/REC-activitypub-20180123/
-+
-+The Strategy
-+---
-+
-+* This application will be built atop a foundation of server-generated HTML,
-+  hyper-linked to one another through referencing URLs.
-+
-+* This application will be progressively enhanced in environments where
-+  JavaScript is available.
-+
-+* This application will be test driven.
-+
-+* Each commit in our version control will rationalize changes, illuminate
-+  details of interest, and (with any luck) will be informative to its reader.
-+
-+* [The project's story][gh-pages] will be told by its [`git-read`][git-read]
-+  website.
-+
-+The [`git` history][git] will start with a step-by-step example illustrating the
-+project's development style: [Test-Driven Development][tdd] from the
-+[Outside-in][]. The diffs in these commits will contain the **minimum** amount
-+of code to transition from one test failure to another, and will often contain
-+the terminal output from each test run.
-+
-+Once we're finished iterating through a single [Red-Green-Refactor
-+cycle][red-green-refactor], the granularity of our commits will increase in
-+both size and scope.
-+
-+[gh-pages]: https://seanpdoyle.github.io/prix-fixe
-+[git-read]: https://github.com/seanpdoyle/git-read
-+[git]: https://git-scm.com/
-+[Outside-in]: https://thoughtbot.com/blog/testing-from-the-outsidein
-+[tdd]: https://thoughtbot.com/upcase/fundamentals-of-tdd
-+[red-green-refactor]: https://www.codecademy.com/articles/tdd-red-green-refactor
-</span></code></pre></div></details>
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/notes/index.html.erb b/app/views/notes/index.html.erb
+index ad3f640..69d5ed8 100644
+</span><span class="gd">--- a/app/views/notes/index.html.erb
+</span><span class="gi">+++ b/app/views/notes/index.html.erb
+</span><span class="p">@@ -1,3 +1,3 @@</span>
+<span class="gd">-&lt;a href="#"&gt;
+</span><span class="gi">+&lt;a href="/notes/new"&gt;
+</span>   Share a Note
+ &lt;/a&gt;
+</code></pre></div></details>
 
           </aside>
       </article>

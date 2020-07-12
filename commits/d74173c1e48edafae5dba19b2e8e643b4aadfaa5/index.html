@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Elaborate on the project's goals in the README
+    <title>Internationalize application's text
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/">              &#8592; Previous
+<a href="../1fbeed4edef0f0e6924c88ea92417d24b59d4a7b/">              &#8592; Previous
 </a>
-<a href="../6d1482de076a391b14b055aba66413577d326997/">              Next &#8594;
+<a href="../9dac09a1b075b8ff486b109169d97e14ce7daf4e/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -39,8 +39,8 @@
             ">
                 <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
-" aria-current="page"></a>
+                <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
+"></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
 "></a>
                 <a href="../92ce75d8cdd5545f738507b2e439ba0f3b484447/" class="commit-node commit-node--collapsed" title="Create `git-read` GitHub Action
@@ -131,8 +131,8 @@
 "></a>
                 <a href="../1fbeed4edef0f0e6924c88ea92417d24b59d4a7b/" class="commit-node commit-node--collapsed" title="Pass `model:` instead of `url:` in `notes#new`
 "></a>
-                <a href="../d74173c1e48edafae5dba19b2e8e643b4aadfaa5/" class="commit-node commit-node--collapsed" title="Internationalize application's text
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Internationalize application's text
+" aria-current="page"></a>
                 <a href="../9dac09a1b075b8ff486b109169d97e14ce7daf4e/" class="commit-node commit-node--collapsed" title="Use `FormBuilder` to internationalize labels
 "></a>
             </nav>
@@ -173,7 +173,7 @@
         ">
 <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Elaborate on the project&#39;s goals in the README</p>
+</a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
 </a><a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--full">              <p>Un-comment remaining <code>Gemfile</code> dependencies</p>
 
@@ -265,7 +265,7 @@
 
 </a><a href="../1fbeed4edef0f0e6924c88ea92417d24b59d4a7b/" class="commit-node commit-node--full">              <p>Pass <code>model:</code> instead of <code>url:</code> in <code>notes#new</code></p>
 
-</a><a href="../d74173c1e48edafae5dba19b2e8e643b4aadfaa5/" class="commit-node commit-node--full">              <p>Internationalize application&#39;s text</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Internationalize application&#39;s text</p>
 
 </a><a href="../9dac09a1b075b8ff486b109169d97e14ce7daf4e/" class="commit-node commit-node--full">              <p>Use <code>FormBuilder</code> to internationalize labels</p>
 
@@ -280,178 +280,318 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="elaborate-on-the-projects-goals-in-the-readme">Elaborate on the project&rsquo;s goals in the README</h1>
+          <h1 id="internationalize-applications-text">Internationalize application&rsquo;s text</h1>
 
-<p>We&rsquo;ll keep this commit brief: it expands upon the project&rsquo;s goals and
-constraints. To learn more, read the <a href="#README.md"><code>README.md</code></a>.</p>
+<p>When the <code>UserSharesAMessageTest</code> internationalizes the test step to
+click on an <code>&lt;a&gt;</code> element that contains the text <code>Share a Note</code> with
+<a href="https://github.com/ruby-i18n/i18n/tree/529b83a32036c210e4e35d49a2ac23e956cca67a#rails"><code>I18n.translate(&quot;notes.index.new&quot;)</code></a>, the following
+error is raised:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserSharesAMessageTest#test_visiting_the_index:
+Capybara::ElementNotFound: Unable to find link or button "translation missing: en.notes.index.new"
+    test/system/user_shares_a_message_test.rb:8:in `block in &lt;class:UserSharesAMessageTest&gt;'
+</code></pre></div>
+<p>The key, <code>notes.index.new</code> was selected intentionally. The <code>notes</code>
+portion corresponds to the <code>notes</code> controller&rsquo;s internationalization
+namespace. The <code>index</code> portion corresponds to the <code>NotesController</code>&lsquo;s
+<code>index</code> action. The <code>new</code> portion is arbitrary, but represents the text
+that will be rendered into an <code>&lt;a&gt;</code> element linking to the <code>notes#new</code>
+route.</p>
+
+<p>Capybara raises this error stating that the text <code>&quot;translation missing:
+en.notes.index.new&quot;</code> is not present on the server-generated page. The
+<code>en</code> portion prefixing the rest of the internationalization key is
+derived from the request&rsquo;s current locale (i.e. English). This error is
+not particularly helpful in driving our next code change: rendering
+<code>&quot;translation missing: en.notes.index.new&quot;</code> on the page is not a desired
+behavior.</p>
+
+<p>The text <code>&quot;translation missing: en.notes.index.new&quot;</code> comes from <a href="https://guides.rubyonrails.org/i18n.html#abstracting-localized-code">Rails&rsquo;
+flexible, forgiving default translation behavior</a> while in
+<code>development</code> and <code>test</code> environments.</p>
+
+<p>This commit changes that default behavior.</p>
+
+<p>First, it replaces the test&rsquo;s call to <code>I18n.translate</code> with calls to
+<code>ActionView::Helpers::TranslationHelper#translate</code>.</p>
+
+<p>Next, by un-commenting the lines in <code>config/environments/test.rb</code> (and
+<code>config/environments/development.rb</code> for test/development parity) and
+ensuring that our test suite internationalizes text with the same
+<a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/TranslationHelper.html#method-i-translate"><code>translate</code> that <code>ActionView</code> uses</a>, a newer and
+more helpful error message is raised:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserSharesAMessageTest#test_visiting_the_index:
+I18n::MissingTranslationData: translation missing: en.notes.index.new
+    test/system/user_shares_a_message_test.rb:8:in `block in &lt;class:UserSharesAMessageTest&gt;'
+</code></pre></div>
+<p>When that key is declared within the <code>config/locales/en.yml</code> file, the
+test passes.</p>
+
+<p>Finally, this commit replaces the <code>Share a Note</code> text that is hard-coded
+in the <code>notes/index.html.erb</code> template with a call to <code>translate</code>.</p>
+
+<p>By rendering <code>&lt;%= translate(&quot;.new&quot;) %&gt;</code> in the <code>notes#index</code> view
+template, Rails will resolve the <code>.new</code> internationalization key
+relative the current &ldquo;context&rdquo;, which is a request to <code>notes#index</code>.</p>
+
+<p><a href="https://api.rubyonrails.org/classes/v5.2/ActionView/Helpers/TranslationHelper.html#method-i-translate">The context is translated into an internationalization scope</a>:
+<code>notes.index</code>. This internationalization scope is prepended to the
+relative <code>.new</code> key, which is then prepended with the current locale of
+<code>en</code>.</p>
+
+<p>This process generates a fully-qualified internationalization key of
+<code>en.notes.index.new</code>, which corresponds to the translation we declared
+in our test.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="README.md"
-  
+  id="app/views/notes/index.html.erb"
+  open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/notes/index.html.erb</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/notes/index.html.erb</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      README.md
+      app/views/notes/index.html.erb
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/README.md b/README.md
-index 7db80e4..c6f99ce 100644
-</span><span class="gd">--- a/README.md
-</span><span class="gi">+++ b/README.md
-</span><span class="p">@@ -1,24 +1,124 @@</span>
-<span class="gd">-# README
-</span><span class="gi">+Prix-Fixe
-+===
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/notes/index.html.erb b/app/views/notes/index.html.erb
+index 3720383..06df419 100644
+</span><span class="gd">--- a/app/views/notes/index.html.erb
+</span><span class="gi">+++ b/app/views/notes/index.html.erb
+</span><span class="p">@@ -1,5 +1,5 @@</span>
+ &lt;a href="&lt;%= new_note_path %&gt;"&gt;
+<span class="gd">-  Share a Note
+</span><span class="gi">+  &lt;%= translate(".new") %&gt;
+</span> &lt;/a&gt;
+ 
+ &lt;ul&gt;
+</code></pre></div></details>
+
+              <details
+  id="config/environments/development.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse config/environments/development.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand config/environments/development.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      config/environments/development.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/config/environments/development.rb b/config/environments/development.rb
+index 66df51f..59c3fea 100644
+</span><span class="gd">--- a/config/environments/development.rb
+</span><span class="gi">+++ b/config/environments/development.rb
+</span><span class="p">@@ -54,7 +54,7 @@</span> Rails.application.configure do
+   config.assets.quiet = true
+ 
+   # Raises error for missing translations.
+<span class="gd">-  # config.action_view.raise_on_missing_translations = true
+</span><span class="gi">+  config.action_view.raise_on_missing_translations = true
 </span> 
-<span class="gd">-This README would normally document whatever steps are necessary to get the
--application up and running.
-</span><span class="gi">+&gt; [**prix fixe**][definition] [ **pree fiks**; _French_ pree **feeks** ]
-+&gt;
-+&gt; _noun_, _plural_
-+&gt;
-+&gt; 1. a fixed price charged for any meal chosen from the variety listed on the
-+&gt; menu.
-</span> 
-<span class="gd">-Things you may want to cover:
-</span><span class="gi">+[definition]: https://www.dictionary.com/browse/prix-fixe
-</span> 
-<span class="gd">-* Ruby version
-</span><span class="gi">+---
-</span> 
-<span class="gd">-* System dependencies
-</span><span class="gi">+According to the [Ruby on Rails doctrine][doctrine]:
-</span> 
-<span class="gd">-* Configuration
-</span><span class="gi">+&gt; Rails is an
-+&gt; &lt;dfn id="omakase" title="a Japanese phrase that means &amp;quot;I’ll leave it up to you&amp;quot;"&gt;
-+&gt; omakase&lt;/dfn&gt; stack, it still allows you to replace certain frameworks
-+&gt; or libraries with alternatives. It just doesn’t require you to. Which means
-+&gt; you can delay those decisions until you’ve developed a clear, personal palette
-+&gt; that may prefer the occasional difference.
-</span> 
-<span class="gd">-* Database creation
-</span><span class="gi">+This project aspires to put that claim to the test.
-</span> 
-<span class="gd">-* Database initialization
-</span><span class="gi">+[doctrine]: https://rubyonrails.org/doctrine/
-</span> 
-<span class="gd">-* How to run the test suite
-</span><span class="gi">+The Rules
-+---
-</span> 
-<span class="gd">-* Services (job queues, cache servers, search engines, etc.)
-</span><span class="gi">+Once the `rails new` command completes, the project is _forbidden_ from adding
-+or removing a [Rubygems][rubygems], [NPM][npmjs], or [Yarn][yarnpkg] dependency.
-</span> 
-<span class="gd">-* Deployment instructions
-</span><span class="gi">+This means that we're stuck with Rails' out-of-the-box setup, including:
-</span> 
-<span class="gd">-* ...
-</span><span class="gi">+* [SQLite][] as our data persistance
-+* [ERB Templates][] for rendering HTML
-+* [JBuilder][] for serializing to JSON
-+* [MiniTest][] as our testing framework
-+* [Fixtures][] to generate test data
-+
-+The **_only_** exceptions to this rule are dependencies in our `Gemfile` that were
-+introduced by a `rails new` command. For example, the [`bcrypt` gem][bcrypt],
-+the [`image_processing` gem][image_processing], and the [`redis` gem][redis] can
-+be made available as dependencies, since they're generated by `rails new` as
-+commented-out lines in the `Gemfile`.
-+
-+[rubygems]: https://guides.rubygems.org/rubygems-basics/
-+[npmjs]: https://docs.npmjs.com/about-npm/
-+[yarnpkg]: https://yarnpkg.com/getting-started
-+[SQLite]: https://sqlite.org/index.html
-+[MiniTest]: https://github.com/seattlerb/minitest
-+[Fixtures]: https://api.rubyonrails.org/v6.0.2.2/classes/ActiveRecord/FixtureSet.html
-+[ERB Templates]: https://ruby-doc.org/stdlib-2.7.0/libdoc/erb/rdoc/ERB.html
-+[JBuilder]: https://github.com/rails/jbuilder/tree/v2.10.0#jbuilder
-+[bcrypt]: https://github.com/codahale/bcrypt-ruby/tree/v3.1.13#why-you-should-use-bcrypt
-+[redis]: https://github.com/redis/redis-rb/tree/v4.0.0#getting-started
-+[image_processing]: https://github.com/janko/image_processing/tree/v1.2.0#usage
-+
-+The Goals
-+---
-+
-+The primary goal is to tell Rails:
-+
-+&gt; I'll leave it up to you
-+
-+and to see what happens.
-+
-+We'll do our best to build an application with the exact combination of tools
-+that Rails provides us with.
-+
-+Rails tutorials of yesteryear often aspired to build toy ["microblogging"
-+platforms][microblogging], so this project will too.
-+
-+As an alternative to building a Tw\*tter clone, we'll be building a [Mastodon
-+client][mastodon]. [Mastodon is built atop the ActivityPub
-+protocol][mastodon-activitypub]:
-+
-+&gt; The ActivityPub protocol is a decentralized social networking protocol based
-+&gt; upon the [ActivityStreams] 2.0 data format. It provides a client to server API
-+&gt; for creating, updating and deleting content, as well as a federated server to
-+&gt; server API for delivering notifications and content.
-+&gt;
-+&gt; -- [The ActivityPub W3C Protocol Specification][w3c-activitypub]
-+
-+[microblogging]: https://en.wikipedia.org/wiki/Microblogging
-+[mastodon]: https://docs.joinmastodon.org/
-+[mastodon-activitypub]: https://docs.joinmastodon.org/#fediverse
-+[ActivityStreams]: https://www.w3.org/TR/2018/REC-activitypub-20180123/#bib-ActivityStreams
-+[w3c-activitypub]: https://www.w3.org/TR/2018/REC-activitypub-20180123/
-+
-+The Strategy
-+---
-+
-+* This application will be built atop a foundation of server-generated HTML,
-+  hyper-linked to one another through referencing URLs.
-+
-+* This application will be progressively enhanced in environments where
-+  JavaScript is available.
-+
-+* This application will be test driven.
-+
-+* Each commit in our version control will rationalize changes, illuminate
-+  details of interest, and (with any luck) will be informative to its reader.
-+
-+* [The project's story][gh-pages] will be told by its [`git-read`][git-read]
-+  website.
-+
-+The [`git` history][git] will start with a step-by-step example illustrating the
-+project's development style: [Test-Driven Development][tdd] from the
-+[Outside-in][]. The diffs in these commits will contain the **minimum** amount
-+of code to transition from one test failure to another, and will often contain
-+the terminal output from each test run.
-+
-+Once we're finished iterating through a single [Red-Green-Refactor
-+cycle][red-green-refactor], the granularity of our commits will increase in
-+both size and scope.
-+
-+[gh-pages]: https://seanpdoyle.github.io/prix-fixe
-+[git-read]: https://github.com/seanpdoyle/git-read
-+[git]: https://git-scm.com/
-+[Outside-in]: https://thoughtbot.com/blog/testing-from-the-outsidein
-+[tdd]: https://thoughtbot.com/upcase/fundamentals-of-tdd
-+[red-green-refactor]: https://www.codecademy.com/articles/tdd-red-green-refactor
+   # Use an evented file watcher to asynchronously detect changes in source code,
+   # routes, locales, etc. This feature depends on the listen gem.
+</code></pre></div></details>
+
+              <details
+  id="config/environments/test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse config/environments/test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand config/environments/test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      config/environments/test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/config/environments/test.rb b/config/environments/test.rb
+index 1d62e91..38d436f 100644
+</span><span class="gd">--- a/config/environments/test.rb
+</span><span class="gi">+++ b/config/environments/test.rb
+</span><span class="p">@@ -44,5 +44,5 @@</span> Rails.application.configure do
+   config.active_support.deprecation = :stderr
+ 
+   # Raises error for missing translations.
+<span class="gd">-  # config.action_view.raise_on_missing_translations = true
+</span><span class="gi">+  config.action_view.raise_on_missing_translations = true
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="config/locales/en.yml"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse config/locales/en.yml</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand config/locales/en.yml</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      config/locales/en.yml
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/config/locales/en.yml b/config/locales/en.yml
+index cf9b342..4c1b4fd 100644
+</span><span class="gd">--- a/config/locales/en.yml
+</span><span class="gi">+++ b/config/locales/en.yml
+</span><span class="p">@@ -30,4 +30,6 @@</span>
+ # available at https://guides.rubyonrails.org/i18n.html.
+ 
+ en:
+<span class="gd">-  hello: "Hello world"
+</span><span class="gi">+  notes:
++    index:
++      new: "Share a Note"
 </span></code></pre></div></details>
+
+              <details
+  id="test/models/note_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/models/note_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/models/note_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/models/note_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/models/note_test.rb b/test/models/note_test.rb
+index 679348d..14bc08a 100644
+</span><span class="gd">--- a/test/models/note_test.rb
+</span><span class="gi">+++ b/test/models/note_test.rb
+</span><span class="p">@@ -7,6 +7,6 @@</span> class NoteTest &lt; ActiveSupport::TestCase
+     valid = note.validate
+ 
+     assert_equal valid, false
+<span class="gd">-    assert_equal note.errors[:content], [I18n.translate("errors.messages.blank")]
+</span><span class="gi">+    assert_equal note.errors[:content], [translate("errors.messages.blank")]
+</span>   end
+ end
+</code></pre></div></details>
+
+              <details
+  id="test/system/user_shares_a_message_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/system/user_shares_a_message_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/system/user_shares_a_message_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/system/user_shares_a_message_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/system/user_shares_a_message_test.rb b/test/system/user_shares_a_message_test.rb
+index f66c5b1..d6339f8 100644
+</span><span class="gd">--- a/test/system/user_shares_a_message_test.rb
+</span><span class="gi">+++ b/test/system/user_shares_a_message_test.rb
+</span><span class="p">@@ -5,7 +5,7 @@</span> class UserSharesAMessageTest &lt; ApplicationSystemTestCase
+     content = "Hello, World!"
+ 
+     visit root_path
+<span class="gd">-    click_on "Share a Note"
+</span><span class="gi">+    click_on translate("notes.index.new")
+</span>     fill_in "Message", with: content
+     click_on "Share"
+ 
+</code></pre></div></details>
+
+              <details
+  id="test/test_helper.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/test_helper.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/test_helper.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/test_helper.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/test_helper.rb b/test/test_helper.rb
+index d5300f8..f9ca081 100644
+</span><span class="gd">--- a/test/test_helper.rb
+</span><span class="gi">+++ b/test/test_helper.rb
+</span><span class="p">@@ -3,6 +3,8 @@</span> require_relative '../config/environment'
+ require 'rails/test_help'
+ 
+ class ActiveSupport::TestCase
+<span class="gi">+  include ActionView::Helpers::TranslationHelper
++
+</span>   # Run tests in parallel with specified workers
+   parallelize(workers: :number_of_processors)
+ 
+</code></pre></div></details>
 
           </aside>
       </article>

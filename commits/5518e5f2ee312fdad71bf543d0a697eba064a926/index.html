@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Elaborate on the project's goals in the README
+    <title>Add a failing system test
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/">              &#8592; Previous
+<a href="../22f0e2809ccc0630bd186b714b49c239e6f69ee2/">              &#8592; Previous
 </a>
-<a href="../6d1482de076a391b14b055aba66413577d326997/">              Next &#8594;
+<a href="../4be7e7af67b9800d40decc7ea7c19dae28c5212a/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -39,8 +39,8 @@
             ">
                 <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
-" aria-current="page"></a>
+                <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
+"></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
 "></a>
                 <a href="../92ce75d8cdd5545f738507b2e439ba0f3b484447/" class="commit-node commit-node--collapsed" title="Create `git-read` GitHub Action
@@ -49,8 +49,8 @@
 "></a>
                 <a href="../22f0e2809ccc0630bd186b714b49c239e6f69ee2/" class="commit-node commit-node--collapsed" title="Add `UserSharesAMessageTest`
 "></a>
-                <a href="../5518e5f2ee312fdad71bf543d0a697eba064a926/" class="commit-node commit-node--collapsed" title="Add a failing system test
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Add a failing system test
+" aria-current="page"></a>
                 <a href="../4be7e7af67b9800d40decc7ea7c19dae28c5212a/" class="commit-node commit-node--collapsed" title="Declare `GET &quot;/&quot;` route
 "></a>
                 <a href="../43174ba20f6820d5b9f452c1ce25c73c2c488bcf/" class="commit-node commit-node--collapsed" title="Declare `NotesController`
@@ -173,7 +173,7 @@
         ">
 <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Elaborate on the project&#39;s goals in the README</p>
+</a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
 </a><a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--full">              <p>Un-comment remaining <code>Gemfile</code> dependencies</p>
 
@@ -183,7 +183,7 @@
 
 </a><a href="../22f0e2809ccc0630bd186b714b49c239e6f69ee2/" class="commit-node commit-node--full">              <p>Add <code>UserSharesAMessageTest</code></p>
 
-</a><a href="../5518e5f2ee312fdad71bf543d0a697eba064a926/" class="commit-node commit-node--full">              <p>Add a failing system test</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Add a failing system test</p>
 
 </a><a href="../4be7e7af67b9800d40decc7ea7c19dae28c5212a/" class="commit-node commit-node--full">              <p>Declare <code>GET &quot;/&quot;</code> route</p>
 
@@ -280,178 +280,127 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="elaborate-on-the-projects-goals-in-the-readme">Elaborate on the project&rsquo;s goals in the README</h1>
+          <h1 id="add-a-failing-system-test">Add a failing system test</h1>
 
-<p>We&rsquo;ll keep this commit brief: it expands upon the project&rsquo;s goals and
-constraints. To learn more, read the <a href="#README.md"><code>README.md</code></a>.</p>
+<p><a href="https://github.com/seanpdoyle/prix-fixe/projects/1#card-20484715">https://github.com/seanpdoyle/prix-fixe/projects/1#card-20484715</a></p>
+
+<p>When I have a thought,
+I want to share a message,
+So that I can put me ideas into the world</p>
+
+<hr>
+
+<p>This commit adds content to the scaffolded <code>UserSharesAMessageTest</code>
+block named <code>&quot;visiting the index&quot;</code>.</p>
+
+<p>Writing a test first, before the corresponding implementation is an
+integral part of <a href="https://thoughtbot.com/upcase/fundamentals-of-tdd">Test-Driven Development</a>.</p>
+
+<p>Writing a System Test before other tests is an integral part of <a href="https://thoughtbot.com/blog/testing-from-the-outsidein">testing
+an application from the Outside In</a>.</p>
+
+<p>Our test is visually separated into blocks by newlines. It resembles a
+<a href="https://thoughtbot.com/blog/four-phase-test">Four Phase Test</a>.</p>
+
+<ol>
+<li><p>First, we&rsquo;ll declare our test data in the test&rsquo;s Setup Phase. For now
+the only test data that we&rsquo;ll need is a String representing the new
+Note&rsquo;s <code>content</code> attribute.</p></li>
+<li><p>Next, we declare the Exercise Phase. This phase will interact with the
+feature from a browser. Thinking in abstract terms, the exercise phase
+will:</p></li>
+</ol>
+
+<ul>
+<li>visit the application&rsquo;s root</li>
+<li>click on a link to create a new Note</li>
+<li>fill in a form field with the <code>content</code> of our Note</li>
+<li>click on a button to submit the new Note</li>
+</ul>
+
+<p>Each of these steps corresponds directly to a <a href="https://www.rubydoc.info/github/teamcapybara/capybara/master#The_DSL">Capybara-provided
+  method</a>. The corresponding <code>&lt;form&gt;</code> fields&rsquo; elements&rsquo;
+  label text is provided as an argument to each method call in this
+  exercise phase.</p>
+
+<ol>
+<li><p>Next, we declare the Verify Phase. During this phase, our test will
+ensure that the behavior it expects aligns with the actual behavior.
+To do so, we assert that the <code>content</code> appears on the page by calling
+<a href="https://www.rubydoc.info/github/jnicklas/capybara/Capybara/Node/Matchers#assert_text-instance_method"><code>assert_text</code></a>. In this case, the presence of the
+<code>content</code> on the page is a <a href="https://thoughtbot.com/blog/acceptance-tests-at-a-single-level-of-abstraction">Good Enough :tm: indicator</a>
+that the form submission was successful, and the Note was persisted
+well enough to be served to a user in a subsequent HTTP request.</p></li>
+<li><p>Finally, there is a Teardown Phase. The Teardown Phase is different
+from the others in that Rails&rsquo; system test harness handles the
+teardown steps on our behalf. For instance, tests that set
+<code>.use_transactional_tests = true</code> will configure the test to be a
+<a href="https://api.rubyonrails.org/v5.2/classes/ActiveRecord/FixtureSet.html#class-ActiveRecord::FixtureSet-label-Transactional+Tests">Transactional Test</a>, and will be executed within
+a <a href="https://www.sqlite.org/lang_transaction.html">SQL Transaction</a>. In practice, this means that
+records created within a test will only exist within the bounds of that
+test block. For now, our test suite&rsquo;s teardown demands are limited to
+the database, but if future needs arose, they could be addressed with
+our <a href="https://api.rubyonrails.org/v5.2/classes/ActiveSupport/Testing/SetupAndTeardown.html">test harness&rsquo; hook system</a>.</p></li>
+</ol>
+
+<p>When we execute the test, it fails:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserSharesAMessageTest#test_visiting_the_index:
+ActionController::RoutingError: No route matches [GET] "/"
+</code></pre></div>
+<p>This error informs us that our application does not know how to route or
+respond to <code>GET /</code> HTTP requests. Our next step will be resolve that
+error.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="README.md"
-  
+  id="test/system/user_shares_a_message_test.rb"
+  open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/system/user_shares_a_message_test.rb</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/system/user_shares_a_message_test.rb</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      README.md
+      test/system/user_shares_a_message_test.rb
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/README.md b/README.md
-index 7db80e4..c6f99ce 100644
-</span><span class="gd">--- a/README.md
-</span><span class="gi">+++ b/README.md
-</span><span class="p">@@ -1,24 +1,124 @@</span>
-<span class="gd">-# README
-</span><span class="gi">+Prix-Fixe
-+===
-</span> 
-<span class="gd">-This README would normally document whatever steps are necessary to get the
--application up and running.
-</span><span class="gi">+&gt; [**prix fixe**][definition] [ **pree fiks**; _French_ pree **feeks** ]
-+&gt;
-+&gt; _noun_, _plural_
-+&gt;
-+&gt; 1. a fixed price charged for any meal chosen from the variety listed on the
-+&gt; menu.
-</span> 
-<span class="gd">-Things you may want to cover:
-</span><span class="gi">+[definition]: https://www.dictionary.com/browse/prix-fixe
-</span> 
-<span class="gd">-* Ruby version
-</span><span class="gi">+---
-</span> 
-<span class="gd">-* System dependencies
-</span><span class="gi">+According to the [Ruby on Rails doctrine][doctrine]:
-</span> 
-<span class="gd">-* Configuration
-</span><span class="gi">+&gt; Rails is an
-+&gt; &lt;dfn id="omakase" title="a Japanese phrase that means &amp;quot;I’ll leave it up to you&amp;quot;"&gt;
-+&gt; omakase&lt;/dfn&gt; stack, it still allows you to replace certain frameworks
-+&gt; or libraries with alternatives. It just doesn’t require you to. Which means
-+&gt; you can delay those decisions until you’ve developed a clear, personal palette
-+&gt; that may prefer the occasional difference.
-</span> 
-<span class="gd">-* Database creation
-</span><span class="gi">+This project aspires to put that claim to the test.
-</span> 
-<span class="gd">-* Database initialization
-</span><span class="gi">+[doctrine]: https://rubyonrails.org/doctrine/
-</span> 
-<span class="gd">-* How to run the test suite
-</span><span class="gi">+The Rules
-+---
-</span> 
-<span class="gd">-* Services (job queues, cache servers, search engines, etc.)
-</span><span class="gi">+Once the `rails new` command completes, the project is _forbidden_ from adding
-+or removing a [Rubygems][rubygems], [NPM][npmjs], or [Yarn][yarnpkg] dependency.
-</span> 
-<span class="gd">-* Deployment instructions
-</span><span class="gi">+This means that we're stuck with Rails' out-of-the-box setup, including:
-</span> 
-<span class="gd">-* ...
-</span><span class="gi">+* [SQLite][] as our data persistance
-+* [ERB Templates][] for rendering HTML
-+* [JBuilder][] for serializing to JSON
-+* [MiniTest][] as our testing framework
-+* [Fixtures][] to generate test data
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/system/user_shares_a_message_test.rb b/test/system/user_shares_a_message_test.rb
+index fb2d0ed..e1817fa 100644
+</span><span class="gd">--- a/test/system/user_shares_a_message_test.rb
+</span><span class="gi">+++ b/test/system/user_shares_a_message_test.rb
+</span><span class="p">@@ -1,9 +1,14 @@</span>
+ require "application_system_test_case"
+ 
+ class UserSharesAMessageTest &lt; ApplicationSystemTestCase
+<span class="gd">-  # test "visiting the index" do
+-  #   visit user_shares_a_messages_url
+-  #
+-  #   assert_selector "h1", text: "UserSharesAMessage"
+-  # end
+</span><span class="gi">+  test "visiting the index" do
++    content = "Hello, World!"
 +
-+The **_only_** exceptions to this rule are dependencies in our `Gemfile` that were
-+introduced by a `rails new` command. For example, the [`bcrypt` gem][bcrypt],
-+the [`image_processing` gem][image_processing], and the [`redis` gem][redis] can
-+be made available as dependencies, since they're generated by `rails new` as
-+commented-out lines in the `Gemfile`.
++    visit "/"
++    click_on "Share a Note"
++    fill_in "Message", with: content
++    click_on "Share"
 +
-+[rubygems]: https://guides.rubygems.org/rubygems-basics/
-+[npmjs]: https://docs.npmjs.com/about-npm/
-+[yarnpkg]: https://yarnpkg.com/getting-started
-+[SQLite]: https://sqlite.org/index.html
-+[MiniTest]: https://github.com/seattlerb/minitest
-+[Fixtures]: https://api.rubyonrails.org/v6.0.2.2/classes/ActiveRecord/FixtureSet.html
-+[ERB Templates]: https://ruby-doc.org/stdlib-2.7.0/libdoc/erb/rdoc/ERB.html
-+[JBuilder]: https://github.com/rails/jbuilder/tree/v2.10.0#jbuilder
-+[bcrypt]: https://github.com/codahale/bcrypt-ruby/tree/v3.1.13#why-you-should-use-bcrypt
-+[redis]: https://github.com/redis/redis-rb/tree/v4.0.0#getting-started
-+[image_processing]: https://github.com/janko/image_processing/tree/v1.2.0#usage
-+
-+The Goals
-+---
-+
-+The primary goal is to tell Rails:
-+
-+&gt; I'll leave it up to you
-+
-+and to see what happens.
-+
-+We'll do our best to build an application with the exact combination of tools
-+that Rails provides us with.
-+
-+Rails tutorials of yesteryear often aspired to build toy ["microblogging"
-+platforms][microblogging], so this project will too.
-+
-+As an alternative to building a Tw\*tter clone, we'll be building a [Mastodon
-+client][mastodon]. [Mastodon is built atop the ActivityPub
-+protocol][mastodon-activitypub]:
-+
-+&gt; The ActivityPub protocol is a decentralized social networking protocol based
-+&gt; upon the [ActivityStreams] 2.0 data format. It provides a client to server API
-+&gt; for creating, updating and deleting content, as well as a federated server to
-+&gt; server API for delivering notifications and content.
-+&gt;
-+&gt; -- [The ActivityPub W3C Protocol Specification][w3c-activitypub]
-+
-+[microblogging]: https://en.wikipedia.org/wiki/Microblogging
-+[mastodon]: https://docs.joinmastodon.org/
-+[mastodon-activitypub]: https://docs.joinmastodon.org/#fediverse
-+[ActivityStreams]: https://www.w3.org/TR/2018/REC-activitypub-20180123/#bib-ActivityStreams
-+[w3c-activitypub]: https://www.w3.org/TR/2018/REC-activitypub-20180123/
-+
-+The Strategy
-+---
-+
-+* This application will be built atop a foundation of server-generated HTML,
-+  hyper-linked to one another through referencing URLs.
-+
-+* This application will be progressively enhanced in environments where
-+  JavaScript is available.
-+
-+* This application will be test driven.
-+
-+* Each commit in our version control will rationalize changes, illuminate
-+  details of interest, and (with any luck) will be informative to its reader.
-+
-+* [The project's story][gh-pages] will be told by its [`git-read`][git-read]
-+  website.
-+
-+The [`git` history][git] will start with a step-by-step example illustrating the
-+project's development style: [Test-Driven Development][tdd] from the
-+[Outside-in][]. The diffs in these commits will contain the **minimum** amount
-+of code to transition from one test failure to another, and will often contain
-+the terminal output from each test run.
-+
-+Once we're finished iterating through a single [Red-Green-Refactor
-+cycle][red-green-refactor], the granularity of our commits will increase in
-+both size and scope.
-+
-+[gh-pages]: https://seanpdoyle.github.io/prix-fixe
-+[git-read]: https://github.com/seanpdoyle/git-read
-+[git]: https://git-scm.com/
-+[Outside-in]: https://thoughtbot.com/blog/testing-from-the-outsidein
-+[tdd]: https://thoughtbot.com/upcase/fundamentals-of-tdd
-+[red-green-refactor]: https://www.codecademy.com/articles/tdd-red-green-refactor
-</span></code></pre></div></details>
++    assert_text content
++  end
+</span> end
+</code></pre></div></details>
 
           </aside>
       </article>

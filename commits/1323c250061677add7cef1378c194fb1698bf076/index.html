@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Elaborate on the project's goals in the README
+    <title>Render `<label>` and `<textarea>`
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/">              &#8592; Previous
+<a href="../5781899e93eeb3f5c1668de4a8baa34355f417ef/">              &#8592; Previous
 </a>
-<a href="../6d1482de076a391b14b055aba66413577d326997/">              Next &#8594;
+<a href="../23dcf81458778c6ecc1dae7168c9307f66292eeb/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -39,8 +39,8 @@
             ">
                 <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
-" aria-current="page"></a>
+                <a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
+"></a>
                 <a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--collapsed" title="Un-comment remaining `Gemfile` dependencies
 "></a>
                 <a href="../92ce75d8cdd5545f738507b2e439ba0f3b484447/" class="commit-node commit-node--collapsed" title="Create `git-read` GitHub Action
@@ -67,8 +67,8 @@
 "></a>
                 <a href="../5781899e93eeb3f5c1668de4a8baa34355f417ef/" class="commit-node commit-node--collapsed" title="Declare `app/views/notes/new.html.erb` view
 "></a>
-                <a href="../1323c250061677add7cef1378c194fb1698bf076/" class="commit-node commit-node--collapsed" title="Render `&lt;label&gt;` and `&lt;textarea&gt;`
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Render `&lt;label&gt;` and `&lt;textarea&gt;`
+" aria-current="page"></a>
                 <a href="../23dcf81458778c6ecc1dae7168c9307f66292eeb/" class="commit-node commit-node--collapsed" title="Render `&lt;button&gt;` in `notes#new` template
 "></a>
                 <a href="../b8cd908169d83a384f0ed204550d656277d871db/" class="commit-node commit-node--collapsed" title="Render `&lt;form&gt;` element in `notes#new` template
@@ -173,7 +173,7 @@
         ">
 <a href="../1106e13e2568ee68f1528e4ac3e42070ad24dfc6/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Elaborate on the project&#39;s goals in the README</p>
+</a><a href="../65bf913763168f594a3873bcd9d0f6577602c986/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
 </a><a href="../6d1482de076a391b14b055aba66413577d326997/" class="commit-node commit-node--full">              <p>Un-comment remaining <code>Gemfile</code> dependencies</p>
 
@@ -201,7 +201,7 @@
 
 </a><a href="../5781899e93eeb3f5c1668de4a8baa34355f417ef/" class="commit-node commit-node--full">              <p>Declare <code>app/views/notes/new.html.erb</code> view</p>
 
-</a><a href="../1323c250061677add7cef1378c194fb1698bf076/" class="commit-node commit-node--full">              <p>Render <code>&lt;label&gt;</code> and <code>&lt;textarea&gt;</code></p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Render <code>&lt;label&gt;</code> and <code>&lt;textarea&gt;</code></p>
 
 </a><a href="../23dcf81458778c6ecc1dae7168c9307f66292eeb/" class="commit-node commit-node--full">              <p>Render <code>&lt;button&gt;</code> in <code>notes#new</code> template</p>
 
@@ -280,177 +280,87 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="elaborate-on-the-projects-goals-in-the-readme">Elaborate on the project&rsquo;s goals in the README</h1>
+          <h1 id="render-label-and-textarea">Render <code>&lt;label&gt;</code> and <code>&lt;textarea&gt;</code></h1>
 
-<p>We&rsquo;ll keep this commit brief: it expands upon the project&rsquo;s goals and
-constraints. To learn more, read the <a href="#README.md"><code>README.md</code></a>.</p>
+<p>This commit resolves the previous error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserSharesAMessageTest#test_visiting_the_index:
+Capybara::ElementNotFound: Unable to find field "Message"
+    test/system/user_shares_a_message_test.rb:9:in `block in &lt;class:UserSharesAMessageTest&gt;'
+</code></pre></div>
+<p>When invoked on the <a href="https://www.rubydoc.info/github/jnicklas/capybara/Capybara%2FDSL:page"><code>page</code></a> object, <a href="https://www.rubydoc.info/github/jnicklas/capybara/Capybara/Node/Actions:fill_in"><code>fill_in</code></a>,
+Capybara will locate the corresponding <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text"><code>&lt;input type=&quot;text&quot;&gt;</code></a> or
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea"><code>&lt;textarea&gt;</code></a> by resolving the first argument (the <code>locator</code>)
+by matching its:</p>
 
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes"><code>[name]</code></a> attribute</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes"><code>[id]</code></a> attribute</li>
+<li><code>Capybara.test_id</code> attribute</li>
+<li>the text of a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label"><code>&lt;label&gt;</code></a> element with a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#Attributes"><code>[for]</code></a>
+attribute that references a <code>&lt;textarea&gt;</code> or <code>&lt;input type=&quot;text&quot;&gt;</code></li>
+</ul>
+
+<p>When invoked on an element directly, a missing locator will be resolved
+on <code>self</code> or a descendant.</p>
+
+<p>This commit renders a <code>&lt;label&gt;</code> element with internationalized text, and
+a <code>&lt;textarea&gt;</code> element that the <code>&lt;label&gt;</code> references.</p>
+
+<p>If we want our page to be <a href="we%20*do*">accessible</a>, it&rsquo;s important that
+every <code>&lt;form&gt;</code> field has a corresponding <code>&lt;label&gt;</code> associated with it.</p>
+
+<p>Modern browsers can infer a lot of helpful behavior for pages that
+render HTML elements with appropriate <a href="https://developer.mozilla.org/en-US/docs/Glossary/semantics#Semantics_in_HTML">semantics</a>, including some
+behavior that <a href="https://www.w3.org/TR/WCAG20/">improves the accessibility of the content</a>.</p>
+
+<p>Ensuring that our browser-driven tests interact with the underlying
+elements based on <code>&lt;label&gt;</code> text improves the odds that the page is
+accessible.</p>
+
+<p>Accessibility and leveraging semantics-based behavior aside, system
+tests should interact with the page in the same way that end-users
+will. Users visiting a page in a web browser won&rsquo;t be interacting with
+the page with <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Selectors">CSS selectors</a> or HTML attribute, so our tests
+shouldn&rsquo;t either.</p>
+
+<p>When run again, the system test raises a new error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Error:
+UserSharesAMessageTest#test_visiting_the_index:
+Capybara::ElementNotFound: Unable to find link or button "Share"
+    test/system/user_shares_a_message_test.rb:10:in `block in &lt;class:UserSharesAMessageTest&gt;'
+</code></pre></div>
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="README.md"
-  
+  id="app/views/notes/new.html.erb"
+  open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/notes/new.html.erb</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/notes/new.html.erb</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      README.md
+      app/views/notes/new.html.erb
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/README.md b/README.md
-index 7db80e4..c6f99ce 100644
-</span><span class="gd">--- a/README.md
-</span><span class="gi">+++ b/README.md
-</span><span class="p">@@ -1,24 +1,124 @@</span>
-<span class="gd">-# README
-</span><span class="gi">+Prix-Fixe
-+===
-</span> 
-<span class="gd">-This README would normally document whatever steps are necessary to get the
--application up and running.
-</span><span class="gi">+&gt; [**prix fixe**][definition] [ **pree fiks**; _French_ pree **feeks** ]
-+&gt;
-+&gt; _noun_, _plural_
-+&gt;
-+&gt; 1. a fixed price charged for any meal chosen from the variety listed on the
-+&gt; menu.
-</span> 
-<span class="gd">-Things you may want to cover:
-</span><span class="gi">+[definition]: https://www.dictionary.com/browse/prix-fixe
-</span> 
-<span class="gd">-* Ruby version
-</span><span class="gi">+---
-</span> 
-<span class="gd">-* System dependencies
-</span><span class="gi">+According to the [Ruby on Rails doctrine][doctrine]:
-</span> 
-<span class="gd">-* Configuration
-</span><span class="gi">+&gt; Rails is an
-+&gt; &lt;dfn id="omakase" title="a Japanese phrase that means &amp;quot;I’ll leave it up to you&amp;quot;"&gt;
-+&gt; omakase&lt;/dfn&gt; stack, it still allows you to replace certain frameworks
-+&gt; or libraries with alternatives. It just doesn’t require you to. Which means
-+&gt; you can delay those decisions until you’ve developed a clear, personal palette
-+&gt; that may prefer the occasional difference.
-</span> 
-<span class="gd">-* Database creation
-</span><span class="gi">+This project aspires to put that claim to the test.
-</span> 
-<span class="gd">-* Database initialization
-</span><span class="gi">+[doctrine]: https://rubyonrails.org/doctrine/
-</span> 
-<span class="gd">-* How to run the test suite
-</span><span class="gi">+The Rules
-+---
-</span> 
-<span class="gd">-* Services (job queues, cache servers, search engines, etc.)
-</span><span class="gi">+Once the `rails new` command completes, the project is _forbidden_ from adding
-+or removing a [Rubygems][rubygems], [NPM][npmjs], or [Yarn][yarnpkg] dependency.
-</span> 
-<span class="gd">-* Deployment instructions
-</span><span class="gi">+This means that we're stuck with Rails' out-of-the-box setup, including:
-</span> 
-<span class="gd">-* ...
-</span><span class="gi">+* [SQLite][] as our data persistance
-+* [ERB Templates][] for rendering HTML
-+* [JBuilder][] for serializing to JSON
-+* [MiniTest][] as our testing framework
-+* [Fixtures][] to generate test data
-+
-+The **_only_** exceptions to this rule are dependencies in our `Gemfile` that were
-+introduced by a `rails new` command. For example, the [`bcrypt` gem][bcrypt],
-+the [`image_processing` gem][image_processing], and the [`redis` gem][redis] can
-+be made available as dependencies, since they're generated by `rails new` as
-+commented-out lines in the `Gemfile`.
-+
-+[rubygems]: https://guides.rubygems.org/rubygems-basics/
-+[npmjs]: https://docs.npmjs.com/about-npm/
-+[yarnpkg]: https://yarnpkg.com/getting-started
-+[SQLite]: https://sqlite.org/index.html
-+[MiniTest]: https://github.com/seattlerb/minitest
-+[Fixtures]: https://api.rubyonrails.org/v6.0.2.2/classes/ActiveRecord/FixtureSet.html
-+[ERB Templates]: https://ruby-doc.org/stdlib-2.7.0/libdoc/erb/rdoc/ERB.html
-+[JBuilder]: https://github.com/rails/jbuilder/tree/v2.10.0#jbuilder
-+[bcrypt]: https://github.com/codahale/bcrypt-ruby/tree/v3.1.13#why-you-should-use-bcrypt
-+[redis]: https://github.com/redis/redis-rb/tree/v4.0.0#getting-started
-+[image_processing]: https://github.com/janko/image_processing/tree/v1.2.0#usage
-+
-+The Goals
-+---
-+
-+The primary goal is to tell Rails:
-+
-+&gt; I'll leave it up to you
-+
-+and to see what happens.
-+
-+We'll do our best to build an application with the exact combination of tools
-+that Rails provides us with.
-+
-+Rails tutorials of yesteryear often aspired to build toy ["microblogging"
-+platforms][microblogging], so this project will too.
-+
-+As an alternative to building a Tw\*tter clone, we'll be building a [Mastodon
-+client][mastodon]. [Mastodon is built atop the ActivityPub
-+protocol][mastodon-activitypub]:
-+
-+&gt; The ActivityPub protocol is a decentralized social networking protocol based
-+&gt; upon the [ActivityStreams] 2.0 data format. It provides a client to server API
-+&gt; for creating, updating and deleting content, as well as a federated server to
-+&gt; server API for delivering notifications and content.
-+&gt;
-+&gt; -- [The ActivityPub W3C Protocol Specification][w3c-activitypub]
-+
-+[microblogging]: https://en.wikipedia.org/wiki/Microblogging
-+[mastodon]: https://docs.joinmastodon.org/
-+[mastodon-activitypub]: https://docs.joinmastodon.org/#fediverse
-+[ActivityStreams]: https://www.w3.org/TR/2018/REC-activitypub-20180123/#bib-ActivityStreams
-+[w3c-activitypub]: https://www.w3.org/TR/2018/REC-activitypub-20180123/
-+
-+The Strategy
-+---
-+
-+* This application will be built atop a foundation of server-generated HTML,
-+  hyper-linked to one another through referencing URLs.
-+
-+* This application will be progressively enhanced in environments where
-+  JavaScript is available.
-+
-+* This application will be test driven.
-+
-+* Each commit in our version control will rationalize changes, illuminate
-+  details of interest, and (with any luck) will be informative to its reader.
-+
-+* [The project's story][gh-pages] will be told by its [`git-read`][git-read]
-+  website.
-+
-+The [`git` history][git] will start with a step-by-step example illustrating the
-+project's development style: [Test-Driven Development][tdd] from the
-+[Outside-in][]. The diffs in these commits will contain the **minimum** amount
-+of code to transition from one test failure to another, and will often contain
-+the terminal output from each test run.
-+
-+Once we're finished iterating through a single [Red-Green-Refactor
-+cycle][red-green-refactor], the granularity of our commits will increase in
-+both size and scope.
-+
-+[gh-pages]: https://seanpdoyle.github.io/prix-fixe
-+[git-read]: https://github.com/seanpdoyle/git-read
-+[git]: https://git-scm.com/
-+[Outside-in]: https://thoughtbot.com/blog/testing-from-the-outsidein
-+[tdd]: https://thoughtbot.com/upcase/fundamentals-of-tdd
-+[red-green-refactor]: https://www.codecademy.com/articles/tdd-red-green-refactor
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/notes/new.html.erb b/app/views/notes/new.html.erb
+index e69de29..855f00f 100644
+</span><span class="gd">--- a/app/views/notes/new.html.erb
+</span><span class="gi">+++ b/app/views/notes/new.html.erb
+</span><span class="p">@@ -0,0 +1,2 @@</span>
+<span class="gi">+&lt;label for="content"&gt;Message&lt;/label&gt;
++&lt;textarea id="content"&gt;&lt;/textarea&gt;
 </span></code></pre></div></details>
 
           </aside>
